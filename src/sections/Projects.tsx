@@ -39,7 +39,7 @@ function ProjectCard({
       className="h-full"
     >
       <motion.div
-        className="h-full rounded-2xl bg-white border border-slate-200/90 shadow-sm p-8 flex flex-col justify-between transition-all duration-300 group hover:border-sky-300 hover:shadow-xl hover:shadow-sky-500/10 cursor-pointer relative overflow-hidden text-left"
+        className="h-full rounded-2xl bg-white/85 backdrop-blur-md border border-sky-200/80 shadow-sm p-8 flex flex-col justify-between transition-all duration-300 group hover:border-sky-300 hover:shadow-xl hover:shadow-sky-500/10 cursor-pointer relative overflow-hidden text-left"
         style={{
           transformStyle: 'preserve-3d',
         }}
@@ -75,7 +75,7 @@ function ProjectCard({
             <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-snug group-hover:text-sky-700 transition-colors">
               {project.title}
             </h3>
-            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mt-2.5 line-clamp-3">
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mt-2.5 line-clamp-3 font-normal">
               {project.description}
             </p>
           </div>
@@ -150,8 +150,14 @@ export default function Projects() {
     <FlipSection>
       <section
         id="projects"
-        className="section-padding relative overflow-hidden bg-white py-24 sm:py-32"
+        className="section-padding relative overflow-hidden bg-gradient-to-b from-sky-50/70 via-sky-100/40 to-sky-50/70 py-24 sm:py-32"
       >
+        {/* Soft Ambient Glow */}
+        <div
+          className="absolute top-1/3 right-1/4 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none blur-3xl opacity-30"
+          style={{ background: 'radial-gradient(circle, rgba(186,230,253,0.7) 0%, transparent 70%)' }}
+        />
+
         <div ref={ref} className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
           
           {/* Centered Header */}
@@ -161,7 +167,7 @@ export default function Projects() {
             transition={{ duration: 0.6 }}
             className="space-y-4 max-w-3xl mx-auto text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-100/80 border border-sky-200 text-sky-700 text-xs font-bold tracking-widest uppercase shadow-2xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-sky-300 text-sky-700 text-xs font-bold tracking-widest uppercase shadow-2xs">
               <Sparkles size={13} className="text-sky-600" />
               Featured Engineering
             </div>

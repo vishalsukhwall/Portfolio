@@ -12,8 +12,14 @@ export default function Certifications() {
     <FlipSection>
       <section
         id="certifications"
-        className="section-padding relative overflow-hidden bg-gradient-to-b from-sky-50/40 via-white to-sky-50/50 py-24 sm:py-32"
+        className="section-padding relative overflow-hidden bg-gradient-to-b from-sky-50/70 via-sky-100/40 to-sky-50/70 py-24 sm:py-32"
       >
+        {/* Soft Ambient Glow */}
+        <div
+          className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[550px] h-[550px] rounded-full pointer-events-none blur-3xl opacity-30"
+          style={{ background: 'radial-gradient(circle, rgba(186,230,253,0.7) 0%, transparent 70%)' }}
+        />
+
         <div ref={ref} className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
           
           {/* Centered Header */}
@@ -23,7 +29,7 @@ export default function Certifications() {
             transition={{ duration: 0.6 }}
             className="space-y-4 max-w-3xl mx-auto text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-100/80 border border-sky-200 text-sky-700 text-xs font-bold tracking-widest uppercase shadow-2xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-sky-300 text-sky-700 text-xs font-bold tracking-widest uppercase shadow-2xs">
               <Sparkles size={13} className="text-sky-600" />
               Verified Credentials
             </div>
@@ -45,7 +51,7 @@ export default function Certifications() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="p-8 rounded-2xl bg-white border border-slate-200/90 shadow-sm hover:border-sky-300 hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 flex flex-col justify-between group text-left"
+                className="p-8 rounded-2xl bg-white/85 backdrop-blur-md border border-sky-200/80 shadow-sm hover:border-sky-300 hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 flex flex-col justify-between group text-left"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">

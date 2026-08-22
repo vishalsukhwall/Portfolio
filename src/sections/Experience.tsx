@@ -12,8 +12,14 @@ export default function Experience() {
     <FlipSection>
       <section
         id="experience"
-        className="section-padding relative overflow-hidden bg-gradient-to-b from-sky-50/30 via-white to-sky-50/40 py-24 sm:py-32"
+        className="section-padding relative overflow-hidden bg-gradient-to-b from-sky-50/70 via-sky-100/40 to-sky-50/70 py-24 sm:py-32"
       >
+        {/* Ambient Radial Glow */}
+        <div
+          className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none blur-3xl opacity-30"
+          style={{ background: 'radial-gradient(circle, rgba(186,230,253,0.7) 0%, transparent 70%)' }}
+        />
+
         <div ref={ref} className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
           
           {/* Centered Header */}
@@ -23,7 +29,7 @@ export default function Experience() {
             transition={{ duration: 0.6 }}
             className="space-y-4 max-w-3xl mx-auto text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-100/80 border border-sky-200 text-sky-700 text-xs font-bold tracking-widest uppercase shadow-2xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-sky-300 text-sky-700 text-xs font-bold tracking-widest uppercase shadow-2xs">
               <Sparkles size={13} className="text-sky-600" />
               Career Journey
             </div>
@@ -44,7 +50,7 @@ export default function Experience() {
               className="absolute top-4 bottom-4 w-0.5 rounded-full"
               style={{
                 left: '1.25rem',
-                background: 'linear-gradient(to bottom, #0284c7 0%, #38bdf8 50%, rgba(2, 132, 199, 0.1) 100%)',
+                background: 'linear-gradient(to bottom, #0284c7 0%, #38bdf8 50%, rgba(2, 132, 199, 0.2) 100%)',
               }}
             />
 
@@ -65,7 +71,7 @@ export default function Experience() {
                 </div>
 
                 {/* Experience Card */}
-                <div className="p-8 sm:p-10 rounded-2xl bg-white border border-slate-200/90 shadow-sm hover:border-sky-300 hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 space-y-6">
+                <div className="p-8 sm:p-10 rounded-2xl bg-white/85 backdrop-blur-md border border-sky-200/80 shadow-sm hover:border-sky-300 hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 space-y-6">
                   
                   {/* Card Header */}
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-100">

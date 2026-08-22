@@ -17,13 +17,13 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-slate-900 text-white pt-24 pb-12 border-t border-slate-800">
+    <footer className="relative bg-gradient-to-b from-sky-50/80 via-sky-100/60 to-sky-200/40 text-slate-800 pt-24 pb-12 border-t border-sky-200/80">
       {/* Floating Scroll to Top Pill / Button */}
       <div className="absolute left-1/2 -top-6 -translate-x-1/2">
         <button
           onClick={scrollToTop}
           data-cursor
-          className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:-translate-y-1 cursor-pointer shadow-xl shadow-sky-500/25 bg-gradient-to-r from-sky-600 to-cyan-500 text-white hover:scale-105"
+          className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:-translate-y-1 cursor-pointer shadow-lg shadow-sky-500/20 bg-gradient-to-r from-sky-600 to-cyan-500 text-white hover:scale-105"
           aria-label="Scroll to top"
         >
           <ArrowUp size={20} />
@@ -40,7 +40,7 @@ export default function Footer() {
             <h2 className="text-2xl sm:text-3xl font-black gradient-text-sky tracking-tight">
               {personal.name}
             </h2>
-            <p className="text-xs sm:text-sm font-medium text-slate-400">
+            <p className="text-xs sm:text-sm font-semibold text-slate-600">
               MCA Graduate • Full-Stack Developer & AI/ML Enthusiast
             </p>
           </div>
@@ -51,7 +51,7 @@ export default function Footer() {
               <li key={link.label}>
                 <a
                   href={link.href}
-                  className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-400 hover:text-sky-400 transition-colors"
+                  className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-600 hover:text-sky-600 transition-colors"
                   data-cursor
                 >
                   {link.label}
@@ -74,7 +74,7 @@ export default function Footer() {
                 rel="noreferrer"
                 aria-label={label}
                 data-cursor
-                className="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 flex items-center justify-center hover:bg-sky-600 hover:text-white hover:border-sky-500 transition-all shadow-sm"
+                className="w-10 h-10 rounded-xl bg-white/90 border border-sky-200 text-slate-700 flex items-center justify-center hover:bg-sky-600 hover:text-white hover:border-sky-600 transition-all shadow-xs"
               >
                 <Icon size={18} />
               </a>
@@ -83,12 +83,12 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="w-full h-px bg-slate-800" />
+        <div className="w-full h-px bg-sky-200/80" />
 
         {/* Bottom Metadata */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-slate-500">
           <p>© {new Date().getFullYear()} {personal.name}. Built with precision in React, TypeScript, Tailwind CSS & Three.js.</p>
-          <p className="text-slate-400">Udaipur, Rajasthan, India</p>
+          <p className="text-slate-600 font-semibold">Udaipur, Rajasthan, India</p>
         </div>
 
       </div>

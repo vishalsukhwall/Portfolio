@@ -51,8 +51,14 @@ export default function Contact() {
     <FlipSection direction="bottom">
       <section
         id="contact"
-        className="section-padding relative overflow-hidden bg-white py-24 sm:py-32"
+        className="section-padding relative overflow-hidden bg-gradient-to-b from-sky-50/70 via-sky-100/40 to-sky-50/70 py-24 sm:py-32"
       >
+        {/* Soft Ambient Glow */}
+        <div
+          className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[650px] h-[650px] rounded-full pointer-events-none blur-3xl opacity-35"
+          style={{ background: 'radial-gradient(circle, rgba(186,230,253,0.7) 0%, transparent 70%)' }}
+        />
+
         <div ref={ref} className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
           
           {/* Centered Header */}
@@ -62,7 +68,7 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="space-y-4 max-w-3xl mx-auto text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-100/80 border border-sky-200 text-sky-700 text-xs font-bold tracking-widest uppercase shadow-2xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-sky-300 text-sky-700 text-xs font-bold tracking-widest uppercase shadow-2xs">
               <Sparkles size={13} className="text-sky-600" />
               Get In Touch
             </div>
@@ -97,8 +103,8 @@ export default function Contact() {
                     data-cursor
                     className={`flex items-center justify-between p-5 rounded-2xl border transition-all duration-300 group text-left ${
                       info.highlight
-                        ? 'bg-gradient-to-r from-sky-50 to-white border-sky-300 shadow-sm hover:shadow-md'
-                        : 'bg-white border-slate-200/90 hover:border-sky-300 hover:shadow-md'
+                        ? 'bg-white/90 backdrop-blur-md border-sky-300 shadow-sm hover:shadow-md'
+                        : 'bg-white/85 backdrop-blur-md border-sky-200/80 hover:border-sky-300 hover:shadow-md'
                     }`}
                   >
                     <div className="flex items-center gap-4 min-w-0">
@@ -125,7 +131,7 @@ export default function Contact() {
               initial={{ opacity: 0, x: 20 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.3 }}
-              className="lg:col-span-7 bg-white p-8 sm:p-10 rounded-2xl border border-slate-200/90 shadow-xl shadow-sky-500/5 text-left"
+              className="lg:col-span-7 bg-white/90 backdrop-blur-md p-8 sm:p-10 rounded-2xl border border-sky-200/80 shadow-xl shadow-sky-500/5 text-left"
             >
               {status === 'success' ? (
                 <div className="py-12 text-center space-y-4">
@@ -157,7 +163,7 @@ export default function Contact() {
                       <input 
                         type="text" 
                         required 
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10 focus:outline-none transition-all"
+                        className="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10 focus:outline-none transition-all"
                         placeholder="John Doe"
                       />
                     </div>
@@ -166,7 +172,7 @@ export default function Contact() {
                       <input 
                         type="email" 
                         required 
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10 focus:outline-none transition-all"
+                        className="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10 focus:outline-none transition-all"
                         placeholder="john@example.com"
                       />
                     </div>
@@ -177,7 +183,7 @@ export default function Contact() {
                     <input 
                       type="text" 
                       required 
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10 focus:outline-none transition-all"
+                      className="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10 focus:outline-none transition-all"
                       placeholder="Opportunity / Project Inquiry"
                     />
                   </div>
@@ -187,7 +193,7 @@ export default function Contact() {
                     <textarea 
                       rows={4} 
                       required 
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10 focus:outline-none transition-all resize-none"
+                      className="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10 focus:outline-none transition-all resize-none"
                       placeholder="Write your message here..."
                     ></textarea>
                   </div>

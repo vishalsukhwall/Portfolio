@@ -54,8 +54,14 @@ export default function Skills() {
     <FlipSection>
       <section
         id="skills"
-        className="section-padding relative overflow-hidden bg-white py-24 sm:py-32"
+        className="section-padding relative overflow-hidden bg-gradient-to-b from-sky-50/70 via-sky-100/40 to-sky-50/70 py-24 sm:py-32"
       >
+        {/* Soft Ambient Glow */}
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full pointer-events-none blur-3xl opacity-30"
+          style={{ background: 'radial-gradient(circle, rgba(186,230,253,0.7) 0%, transparent 70%)' }}
+        />
+
         <div ref={ref} className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
           <motion.div
             variants={container}
@@ -65,7 +71,7 @@ export default function Skills() {
           >
             {/* Centered Section Header */}
             <div className="space-y-4 max-w-3xl mx-auto text-center">
-              <motion.div variants={item} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-100/80 border border-sky-200 text-sky-700 text-xs font-bold tracking-widest uppercase shadow-2xs">
+              <motion.div variants={item} className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-sky-300 text-sky-700 text-xs font-bold tracking-widest uppercase shadow-2xs">
                 <Sparkles size={13} className="text-sky-600" />
                 Technical Competencies
               </motion.div>
@@ -85,7 +91,7 @@ export default function Skills() {
                 <motion.div
                   key={group.title}
                   variants={item}
-                  className="p-8 rounded-2xl bg-white border border-slate-200/90 hover:border-sky-300 hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 flex flex-col justify-between group"
+                  className="p-8 rounded-2xl bg-white/85 backdrop-blur-md border border-sky-200/80 hover:border-sky-300 hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 flex flex-col justify-between group shadow-sm"
                 >
                   <div className="space-y-6">
                     {/* Header */}
@@ -110,7 +116,7 @@ export default function Skills() {
                         <span
                           key={tech}
                           data-cursor
-                          className="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-slate-50 border border-slate-200/80 hover:bg-sky-50 hover:border-sky-300 hover:text-sky-700 transition-all cursor-default shadow-2xs"
+                          className="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-slate-50/90 border border-slate-200/80 hover:bg-sky-50 hover:border-sky-300 hover:text-sky-700 transition-all cursor-default shadow-2xs"
                         >
                           {tech}
                         </span>
