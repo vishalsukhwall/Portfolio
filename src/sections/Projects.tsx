@@ -39,7 +39,7 @@ function ProjectCard({
       className="h-full"
     >
       <motion.div
-        className="h-full rounded-2xl bg-white/85 backdrop-blur-md border border-sky-200/80 shadow-sm p-8 flex flex-col justify-between transition-all duration-300 group hover:border-sky-300 hover:shadow-xl hover:shadow-sky-500/10 cursor-pointer relative overflow-hidden text-left"
+        className="h-full rounded-2xl bg-slate-900/80 backdrop-blur-md border border-slate-800/80 shadow-xl p-8 flex flex-col justify-between transition-all duration-300 group hover:border-sky-500/40 hover:shadow-2xl hover:shadow-sky-500/10 cursor-pointer relative overflow-hidden text-left"
         style={{
           transformStyle: 'preserve-3d',
         }}
@@ -63,31 +63,31 @@ function ProjectCard({
         {/* Content Block */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <span className="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-sky-50 text-sky-700 border border-sky-200/80">
+            <span className="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-sky-950/80 text-sky-300 border border-sky-800/60">
               {project.subtitle}
             </span>
-            <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:text-sky-600 group-hover:bg-sky-50 transition-colors">
+            <div className="w-8 h-8 rounded-full bg-slate-800/80 flex items-center justify-center text-slate-400 group-hover:text-sky-400 group-hover:bg-slate-800 transition-colors">
               <ArrowUpRight size={16} />
             </div>
           </div>
 
           <div>
-            <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-snug group-hover:text-sky-700 transition-colors">
+            <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-snug group-hover:text-sky-400 transition-colors">
               {project.title}
             </h3>
-            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mt-2.5 line-clamp-3 font-normal">
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mt-2.5 line-clamp-3 font-normal">
               {project.description}
             </p>
           </div>
         </div>
 
         {/* Footer & Actions */}
-        <div className="pt-6 space-y-4 border-t border-slate-100 mt-6">
+        <div className="pt-6 space-y-4 border-t border-slate-800/80 mt-6">
           <div className="flex flex-wrap gap-1.5">
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-2.5 py-1 rounded-md text-[11px] font-semibold text-slate-600 bg-slate-100/80"
+                className="px-2.5 py-1 rounded-md text-[11px] font-semibold text-slate-300 bg-slate-800/70 border border-slate-700/60"
               >
                 {tag}
               </span>
@@ -101,7 +101,7 @@ function ProjectCard({
                 onClick();
               }}
               data-cursor
-              className="text-xs font-bold text-sky-600 hover:text-sky-700 flex items-center gap-1 cursor-pointer"
+              className="text-xs font-bold text-sky-400 hover:text-sky-300 flex items-center gap-1 cursor-pointer"
             >
               <Code2 size={14} /> Case Details
             </button>
@@ -114,7 +114,7 @@ function ProjectCard({
                   rel="noreferrer"
                   onClick={(e) => e.stopPropagation()}
                   data-cursor
-                  className="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 border border-sky-200/80 flex items-center justify-center hover:bg-sky-600 hover:text-white transition-all shadow-2xs cursor-pointer"
+                  className="w-8 h-8 rounded-lg bg-sky-950/80 text-sky-300 border border-sky-800/60 flex items-center justify-center hover:bg-sky-500 hover:text-white transition-all shadow-2xs cursor-pointer"
                   title="Live Demo"
                 >
                   <ExternalLink size={14} />
@@ -126,7 +126,7 @@ function ProjectCard({
                 rel="noreferrer"
                 onClick={(e) => e.stopPropagation()}
                 data-cursor
-                className="w-8 h-8 rounded-lg bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all shadow-2xs cursor-pointer"
+                className="w-8 h-8 rounded-lg bg-slate-800 text-slate-200 border border-slate-700 flex items-center justify-center hover:bg-white hover:text-slate-950 transition-all shadow-2xs cursor-pointer"
                 title="Source Code"
               >
                 <GithubIcon size={14} />
@@ -150,12 +150,12 @@ export default function Projects() {
     <FlipSection>
       <section
         id="projects"
-        className="section-padding relative overflow-hidden bg-gradient-to-b from-sky-50/70 via-sky-100/40 to-sky-50/70 py-24 sm:py-32"
+        className="section-padding relative overflow-hidden bg-slate-950 text-slate-100 py-24 sm:py-32"
       >
         {/* Soft Ambient Glow */}
         <div
-          className="absolute top-1/3 right-1/4 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none blur-3xl opacity-30"
-          style={{ background: 'radial-gradient(circle, rgba(186,230,253,0.7) 0%, transparent 70%)' }}
+          className="absolute top-1/3 right-1/4 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none blur-3xl opacity-15"
+          style={{ background: 'radial-gradient(circle, rgba(56,189,248,0.5) 0%, transparent 70%)' }}
         />
 
         <div ref={ref} className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
@@ -167,16 +167,16 @@ export default function Projects() {
             transition={{ duration: 0.6 }}
             className="space-y-4 max-w-3xl mx-auto text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-sky-300 text-sky-700 text-xs font-bold tracking-widest uppercase shadow-2xs">
-              <Sparkles size={13} className="text-sky-600" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-sky-400 text-xs font-bold tracking-widest uppercase shadow-2xs">
+              <Sparkles size={13} className="text-sky-400" />
               Featured Engineering
             </div>
             
-            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
               Flagship <span className="gradient-text-sky">Projects</span>
             </h2>
 
-            <p className="text-slate-600 text-base sm:text-lg font-normal leading-relaxed">
+            <p className="text-slate-400 text-base sm:text-lg font-normal leading-relaxed">
               Production-grade applications spanning full-stack TypeScript systems, scalable cloud platforms, and machine learning pipelines.
             </p>
           </motion.div>

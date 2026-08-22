@@ -51,12 +51,12 @@ export default function Contact() {
     <FlipSection direction="bottom">
       <section
         id="contact"
-        className="section-padding relative overflow-hidden bg-gradient-to-b from-sky-50/70 via-sky-100/40 to-sky-50/70 py-24 sm:py-32"
+        className="section-padding relative overflow-hidden bg-slate-950 text-slate-100 py-24 sm:py-32"
       >
         {/* Soft Ambient Glow */}
         <div
-          className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[650px] h-[650px] rounded-full pointer-events-none blur-3xl opacity-35"
-          style={{ background: 'radial-gradient(circle, rgba(186,230,253,0.7) 0%, transparent 70%)' }}
+          className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[650px] h-[650px] rounded-full pointer-events-none blur-3xl opacity-15"
+          style={{ background: 'radial-gradient(circle, rgba(56,189,248,0.5) 0%, transparent 70%)' }}
         />
 
         <div ref={ref} className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
@@ -68,16 +68,16 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="space-y-4 max-w-3xl mx-auto text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-sky-300 text-sky-700 text-xs font-bold tracking-widest uppercase shadow-2xs">
-              <Sparkles size={13} className="text-sky-600" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-sky-400 text-xs font-bold tracking-widest uppercase shadow-2xs">
+              <Sparkles size={13} className="text-sky-400" />
               Get In Touch
             </div>
             
-            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
               Let's Build Something <span className="gradient-text-sky">Exceptional</span>
             </h2>
 
-            <p className="text-slate-600 text-base sm:text-lg font-normal leading-relaxed">
+            <p className="text-slate-400 text-base sm:text-lg font-normal leading-relaxed">
               Actively open for Software Engineer roles, Full-Stack positions, and AI/ML opportunities. Let's discuss how I can contribute to your team.
             </p>
           </motion.div>
@@ -103,24 +103,24 @@ export default function Contact() {
                     data-cursor
                     className={`flex items-center justify-between p-5 rounded-2xl border transition-all duration-300 group text-left ${
                       info.highlight
-                        ? 'bg-white/90 backdrop-blur-md border-sky-300 shadow-sm hover:shadow-md'
-                        : 'bg-white/85 backdrop-blur-md border-sky-200/80 hover:border-sky-300 hover:shadow-md'
+                        ? 'bg-slate-900/90 backdrop-blur-md border-sky-500/40 shadow-xl hover:shadow-sky-500/10'
+                        : 'bg-slate-900/80 backdrop-blur-md border-slate-800/80 hover:border-sky-500/40 hover:shadow-xl'
                     }`}
                   >
                     <div className="flex items-center gap-4 min-w-0">
-                      <div className="w-11 h-11 rounded-xl bg-sky-100/80 text-sky-600 border border-sky-200/80 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                      <div className="w-11 h-11 rounded-xl bg-sky-950/80 text-sky-400 border border-sky-800/50 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                         <Icon size={20} />
                       </div>
                       <div className="min-w-0">
                         <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
                           {info.label}
                         </p>
-                        <p className="text-sm font-bold text-slate-800 truncate group-hover:text-sky-600 transition-colors">
+                        <p className="text-sm font-bold text-white truncate group-hover:text-sky-400 transition-colors">
                           {info.value}
                         </p>
                       </div>
                     </div>
-                    <ArrowUpRight size={16} className="text-slate-300 group-hover:text-sky-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all flex-shrink-0 ml-2" />
+                    <ArrowUpRight size={16} className="text-slate-500 group-hover:text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all flex-shrink-0 ml-2" />
                   </a>
                 );
               })}
@@ -131,20 +131,20 @@ export default function Contact() {
               initial={{ opacity: 0, x: 20 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.3 }}
-              className="lg:col-span-7 bg-white/90 backdrop-blur-md p-8 sm:p-10 rounded-2xl border border-sky-200/80 shadow-xl shadow-sky-500/5 text-left"
+              className="lg:col-span-7 bg-slate-900/85 backdrop-blur-md p-8 sm:p-10 rounded-2xl border border-slate-800/80 shadow-2xl text-left text-slate-100"
             >
               {status === 'success' ? (
                 <div className="py-12 text-center space-y-4">
-                  <div className="w-16 h-16 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center mx-auto border border-sky-200">
+                  <div className="w-16 h-16 bg-sky-950/80 text-sky-400 rounded-full flex items-center justify-center mx-auto border border-sky-800/60">
                     <CheckCircle2 size={32} />
                   </div>
-                  <h3 className="text-2xl font-black text-slate-900">Message Delivered!</h3>
-                  <p className="text-sm text-slate-600 max-w-sm mx-auto">
+                  <h3 className="text-2xl font-black text-white">Message Delivered!</h3>
+                  <p className="text-sm text-slate-400 max-w-sm mx-auto">
                     Thank you for reaching out, Vishal Sukhwal will respond to your inquiry within 24 hours.
                   </p>
                   <button
                     onClick={() => setStatus('idle')}
-                    className="mt-4 px-6 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-xs font-bold text-slate-800 transition-all cursor-pointer"
+                    className="mt-4 px-6 py-2.5 rounded-full bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white transition-all cursor-pointer"
                     type="button"
                   >
                     Send Another Message
@@ -152,48 +152,48 @@ export default function Contact() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="flex items-center gap-2 text-sky-600 text-xs font-bold uppercase tracking-wider mb-2">
+                  <div className="flex items-center gap-2 text-sky-400 text-xs font-bold uppercase tracking-wider mb-2">
                     <MessageSquare size={14} />
                     <span>Direct Inquiry Form</span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div className="space-y-1.5">
-                      <label className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Your Name</label>
+                      <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Your Name</label>
                       <input 
                         type="text" 
                         required 
-                        className="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10 focus:outline-none transition-all"
+                        className="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:bg-slate-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 focus:outline-none transition-all placeholder:text-slate-600"
                         placeholder="John Doe"
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Email Address</label>
+                      <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Email Address</label>
                       <input 
                         type="email" 
                         required 
-                        className="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10 focus:outline-none transition-all"
+                        className="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:bg-slate-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 focus:outline-none transition-all placeholder:text-slate-600"
                         placeholder="john@example.com"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Subject</label>
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Subject</label>
                     <input 
                       type="text" 
                       required 
-                      className="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10 focus:outline-none transition-all"
+                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:bg-slate-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 focus:outline-none transition-all placeholder:text-slate-600"
                       placeholder="Opportunity / Project Inquiry"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Message</label>
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Message</label>
                     <textarea 
                       rows={4} 
                       required 
-                      className="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10 focus:outline-none transition-all resize-none"
+                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:bg-slate-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 focus:outline-none transition-all resize-none placeholder:text-slate-600"
                       placeholder="Write your message here..."
                     ></textarea>
                   </div>
@@ -203,7 +203,7 @@ export default function Contact() {
                       type="submit" 
                       disabled={status === 'sending'}
                       data-cursor
-                      className="w-full py-4 bg-gradient-to-r from-sky-600 to-cyan-500 hover:from-sky-700 hover:to-cyan-600 text-white font-extrabold text-xs uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20 hover:shadow-sky-500/35 cursor-pointer hover:scale-[1.01]"
+                      className="w-full py-4 bg-gradient-to-r from-sky-600 to-cyan-500 hover:from-sky-700 hover:to-cyan-600 text-white font-extrabold text-xs uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 cursor-pointer hover:scale-[1.01]"
                     >
                       {status === 'sending' ? (
                         <span className="animate-pulse">Sending Inquiry...</span>

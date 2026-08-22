@@ -18,7 +18,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* Backdrop */}
           <motion.div
             className="fixed inset-0 z-[200]"
-            style={{ background: 'rgba(15,23,42,0.35)', backdropFilter: 'blur(10px)' }}
+            style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(10px)' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -28,13 +28,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* Modal */}
           <motion.div
             className="fixed z-[201] inset-x-4 md:inset-x-auto md:left-1/2 md:-translate-x-1/2
-                       top-1/2 -translate-y-1/2 w-full md:w-[600px] rounded-3xl overflow-hidden"
+                       top-1/2 -translate-y-1/2 w-full md:w-[600px] rounded-3xl overflow-hidden bg-slate-900 border border-slate-800 text-white"
             style={{
-              background: '#ffffff',
-              border: `1.5px solid rgba(2,132,199,0.2)`,
-              boxShadow: `0 0 0 1px rgba(2,132,199,0.08),
-                          0 24px 64px rgba(2,132,199,0.18),
-                          0 8px 24px rgba(0,0,0,0.08)`,
+              boxShadow: `0 24px 64px rgba(0,0,0,0.6), 0 0 40px rgba(56,189,248,0.1)`,
             }}
             initial={{ opacity: 0, scale: 0.88, y: '-40%' }}
             animate={{ opacity: 1, scale: 1, y: '-50%' }}
@@ -47,19 +43,18 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               style={{ background: 'linear-gradient(90deg, #0284c7, #38bdf8, #00a8ff)' }}
             />
 
-            <div className="p-8">
+            <div className="p-8 space-y-6">
               {/* Header */}
-              <div className="flex items-start justify-between mb-6">
+              <div className="flex items-start justify-between">
                 <div>
                   <p
-                    className="text-xs font-bold tracking-widest uppercase mb-1.5"
-                    style={{ color: '#0284c7' }}
+                    className="text-xs font-bold tracking-widest uppercase mb-1.5 text-sky-400"
                   >
                     {project.subtitle}
                   </p>
                   <h3
-                    className="text-3xl font-black tracking-tight"
-                    style={{ color: '#0f172a', lineHeight: 1.1 }}
+                    className="text-2xl sm:text-3xl font-black tracking-tight text-white"
+                    style={{ lineHeight: 1.1 }}
                   >
                     {project.title}
                   </h3>
@@ -67,47 +62,41 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 <button
                   onClick={onClose}
                   data-cursor
-                  className="flex items-center justify-center w-10 h-10 rounded-xl transition-all"
-                  style={{
-                    background: 'rgba(2,132,199,0.06)',
-                    border: '1px solid rgba(2,132,199,0.15)',
-                  }}
+                  className="flex items-center justify-center w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition-all text-slate-300 hover:text-white"
                 >
-                  <X size={16} color="#475569" />
+                  <X size={16} />
                 </button>
               </div>
 
               {/* Description */}
               <p
-                className="text-sm leading-relaxed mb-6"
-                style={{ color: '#475569', lineHeight: 1.75 }}
+                className="text-sm leading-relaxed text-slate-300"
               >
                 {project.longDescription}
               </p>
 
               {/* Tags */}
-              <div className="flex flex-wrap gap-2 mb-8">
+              <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
-                  <span key={tag} className="skill-chip flex items-center gap-1.5">
-                    <Tag size={9} />
+                  <span key={tag} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold text-sky-300 bg-sky-950/80 border border-sky-800/60">
+                    <Tag size={10} />
                     {tag}
                   </span>
                 ))}
               </div>
 
               {/* Links */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 pt-2">
                 {project.live && (
                   <a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
                     data-cursor
-                    className="flex-1 magnetic-btn magnetic-btn-primary flex items-center justify-center gap-2"
-                    style={{ fontSize: '0.875rem', padding: '12px 20px' }}
+                    className="flex-1 py-3 px-5 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-500 hover:from-sky-700 hover:to-cyan-600 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md shadow-sky-500/20"
                   >
                     <ExternalLink size={14} />
-                    View Live
+                    View Live Demo
                   </a>
                 )}
                 <a
@@ -115,11 +104,10 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor
-                  className="flex-1 magnetic-btn magnetic-btn-secondary flex items-center justify-center gap-2"
-                  style={{ fontSize: '0.875rem', padding: '12px 20px' }}
+                  className="flex-1 py-3 px-5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all"
                 >
-                  <GithubIcon size={14} color="#0284c7" />
-                  View Code
+                  <GithubIcon size={14} />
+                  View Source
                 </a>
               </div>
             </div>

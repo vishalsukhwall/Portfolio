@@ -45,10 +45,10 @@ export default function Navbar() {
         transition={{ duration: 0.75, delay: 0.15, ease: [0.76, 0, 0.24, 1] }}
         style={{
           height: 70,
-          background: scrolled ? 'rgba(255,255,255,0.88)' : 'transparent',
+          background: scrolled ? 'rgba(3, 7, 18, 0.85)' : 'transparent',
           backdropFilter: scrolled ? 'blur(20px) saturate(160%)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(2,132,199,0.1)' : 'none',
-          boxShadow: scrolled ? '0 4px 24px rgba(2,132,199,0.06)' : 'none',
+          borderBottom: scrolled ? '1px solid rgba(255, 255, 255, 0.08)' : 'none',
+          boxShadow: scrolled ? '0 4px 24px rgba(0, 0, 0, 0.4)' : 'none',
           transition: 'background 0.35s ease, box-shadow 0.35s ease',
         }}
       >
@@ -78,7 +78,7 @@ export default function Navbar() {
                   onClick={() => scrollTo(item.href)}
                   data-cursor
                   className="relative text-sm font-semibold transition-colors duration-200"
-                  style={{ color: isActive ? '#0284c7' : '#475569' }}
+                  style={{ color: isActive ? '#38bdf8' : '#94a3b8' }}
                 >
                   {item.label}
                   {isActive && (
@@ -87,7 +87,7 @@ export default function Navbar() {
                       className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full"
                       style={{
                         background: 'linear-gradient(90deg, #0284c7, #38bdf8)',
-                        boxShadow: '0 0 6px rgba(2,132,199,0.5)',
+                        boxShadow: '0 0 8px rgba(56, 189, 248, 0.6)',
                       }}
                     />
                   )}
@@ -110,15 +110,15 @@ export default function Navbar() {
           <button
             className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl"
             style={{
-              background: 'rgba(2,132,199,0.07)',
-              border: '1px solid rgba(2,132,199,0.15)',
+              background: 'rgba(255, 255, 255, 0.06)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
             }}
             onClick={() => setMenuOpen(!menuOpen)}
             data-cursor
           >
             {menuOpen
-              ? <X size={18} color="#0284c7" />
-              : <Menu size={18} color="#0284c7" />
+              ? <X size={18} color="#38bdf8" />
+              : <Menu size={18} color="#38bdf8" />
             }
           </button>
         </div>
@@ -130,7 +130,7 @@ export default function Navbar() {
           <motion.div
             className="fixed inset-0 z-40 flex flex-col justify-center items-center"
             style={{
-              background: 'rgba(240,248,255,0.97)',
+              background: 'rgba(3, 7, 18, 0.98)',
               backdropFilter: 'blur(30px)',
             }}
             initial={{ opacity: 0, clipPath: 'circle(0% at calc(100% - 44px) 35px)' }}
@@ -150,7 +150,7 @@ export default function Navbar() {
                   <button
                     onClick={() => scrollTo(item.href)}
                     className="text-4xl font-black transition-colors"
-                    style={{ color: '#0f172a' }}
+                    style={{ color: '#f8fafc' }}
                     data-cursor
                   >
                     {item.label}

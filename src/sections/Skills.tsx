@@ -22,28 +22,28 @@ export default function Skills() {
   const skillGroups = [
     {
       title: 'AI & Machine Learning',
-      icon: <Cpu size={20} className="text-sky-600" />,
+      icon: <Cpu size={20} className="text-sky-400" />,
       desc: 'Predictive intelligence, statistical models, & data pipelines',
       badge: 'Core Focus',
       items: ['Python', 'Scikit-Learn', 'Pandas', 'NumPy', 'Flask API', 'TensorFlow Basics', 'Model Evaluation', 'Feature Engineering']
     },
     {
       title: 'Full-Stack Web Engineering',
-      icon: <Terminal size={20} className="text-sky-600" />,
+      icon: <Terminal size={20} className="text-sky-400" />,
       desc: 'Type-safe client architectures & responsive full-stack platforms',
       badge: 'Production Ready',
       items: ['React.js', 'TypeScript', 'JavaScript (ES6+)', 'Node.js', 'HTML5 / CSS3', 'Tailwind CSS', 'REST APIs', 'Vite']
     },
     {
       title: 'Core CS & Data Storage',
-      icon: <Database size={20} className="text-sky-600" />,
+      icon: <Database size={20} className="text-sky-400" />,
       desc: 'Algorithms, algorithmic complexity, & schema architecture',
       badge: 'Strong Foundation',
       items: ['Data Structures & Algorithms', '100+ Problems Solved', 'MongoDB (NoSQL)', 'MySQL (RDBMS)', 'Object-Oriented Design', 'DBMS & Indexing']
     },
     {
       title: 'Workflow & Developer Tools',
-      icon: <Wrench size={20} className="text-sky-600" />,
+      icon: <Wrench size={20} className="text-sky-400" />,
       desc: 'Version control, deployment pipelines, & engineering tooling',
       badge: 'Productivity',
       items: ['Git & GitHub', 'Vercel Deployment', 'Postman', 'VS Code', 'Jupyter Notebook', 'Chrome DevTools', 'Linux CLI', 'Prompt Engineering']
@@ -54,12 +54,12 @@ export default function Skills() {
     <FlipSection>
       <section
         id="skills"
-        className="section-padding relative overflow-hidden bg-gradient-to-b from-sky-50/70 via-sky-100/40 to-sky-50/70 py-24 sm:py-32"
+        className="section-padding relative overflow-hidden bg-slate-950 text-slate-100 py-24 sm:py-32"
       >
         {/* Soft Ambient Glow */}
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full pointer-events-none blur-3xl opacity-30"
-          style={{ background: 'radial-gradient(circle, rgba(186,230,253,0.7) 0%, transparent 70%)' }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full pointer-events-none blur-3xl opacity-15"
+          style={{ background: 'radial-gradient(circle, rgba(56,189,248,0.5) 0%, transparent 70%)' }}
         />
 
         <div ref={ref} className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
@@ -71,16 +71,16 @@ export default function Skills() {
           >
             {/* Centered Section Header */}
             <div className="space-y-4 max-w-3xl mx-auto text-center">
-              <motion.div variants={item} className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-sky-300 text-sky-700 text-xs font-bold tracking-widest uppercase shadow-2xs">
-                <Sparkles size={13} className="text-sky-600" />
+              <motion.div variants={item} className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-sky-400 text-xs font-bold tracking-widest uppercase shadow-2xs">
+                <Sparkles size={13} className="text-sky-400" />
                 Technical Competencies
               </motion.div>
 
-              <motion.h2 variants={item} className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+              <motion.h2 variants={item} className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
                 Skills & <span className="gradient-text-sky">Technical Stack</span>
               </motion.h2>
 
-              <motion.p variants={item} className="text-slate-600 text-base sm:text-lg font-normal leading-relaxed">
+              <motion.p variants={item} className="text-slate-400 text-base sm:text-lg font-normal leading-relaxed">
                 A balanced combination of foundational computer science principles, modern full-stack development, and predictive machine learning models.
               </motion.p>
             </div>
@@ -91,21 +91,21 @@ export default function Skills() {
                 <motion.div
                   key={group.title}
                   variants={item}
-                  className="p-8 rounded-2xl bg-white/85 backdrop-blur-md border border-sky-200/80 hover:border-sky-300 hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 flex flex-col justify-between group shadow-sm"
+                  className="p-8 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-slate-800/80 hover:border-sky-500/40 hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 flex flex-col justify-between group shadow-xl"
                 >
                   <div className="space-y-6">
                     {/* Header */}
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex items-center gap-3.5">
-                        <div className="w-12 h-12 rounded-xl bg-sky-50 border border-sky-200/80 flex items-center justify-center text-sky-600 group-hover:scale-105 transition-transform flex-shrink-0">
+                        <div className="w-12 h-12 rounded-xl bg-sky-950/80 border border-sky-800/50 flex items-center justify-center text-sky-400 group-hover:scale-105 transition-transform flex-shrink-0">
                           {group.icon}
                         </div>
                         <div>
-                          <h3 className="text-lg font-bold text-slate-900 tracking-tight">{group.title}</h3>
-                          <p className="text-xs text-slate-500 font-medium leading-relaxed">{group.desc}</p>
+                          <h3 className="text-lg font-bold text-white tracking-tight">{group.title}</h3>
+                          <p className="text-xs text-slate-400 font-medium leading-relaxed">{group.desc}</p>
                         </div>
                       </div>
-                      <span className="hidden sm:inline-block px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-sky-50 text-sky-700 border border-sky-200/60 flex-shrink-0">
+                      <span className="hidden sm:inline-block px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-slate-800 text-sky-300 border border-slate-700 flex-shrink-0">
                         {group.badge}
                       </span>
                     </div>
@@ -116,7 +116,7 @@ export default function Skills() {
                         <span
                           key={tech}
                           data-cursor
-                          className="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-slate-50/90 border border-slate-200/80 hover:bg-sky-50 hover:border-sky-300 hover:text-sky-700 transition-all cursor-default shadow-2xs"
+                          className="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-300 bg-slate-800/70 border border-slate-700/80 hover:bg-sky-950 hover:border-sky-500 hover:text-sky-300 transition-all cursor-default shadow-2xs"
                         >
                           {tech}
                         </span>
