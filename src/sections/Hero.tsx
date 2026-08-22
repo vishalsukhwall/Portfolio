@@ -3,14 +3,13 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial, Float } from '@react-three/drei';
 import * as THREE from 'three';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowDown, Mail, Brain, Network } from 'lucide-react';
-import { GithubIcon, LinkedinIcon } from '../components/SocialIcons';
+import { ArrowDown, Brain, Network } from 'lucide-react';
 import { personal } from '../data/portfolioData';
 import { useMousePosition } from '../hooks/useMousePosition';
 
 const EASE_SPRING: [number, number, number, number] = [0.34, 1.56, 0.64, 1];
 
-// ─── 3D Neural Network / Data Matrix Nodes (Sky Blue & Cyan AI Vibe) ──────────
+// ─── 3D Neural Network / Data Matrix Nodes ──────────────────────────────────
 function NeuralNetworkCore() {
   const pointsRef = useRef<THREE.Points>(null);
   const linesRef = useRef<THREE.LineSegments>(null);
@@ -59,7 +58,6 @@ function NeuralNetworkCore() {
   return (
     <Float speed={2} rotationIntensity={0.8} floatIntensity={1.2}>
       <group position={[2, 0, -1]}>
-        {/* Neural Nodes */}
         <Points ref={pointsRef} positions={positions} stride={3}>
           <PointMaterial
             transparent
@@ -71,7 +69,6 @@ function NeuralNetworkCore() {
           />
         </Points>
 
-        {/* Synapse Connections */}
         <lineSegments ref={linesRef}>
           <bufferGeometry>
             <bufferAttribute
@@ -86,7 +83,7 @@ function NeuralNetworkCore() {
   );
 }
 
-// ─── Non-colliding Role Rotator ───────────────────────────────────────────────
+// ─── Role Rotator ─────────────────────────────────────────────────────────
 function RoleRotator({ roles }: { roles: string[] }) {
   const [idx, setIdx] = useState(0);
   useEffect(() => {
@@ -112,7 +109,7 @@ function RoleRotator({ roles }: { roles: string[] }) {
   );
 }
 
-// ─── AI / ML Focused Balanced Hero Section ────────────────────────────────────
+// ─── Main Hero Section ─────────────────────────────────────────────────────
 export default function Hero() {
   const scrollTo = (id: string) =>
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -202,7 +199,6 @@ export default function Hero() {
         >
           <button
             onClick={() => scrollTo('#projects')}
-            data-cursor
             className="px-8 py-4 rounded-full bg-gradient-to-r from-sky-600 to-cyan-500 hover:from-sky-700 hover:to-cyan-600 text-white font-extrabold text-xs uppercase tracking-widest shadow-xl shadow-sky-500/25 hover:shadow-sky-500/40 hover:scale-105 transition-all duration-300 flex items-center gap-2.5 cursor-pointer"
           >
             <span>Explore Projects</span>
@@ -210,7 +206,6 @@ export default function Hero() {
           </button>
           <button
             onClick={() => scrollTo('#contact')}
-            data-cursor
             className="px-8 py-4 rounded-full backdrop-blur-md bg-white border border-slate-200 hover:border-sky-300 text-slate-800 font-bold text-xs uppercase tracking-widest hover:bg-sky-50 transition-all duration-300 cursor-pointer shadow-xs"
           >
             Get In Touch
