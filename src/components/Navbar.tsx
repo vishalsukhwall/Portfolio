@@ -11,6 +11,7 @@ const navItems = [
   { label: 'Contact',     href: '#contact' },
 ];
 
+
 export default function Navbar() {
   const [scrolled,       setScrolled]       = useState(false);
   const [activeSection,  setActiveSection]  = useState('');

@@ -10,6 +10,7 @@ export default function Cursor() {
   const [isClicking,  setIsClicking]  = useState(false);
   const [isVisible,   setIsVisible]   = useState(false);
 
+  
   const ringPos = useRef({ x: 0, y: 0 });
   const rafRef  = useRef<number>(0);
 

@@ -9,6 +9,7 @@ interface FlipSectionProps {
   className?: string;
 }
 
+
 /**
  * FlipSection — wraps a page section in a 3D perspective
  * flip / fold reveal effect driven by scroll position.

@@ -8,6 +8,7 @@ interface IconProps {
   style?: React.CSSProperties;
 }
 
+
 export function GithubIcon({ size = 24, color = 'currentColor', className = '', style }: IconProps) {
   return (
     <svg

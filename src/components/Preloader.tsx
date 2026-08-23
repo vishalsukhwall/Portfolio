@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
+
 // ─── Light-mode orbital ring geometry ────────────────────────────────────────
 function PreloaderGeometry({ progress }: { progress: number }) {
   const groupRef = useRef<THREE.Group>(null);

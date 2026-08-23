@@ -10,6 +10,7 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
+
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   return (
     <AnimatePresence>
