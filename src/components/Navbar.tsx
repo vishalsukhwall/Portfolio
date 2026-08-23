@@ -60,9 +60,11 @@ export default function Navbar() {
           className="relative group"
           data-cursor
         >
+
           <span className="text-2xl font-black tracking-tighter gradient-text-sky">
             {personal.initials}
           </span>
+
           <span
             className="absolute -bottom-0.5 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-300 rounded-full"
             style={{ background: 'linear-gradient(90deg, #0284c7, #38bdf8)' }}
