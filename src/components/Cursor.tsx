@@ -10,7 +10,6 @@ export default function Cursor() {
   const [isClicking,  setIsClicking]  = useState(false);
   const [isVisible,   setIsVisible]   = useState(false);
 
-  
   const ringPos = useRef({ x: 0, y: 0 });
   const rafRef  = useRef<number>(0);
 
@@ -27,6 +26,7 @@ export default function Cursor() {
         ringPos.current.y = lerp(ringPos.current.y, mouse.y, 0.11);
         ringRef.current.style.transform = `translate(${ringPos.current.x - 20}px, ${ringPos.current.y - 20}px)`;
       }
+
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${mouse.x - 4}px, ${mouse.y - 4}px)`;
       }
