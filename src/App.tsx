@@ -14,11 +14,13 @@ import { useLenis } from './hooks/useLenis';
 import { motion, AnimatePresence } from 'framer-motion';
 import FlipSection from './components/FlipSection';
 
+
 export default function App() {
   const [loaded, setLoaded] = useState(false);
 
   // Initialize smooth scrolling
   useLenis();
+
 
   return (
     <>
