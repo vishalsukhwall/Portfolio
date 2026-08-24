@@ -30,24 +30,22 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="min-h-screen flex flex-col bg-white text-slate-900 overflow-x-hidden"
+            className="min-h-screen flex flex-col bg-white text-slate-900 overflow-x-hidden selection:bg-sky-500 selection:text-white"
           >
             <Cursor />
             <Navbar />
             
-            {/* Main wrapper centered and structured professionally */}
-            <main className="flex-grow w-full flex flex-col items-center justify-start">
-              <div className="w-full max-w-7xl mx-auto flex flex-col items-center">
-                <FlipSection direction="top">
-                  <Hero />
-                </FlipSection>
-                <About />
-                <Skills />
-                <Experience />
-                <Projects />
-                <Certifications />
-                <Contact />
-              </div>
+            {/* Executive Grade Main Flow: Independent stacked sections preventing any overlap */}
+            <main className="flex-grow w-full flex flex-col">
+              <FlipSection direction="top">
+                <Hero />
+              </FlipSection>
+              <About />
+              <Skills />
+              <Experience />
+              <Projects />
+              <Certifications />
+              <Contact />
             </main>
 
             <Footer />
