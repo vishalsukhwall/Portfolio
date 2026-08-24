@@ -109,7 +109,7 @@ function RoleRotator({ roles }: { roles: string[] }) {
   );
 }
 
-// ─── Main Hero Section ────────────────────────────────________________─────
+// ─── Main Hero Section ─────────────────────────────────────────────────────
 export default function Hero() {
   const scrollTo = (id: string) =>
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -141,9 +141,9 @@ export default function Hero() {
         </Canvas>
       </div>
 
-      {/* Hero Content Container - Properly centered with max-width and padding */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 flex items-center justify-center">
-        <div className="w-full max-w-4xl flex flex-col items-start text-left space-y-8">
+      {/* Hero Content Container - Strictly Left-Aligned with Professional Margin */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 flex flex-col items-start justify-center">
+        <div className="w-full max-w-3xl flex flex-col items-start text-left space-y-8">
           
           {/* AI / ML Badge */}
           <motion.div
@@ -186,7 +186,7 @@ export default function Hero() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.45, duration: 0.5 }}
-            className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed font-normal bg-white/60 backdrop-blur-xs p-2 rounded-lg"
+            className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed font-normal bg-white/60 backdrop-blur-xs p-2 rounded-lg text-left"
           >
             {personal.about}
           </motion.p>
