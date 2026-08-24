@@ -1,27 +1,33 @@
 import { useRef } from 'react';
 import { motion, useInView, type Variants } from 'framer-motion';
-import { MapPin, GraduationCap, Terminal } from 'lucide-react';
+import { Code2, Cpu, Database, Award, GraduationCap, MapPin, Calendar } from 'lucide-react';
 import { personal, education } from '../data/portfolioData';
 import FlipSection from '../components/FlipSection';
 
 const EASE: [number, number, number, number] = [0.76, 0, 0.24, 1];
 
-const stats = [
-  { value: '9.1', label: 'CGPA Score', suffix: '/10', desc: 'MCA Academic Excellence' },
-  { value: '100+', label: 'DSA Solved', suffix: '', desc: 'LeetCode & GeeksForGeeks' },
-  { value: '3+', label: 'Flagship Apps', suffix: '', desc: 'Full-Stack & ML Systems' },
-  { value: '1', label: 'Internship', suffix: '', desc: 'Kvanta Labs Full-Stack' },
+const highlights = [
+  { icon: Cpu, label: 'AI/ML Systems', desc: 'Designing intelligent pipelines that scale with data' },
+  { icon: Code2, label: 'Full-Stack Engineering', desc: 'Building robust applications with React & TypeScript' },
+  { icon: Database, label: 'Data Structures', desc: 'Strong foundation in DSA, algorithms & optimization' },
+  { icon: Award, label: 'Technical Excellence', desc: 'Consistent high performance and continuous learning' },
 ];
 
 export default function About() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '-100px' });
 
   const container: Variants = {
     hidden: {},
-    show: { transition: { staggerChildren: 0.12 } },
+    show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
   };
+
   const item: Variants = {
+    hidden: { y: 20, opacity: 0 },
+    show: { y: 0, opacity: 1, transition: { duration: 0.5, ease: EASE } },
+  };
+
+  const cardVariant: Variants = {
     hidden: { y: 24, opacity: 0 },
     show: { y: 0, opacity: 1, transition: { duration: 0.6, ease: EASE } },
   };
@@ -30,109 +36,145 @@ export default function About() {
     <FlipSection>
       <section
         id="about"
-        className="section-padding relative overflow-hidden bg-white text-black py-24 sm:py-32"
+        className="relative overflow-hidden bg-white text-slate-900 py-40 sm:py-48 lg:py-56 border-b border-slate-100"
       >
-        <div ref={ref} className="max-w-6xl mx-auto px-6 md:px-12 w-full relative z-10">
+        <div ref={ref} className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full relative z-10">
           <motion.div
             variants={container}
             initial="hidden"
             animate={inView ? 'show' : 'hidden'}
-            className="space-y-20"
+            className="space-y-32 sm:space-y-40"
           >
-            {/* Centered Header Section */}
-            <div className="space-y-6 max-w-3xl mx-auto text-center">
-              <motion.div variants={item} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-200 text-sky-600 text-xs font-bold tracking-widest uppercase">
-                About Vishal Sukhwal
+            {/* ===== HERO SECTION: Profile Overview ===== */}
+            <div className="space-y-8 max-w-4xl">
+              <motion.div
+                variants={item}
+                className="flex items-center gap-3 text-xs font-bold tracking-widest uppercase text-slate-500"
+              >
+                <div className="w-2 h-2 rounded-full bg-sky-500"></div>
+                <span>About This Developer</span>
               </motion.div>
 
-              <motion.h2
+              <motion.h1
                 variants={item}
-                className="text-3xl sm:text-5xl font-black text-black tracking-tight leading-tight"
+                className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-slate-900 leading-[0.95] space-y-2"
               >
-                Architecting modern software with{' '}
-                <span className="text-sky-600">
-                  precision & intelligence.
+                <span className="block">Engineering</span>
+                <span className="block">scalable solutions with</span>
+                <span className="block">
+                  <span className="text-sky-600">technical rigor.</span>
                 </span>
-              </motion.h2>
+              </motion.h1>
 
-              <motion.p variants={item} className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
+              <motion.p
+                variants={item}
+                className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl pt-4 font-normal"
+              >
                 {personal.about}
               </motion.p>
             </div>
 
-            {/* Clean 2-Column Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-              
-              {/* Left Column: Background & Education */}
-              <motion.div variants={item} className="lg:col-span-6 space-y-10">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2 text-sky-600 font-bold text-xs uppercase tracking-wider">
-                    <Terminal size={16} />
-                    <span>Background & Philosophy</span>
-                  </div>
-                  <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-                    I focus on clean component architectures in React/TypeScript, efficient schema design in MongoDB and SQL, and crafting production-grade machine learning pipelines with Python and Scikit-Learn.
-                  </p>
-                  <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 pt-2">
-                    <MapPin size={14} className="text-sky-600" />
-                    <span>{personal.location}</span>
-                    <span className="text-slate-300">•</span>
-                    <span className="text-sky-600 font-bold">Open for Full-Time Roles</span>
-                  </div>
-                </div>
-
-                {/* Education Section */}
-                <div className="space-y-4">
-                  <div className="text-sky-600 font-bold text-xs uppercase tracking-wider">Education</div>
-                  {education.map((edu) => (
-                    <div
-                      key={edu.degree}
-                      className="p-6 rounded-2xl bg-sky-50/40 border border-sky-100 flex items-start gap-4"
-                    >
-                      <div className="w-12 h-12 rounded-xl bg-white border border-sky-200 flex items-center justify-center text-sky-600 flex-shrink-0 shadow-xs">
-                        <GraduationCap size={22} />
-                      </div>
-                      <div className="space-y-1 w-full min-w-0">
-                        <div className="flex items-center justify-between gap-2">
-                          <h4 className="font-bold text-black text-sm sm:text-base truncate">
-                            {edu.degree}
-                          </h4>
-                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white text-sky-700 border border-sky-200 flex-shrink-0">
-                            CGPA {edu.cgpa}
-                          </span>
-                        </div>
-                        <p className="text-xs sm:text-sm font-medium text-slate-700">{edu.institution}</p>
-                        <p className="text-xs text-slate-500">{edu.location} • {edu.year}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Right Column: Key Stats Grid */}
-              <motion.div variants={item} className="lg:col-span-6 grid grid-cols-2 gap-6">
-                {stats.map((s) => (
-                  <div
-                    key={s.label}
-                    className="p-6 rounded-2xl bg-sky-50/30 border border-sky-100 flex flex-col justify-between space-y-4"
+            {/* ===== HIGHLIGHTS GRID: Core Technical Pillars ===== */}
+            <motion.div
+              variants={item}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
+            >
+              {highlights.map((h, index) => {
+                const IconComponent = h.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    variants={cardVariant}
+                    className="group p-8 sm:p-10 rounded-2xl bg-slate-50 border border-slate-200 hover:border-sky-300 hover:shadow-lg hover:bg-white transition-all duration-300 flex flex-col space-y-5"
                   >
-                    <span className="text-xs font-bold uppercase tracking-wider text-slate-500">{s.label}</span>
-                    <div>
-                      <div className="text-3xl sm:text-4xl font-black text-sky-600 tracking-tight leading-none">
-                        {s.value}
-                        <span className="text-base font-bold text-sky-500 ml-0.5">{s.suffix}</span>
+                    <div className="w-14 h-14 rounded-xl bg-white border border-sky-100 flex items-center justify-center text-sky-600 shadow-sm group-hover:shadow-md transition-shadow duration-300">
+                      <IconComponent size={24} strokeWidth={1.5} />
+                    </div>
+
+                    <div className="space-y-3 flex-1">
+                      <h3 className="font-bold text-slate-900 text-base sm:text-lg tracking-tight">
+                        {h.label}
+                      </h3>
+                      <p className="text-sm text-slate-600 leading-relaxed">
+                        {h.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+
+            {/* ===== EDUCATION SECTION: Academic Foundation ===== */}
+            <motion.div variants={item} className="space-y-10">
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-sky-500"></div>
+                <span className="text-xs font-bold tracking-widest uppercase text-slate-500">
+                  Academic Credentials
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+                {education.map((edu, idx) => (
+                  <motion.div
+                    key={edu.degree}
+                    variants={cardVariant}
+                    className="group p-10 sm:p-12 rounded-2xl bg-slate-50 border border-slate-200 hover:border-sky-300 hover:shadow-lg hover:bg-white transition-all duration-300 flex flex-col justify-between space-y-8"
+                  >
+                    {/* Header with Icon & Info */}
+                    <div className="space-y-5">
+                      <div className="flex items-start gap-5">
+                        <div className="w-16 h-16 rounded-xl bg-white border border-sky-100 flex items-center justify-center text-sky-600 flex-shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300">
+                          <GraduationCap size={32} strokeWidth={1.3} />
+                        </div>
+
+                        <div className="space-y-2 flex-1">
+                          <h3 className="font-extrabold text-slate-900 text-lg sm:text-xl tracking-tight">
+                            {edu.degree}
+                          </h3>
+                          <p className="text-base font-medium text-slate-700">
+                            {edu.institution}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2 pt-2">
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                            <MapPin size={16} className="text-sky-600 flex-shrink-0" />
+                            <span>{edu.location}</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                            <Calendar size={16} className="text-sky-600 flex-shrink-0" />
+                            <span>{edu.year}</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <p className="text-xs text-slate-600 font-medium leading-relaxed">
-                      {s.desc}
-                    </p>
-                  </div>
-                ))}
-              </motion.div>
 
-            </div>
+                    {/* Divider */}
+                    <div className="w-full h-px bg-slate-200"></div>
+
+                    {/* Performance Badge */}
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold tracking-widest uppercase text-slate-500">
+                        CGPA
+                      </span>
+                      <div className="px-4 py-2 rounded-lg bg-sky-50 border border-sky-200 shadow-sm group-hover:shadow-md transition-shadow duration-300">
+                        <span className="text-sm font-bold text-sky-700">
+                          {edu.cgpa} / 10
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
           </motion.div>
         </div>
+
+        {/* Optional: Subtle Background Accent */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-sky-50/30 rounded-full blur-3xl -z-10 opacity-40"></div>
       </section>
     </FlipSection>
   );
