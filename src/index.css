@@ -1,36 +1,12 @@
 @import "tailwindcss";
 
-/* ═════════════════════════════════════════════════════
-   DESIGN TOKENS — High-End Clean Light Theme
-════════════════════════════════════════════════════════ */
 @theme {
-  /* Backgrounds */
   --color-bg-base:    #ffffff;
-  --color-bg-soft:    #f8fafc;
-  --color-bg-mist:    #f1f5f9;
-  --color-bg-card:    rgba(255, 255, 255, 0.85);
-
-  /* Brand */
+  --color-text-primary: #0f172a;
   --color-sky:        #0284c7;
   --color-sky-light:  #38bdf8;
-  --color-sky-pale:   #bae6fd;
-  --color-cyan:       #00a8ff;
-  --color-cyan-light: #67e8f9;
-
-  /* Text */
-  --color-text-primary:   #0f172a;
-  --color-text-secondary: #334155;
-  --color-text-muted:     #64748b;
-  --color-text-faint:     #94a3b8;
-
-  /* Borders */
-  --color-border-subtle: rgba(15, 23, 42, 0.08);
-  --color-border-active: rgba(2, 132, 199, 0.4);
 }
 
-/* ═════════════════════════════════════════════════════
-   BASE RESET
-════════════════════════════════════════════════════════ */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -38,8 +14,7 @@
 }
 
 html {
-  scroll-behavior: auto;
-  overflow-x: hidden;
+  scroll-behavior: smooth;
   font-size: 16px;
   background-color: #ffffff;
 }
@@ -47,157 +22,23 @@ html {
 body {
   background-color: #ffffff;
   color: #0f172a;
-  font-family: 'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
-  cursor: none;
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
 }
 
-/* Subtle light dot-grid texture */
+/* Subtle dot-grid texture */
 html::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(2, 132, 199, 0.06) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background-image: radial-gradient(circle, rgba(2, 132, 199, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
   pointer-events: none;
   z-index: 0;
-}
-
-::selection {
-  background: rgba(2, 132, 199, 0.2);
-  color: #0284c7;
 }
 
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #f8fafc; }
 ::-webkit-scrollbar-thumb { background: rgba(2, 132, 199, 0.3); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(2, 132, 199, 0.5); }
-
-/* ═════════════════════════════════════════════════════
-   GLASS / CARD UTILITIES
-════════════════════════════════════════════════════════ */
-.glass {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
-}
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
-  border-radius: 1.25rem;
-}
-
-/* ════════════════════════════════════════════════════════
-   GRADIENT UTILITIES
-════════════════════════════════════════════════════════ */
-.gradient-text-sky {
-  background: linear-gradient(135deg, #0284c7 0%, #00a8ff 50%, #38bdf8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ════════════════════════════════════════════════════════
-   BUTTONS
-════════════════════════════════════════════════════════ */
-.magnetic-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(12px, 1.5vw, 16px) clamp(28px, 3vw, 40px);
-  border-radius: 100px;
-  font-size: clamp(0.8rem, 1.2vw, 0.925rem);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  cursor: none;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  white-space: nowrap;
-}
-
-.magnetic-btn-primary {
-  background: linear-gradient(135deg, #0284c7, #00a8ff);
-  color: #ffffff;
-  box-shadow: 0 4px 20px rgba(2, 132, 199, 0.3);
-}
-
-.magnetic-btn-primary:hover {
-  box-shadow: 0 8px 32px rgba(2, 132, 199, 0.45);
-  transform: translateY(-1px);
-}
-
-.magnetic-btn-secondary {
-  background: #f0f9ff;
-  color: #0284c7;
-  border: 1.5px solid rgba(2, 132, 199, 0.2);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
-}
-
-.magnetic-btn-secondary:hover {
-  background: #e0f2fe;
-  border-color: rgba(2, 132, 199, 0.4);
-}
-
-/* ════════════════════════════════════════════════════════
-   SECTION SPACING & TYPOGRAPHY
-════════════════════════════════════════════════════════ */
-.section-padding {
-  padding: clamp(80px, 10vw, 140px) 0;
-}
-
-.heading-hero {
-  font-size: clamp(2.4rem, 5vw, 5rem);
-  font-weight: 900;
-  line-height: 1.25;
-  letter-spacing: -0.03em;
-  color: #0f172a;
-}
-
-.heading-section {
-  font-size: clamp(1.8rem, 4vw, 3.5rem);
-  font-weight: 900;
-  line-height: 1.3;
-  letter-spacing: -0.025em;
-  color: #0f172a;
-}
-
-.body-lg {
-  font-size: clamp(1rem, 1.25vw, 1.15rem);
-  line-height: 1.75;
-  color: #334155;
-}
-
-.body-sm {
-  font-size: clamp(0.875rem, 1vw, 0.95rem);
-  line-height: 1.7;
-  color: #64748b;
-}
-
-/* ════════════════════════════════════════════════════════
-   3D FLIP SECTION WRAPPER
-════════════════════════════════════════════════════════ */
-.flip-section-wrapper {
-  perspective: 1200px;
-  perspective-origin: 50% 40%;
-  overflow: visible;
-}
-
-.flip-section-inner {
-  transform-origin: top center;
-  transform-style: preserve-3d;
-  will-change: transform, opacity;
-}
-
-/* Mobile: restore cursor */
-@media (hover: none) and (pointer: coarse) {
-  body { cursor: auto; }
-  .magnetic-btn { cursor: pointer; }
-}
