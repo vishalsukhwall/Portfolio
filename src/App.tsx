@@ -14,7 +14,6 @@ import { useLenis } from './hooks/useLenis';
 import { motion, AnimatePresence } from 'framer-motion';
 import FlipSection from './components/FlipSection';
 
-
 export default function App() {
   const [loaded, setLoaded] = useState(false);
 
@@ -31,22 +30,26 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="min-h-screen flex flex-col bg-white text-slate-900 overflow-x-hidden"
           >
             <Cursor />
             <Navbar />
-            <main>
-              {/* Wrapping each section in FlipSection where appropriate.
-                  Hero is usually visible immediately so it can skip or use direction="top" */}
-              <FlipSection direction="top">
-                <Hero />
-              </FlipSection>
-              <About />
-              <Skills />
-              <Experience />
-              <Projects />
-              <Certifications />
-              <Contact />
+            
+            {/* Main wrapper centered and structured professionally */}
+            <main className="flex-grow w-full flex flex-col items-center justify-start">
+              <div className="w-full max-w-7xl mx-auto flex flex-col items-center">
+                <FlipSection direction="top">
+                  <Hero />
+                </FlipSection>
+                <About />
+                <Skills />
+                <Experience />
+                <Projects />
+                <Certifications />
+                <Contact />
+              </div>
             </main>
+
             <Footer />
           </motion.div>
         )}
