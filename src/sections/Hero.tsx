@@ -109,7 +109,7 @@ function RoleRotator({ roles }: { roles: string[] }) {
   );
 }
 
-// ─── Main Hero Section ─────────────────────────────────────────────────────
+// ─── Main Hero Section ────────────────────────────────________________─────
 export default function Hero() {
   const scrollTo = (id: string) =>
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -117,7 +117,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-sky-50/70 via-white to-white text-slate-900 py-28 px-6 md:px-16 lg:px-24"
+      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-b from-sky-50/70 via-white to-white text-slate-900 py-28"
     >
       {/* Subtle Dot-Grid Texture Overlay */}
       <div 
@@ -141,76 +141,78 @@ export default function Hero() {
         </Canvas>
       </div>
 
-      {/* Hero Content Container */}
-      <div className="relative z-10 max-w-5xl mx-auto w-full flex flex-col items-start text-left space-y-8 lg:pr-20">
-        
-        {/* AI / ML Badge */}
-        <motion.div
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md bg-white/95 border border-sky-300 text-sky-700 shadow-sm text-xs font-bold tracking-wider uppercase"
-        >
-          <Brain size={15} className="text-sky-600 animate-pulse" />
-          <span>AI/ML Engineer & Full-Stack Developer</span>
-        </motion.div>
-
-        {/* Larger Bold Headline */}
-        <motion.h1
-          initial={{ y: 24, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] text-slate-900 drop-shadow-xs"
-        >
-          Hi, I'm <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-cyan-500 to-blue-600">
-            {personal.name}
-          </span>
-        </motion.h1>
-
-        {/* Larger Role Rotator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="flex flex-wrap items-center gap-2.5 text-xl sm:text-2xl lg:text-3xl font-bold text-slate-700"
-        >
-          <Network size={24} className="text-sky-600 flex-shrink-0" />
-          <span>Building</span>
-          <RoleRotator roles={['Predictive ML Pipelines', 'Full-Stack Web Architectures', 'Autonomous AI Agents', 'Scalable Software Systems']} />
-        </motion.div>
-
-        {/* Clear & Legible Bio Text */}
-        <motion.p
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.45, duration: 0.5 }}
-          className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed font-normal bg-white/60 backdrop-blur-xs p-2 -ml-2 rounded-lg"
-        >
-          {personal.about}
-        </motion.p>
-
-        {/* Action CTAs */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.55, duration: 0.5 }}
-          className="flex flex-wrap items-center gap-4 pt-2"
-        >
-          <button
-            onClick={() => scrollTo('#projects')}
-            className="px-8 py-4 rounded-full bg-gradient-to-r from-sky-600 to-cyan-500 hover:from-sky-700 hover:to-cyan-600 text-white font-extrabold text-xs uppercase tracking-widest shadow-xl shadow-sky-500/25 hover:shadow-sky-500/40 hover:scale-105 transition-all duration-300 flex items-center gap-2.5 cursor-pointer"
+      {/* Hero Content Container - Properly centered with max-width and padding */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 flex items-center justify-center">
+        <div className="w-full max-w-4xl flex flex-col items-start text-left space-y-8">
+          
+          {/* AI / ML Badge */}
+          <motion.div
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md bg-white/95 border border-sky-300 text-sky-700 shadow-sm text-xs font-bold tracking-wider uppercase"
           >
-            <span>Explore Projects</span>
-            <ArrowDown size={14} className="-rotate-90" />
-          </button>
-          <button
-            onClick={() => scrollTo('#contact')}
-            className="px-8 py-4 rounded-full backdrop-blur-md bg-white border border-slate-200 hover:border-sky-300 text-slate-800 font-bold text-xs uppercase tracking-widest hover:bg-sky-50 transition-all duration-300 cursor-pointer shadow-xs"
+            <Brain size={15} className="text-sky-600 animate-pulse" />
+            <span>AI/ML Engineer & Full-Stack Developer</span>
+          </motion.div>
+
+          {/* Larger Bold Headline */}
+          <motion.h1
+            initial={{ y: 24, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] text-slate-900 drop-shadow-xs"
           >
-            Get In Touch
-          </button>
-        </motion.div>
+            Hi, I'm <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-cyan-500 to-blue-600">
+              {personal.name}
+            </span>
+          </motion.h1>
+
+          {/* Larger Role Rotator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="flex flex-wrap items-center gap-2.5 text-xl sm:text-2xl lg:text-3xl font-bold text-slate-700"
+          >
+            <Network size={24} className="text-sky-600 flex-shrink-0" />
+            <span>Building</span>
+            <RoleRotator roles={['Predictive ML Pipelines', 'Full-Stack Web Architectures', 'Autonomous AI Agents', 'Scalable Software Systems']} />
+          </motion.div>
+
+          {/* Clear & Legible Bio Text */}
+          <motion.p
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.45, duration: 0.5 }}
+            className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed font-normal bg-white/60 backdrop-blur-xs p-2 rounded-lg"
+          >
+            {personal.about}
+          </motion.p>
+
+          {/* Action CTAs */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.55, duration: 0.5 }}
+            className="flex flex-wrap items-center gap-4 pt-2"
+          >
+            <button
+              onClick={() => scrollTo('#projects')}
+              className="px-8 py-4 rounded-full bg-gradient-to-r from-sky-600 to-cyan-500 hover:from-sky-700 hover:to-cyan-600 text-white font-extrabold text-xs uppercase tracking-widest shadow-xl shadow-sky-500/25 hover:shadow-sky-500/40 hover:scale-105 transition-all duration-300 flex items-center gap-2.5 cursor-pointer"
+            >
+              <span>Explore Projects</span>
+              <ArrowDown size={14} className="-rotate-90" />
+            </button>
+            <button
+              onClick={() => scrollTo('#contact')}
+              className="px-8 py-4 rounded-full backdrop-blur-md bg-white border border-slate-200 hover:border-sky-300 text-slate-800 font-bold text-xs uppercase tracking-widest hover:bg-sky-50 transition-all duration-300 cursor-pointer shadow-xs"
+            >
+              Get In Touch
+            </button>
+          </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}
