@@ -5,6 +5,22 @@ import HeroCanvas from './HeroCanvas';
 import ScrollIndicator from './ScrollIndicator';
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const Hero: React.FC = () => {
   return (
     <section 
