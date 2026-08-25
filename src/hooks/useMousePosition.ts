@@ -1,33 +1,47 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-export interface MousePosition {
+interface MousePosition {
   x: number;
   y: number;
-  normalizedX: number; // -1 to 1
-  normalizedY: number; // -1 to 1
+  normalizedX: number;
+  normalizedY: number;
 }
 
 export function useMousePosition(): MousePosition {
-  const [pos, setPos] = useState<MousePosition>({
+  const [position, setPosition] = useState<MousePosition>({
     x: 0,
     y: 0,
     normalizedX: 0,
-    normalizedY: 0,
+    normalizedY: 0
   });
 
+  const frameRef = useRef<number>();
+
   useEffect(() => {
-    const handleMove = (e: MouseEvent) => {
-      setPos({
-        x: e.clientX,
-        y: e.clientY,
-        normalizedX: (e.clientX / window.innerWidth) * 2 - 1,
-        normalizedY: -((e.clientY / window.innerHeight) * 2 - 1),
+    const updateMousePosition = (ev: MouseEvent) => {
+      if (frameRef.current) {
+        cancelAnimationFrame(frameRef.current);
+      }
+
+      frameRef.current = requestAnimationFrame(() => {
+        setPosition({
+          x: ev.clientX,
+          y: ev.clientY,
+          normalizedX: (ev.clientX / window.innerWidth) * 2 - 1,
+          normalizedY: -(ev.clientY / window.innerHeight) * 2 + 1
+        });
       });
     };
 
-    window.addEventListener('mousemove', handleMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMove);
+    window.addEventListener('mousemove', updateMousePosition);
+
+    return () => {
+      window.removeEventListener('mousemove', updateMousePosition);
+      if (frameRef.current) {
+        cancelAnimationFrame(frameRef.current);
+      }
+    };
   }, []);
 
-  return pos;
+  return position;
 }

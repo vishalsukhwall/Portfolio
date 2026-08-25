@@ -1,44 +1,6 @@
-@import "tailwindcss";
+@import './styles/globals.css';
+@import './styles/animations.css';
 
-@theme {
-  --color-bg-base:    #ffffff;
-  --color-text-primary: #0f172a;
-  --color-sky:        #0284c7;
-  --color-sky-light:  #38bdf8;
-}
-
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-  background-color: #ffffff;
-}
-
-body {
-  background-color: #ffffff;
-  color: #0f172a;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  line-height: 1.6;
-}
-
-/* Subtle dot-grid texture */
-html::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(2, 132, 199, 0.05) 1px, transparent 1px);
-  background-size: 32px 32px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f8fafc; }
-::-webkit-scrollbar-thumb { background: rgba(2, 132, 199, 0.3); border-radius: 3px; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
