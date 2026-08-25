@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { cn } from '@utils/cn';
-import { Project } from '@/types/project';
+import type { Project } from '@/types/project';
 import { TechBadge } from './TechBadge';
 import { usePreferredReducedMotion } from '@hooks/usePreferredReducedMotion';
 
@@ -52,7 +52,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
 
   const isFeatured = project.featured;
 
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: { 
       opacity: 1, 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FormStatus as FormStatusType } from '@/types/contact';
+import type { FormStatus as FormStatusType } from '@/types/contact';
 
 interface FormStatusProps {
   status: FormStatusType;

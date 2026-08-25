@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { cn } from '@utils/cn';
 import { useInView } from '@hooks/useInView';
 import { usePreferredReducedMotion } from '@hooks/usePreferredReducedMotion';
@@ -18,7 +18,7 @@ export const Section: React.FC<SectionProps> = ({ id, children, className, title
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const prefersReducedMotion = usePreferredReducedMotion();
 
-  const animationVariants = {
+  const animationVariants: Variants = {
     hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 40 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };

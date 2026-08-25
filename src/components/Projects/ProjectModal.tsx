@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Project } from '@/types/project';
+import type { Project } from '@/types/project';
 import { TechBadge } from './TechBadge';
 
 interface ProjectModalProps {

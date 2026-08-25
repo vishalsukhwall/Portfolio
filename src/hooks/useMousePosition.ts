@@ -15,7 +15,7 @@ export function useMousePosition(): MousePosition {
     normalizedY: 0
   });
 
-  const frameRef = useRef<number>();
+  const frameRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const updateMousePosition = (ev: MouseEvent) => {

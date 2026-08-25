@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import { motion, HTMLMotionProps } from 'framer-motion';
+import React, { type ReactNode } from 'react';
+import { motion, type HTMLMotionProps } from 'framer-motion';
 import { cn } from '@utils/cn';
 
 export interface ButtonProps extends Omit<HTMLMotionProps<"button">, 'children'> {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, RefCallback } from 'react';
+import { useState, useEffect, useRef, type RefCallback } from 'react';
 
 interface UseInViewOptions {
   threshold?: number | number[];

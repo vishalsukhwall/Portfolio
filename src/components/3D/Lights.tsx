@@ -1,5 +1,5 @@
 import React from 'react';
-import { DeviceCapability } from '@/types';
+import type { DeviceCapability } from '@/types';
 
 interface LightsProps {
   deviceCapability: DeviceCapability;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ProjectGrid } from './ProjectGrid';
 import { ProjectModal } from './ProjectModal';
-import { Project } from '@/types/project';
+import type { Project } from '@/types/project';
 import { Section } from '@components/common/Section';
 
 export const Projects: React.FC = () => {

@@ -4,7 +4,7 @@ import { FormTextarea } from './FormTextarea';
 import { FormStatus } from './FormStatus';
 import { validateName, validateEmail, validateSubject, validateMessage } from '@utils/validation';
 import { submitContactForm } from '@utils/api';
-import { FormStatus as FormStatusType, ContactFormData, FormField } from '@/types/contact';
+import type { FormStatus as FormStatusType, ContactFormData, FormField } from '@/types/contact';
 import { useToastStore } from '@stores/toastStore';
 
 const initialField: FormField = { value: '', touched: false };

@@ -1,4 +1,4 @@
-import { DeviceCapability } from '@/types';
+import type { DeviceCapability } from '@/types';
 
 export const detectDeviceCapability = (): DeviceCapability => {
   if (typeof window === 'undefined' || typeof navigator === 'undefined') {

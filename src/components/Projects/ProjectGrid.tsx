@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ProjectCard } from './ProjectCard';
 import { projects } from '@data/projects';
-import { Project } from '@/types/project';
+import type { Project } from '@/types/project';
 
 interface ProjectGridProps {
   onProjectClick: (project: Project) => void;

@@ -16,7 +16,7 @@ export function useScrollPosition(): ScrollPosition {
   });
 
   const lastScrollY = useRef(0);
-  const frameRef = useRef<number>();
+  const frameRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const handleScroll = () => {

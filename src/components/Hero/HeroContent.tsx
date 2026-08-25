@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { cn } from '@utils/cn';
 import { PORTFOLIO_NAME, PORTFOLIO_TITLE, PORTFOLIO_DESCRIPTION } from '@utils/constants';
 import { usePreferredReducedMotion } from '@hooks/usePreferredReducedMotion';
@@ -13,7 +13,7 @@ const GradientText: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 const HeroContent: React.FC = () => {
   const prefersReducedMotion = usePreferredReducedMotion();
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -21,7 +21,7 @@ const HeroContent: React.FC = () => {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
   };

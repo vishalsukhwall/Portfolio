@@ -1,4 +1,4 @@
-import React, { Suspense, Component, ErrorInfo, ReactNode } from 'react';
+import React, { Suspense, Component, type ErrorInfo, type ReactNode } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Html } from '@react-three/drei';
 import Lights from '../3D/Lights';
