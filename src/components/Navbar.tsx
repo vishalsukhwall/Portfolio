@@ -45,10 +45,10 @@ export default function Navbar() {
         transition={{ duration: 0.75, delay: 0.15, ease: [0.76, 0, 0.24, 1] }}
         style={{
           height: 70,
-          background: scrolled ? 'rgba(255, 255, 255, 0.85)' : 'transparent',
+          background: scrolled ? 'rgba(3, 7, 18, 0.85)' : 'transparent',
           backdropFilter: scrolled ? 'blur(20px) saturate(160%)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(15, 23, 42, 0.08)' : 'none',
-          boxShadow: scrolled ? '0 4px 24px rgba(0, 0, 0, 0.04)' : 'none',
+          borderBottom: scrolled ? '1px solid rgba(255, 255, 255, 0.08)' : 'none',
+          boxShadow: scrolled ? '0 4px 24px rgba(0, 0, 0, 0.6)' : 'none',
           transition: 'background 0.35s ease, box-shadow 0.35s ease',
         }}
       >
@@ -59,11 +59,11 @@ export default function Navbar() {
           className="relative group"
           data-cursor
         >
-          <span className="text-2xl font-black tracking-tighter text-slate-900">
+          <span className="text-2xl font-black tracking-tighter text-white">
             {personal.initials}
           </span>
           <span
-            className="absolute -bottom-0.5 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-300 rounded-full bg-sky-500"
+            className="absolute -bottom-0.5 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-300 rounded-full bg-sky-400"
           />
         </a>
 
@@ -77,13 +77,13 @@ export default function Navbar() {
                   onClick={() => scrollTo(item.href)}
                   data-cursor
                   className="relative text-sm font-extrabold uppercase tracking-widest transition-colors duration-200"
-                  style={{ color: isActive ? '#0ea5e9' : '#64748b' }}
+                  style={{ color: isActive ? '#38bdf8' : '#94a3b8' }}
                 >
                   {item.label}
                   {isActive && (
                     <motion.span
                       layoutId="active-nav-dot"
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-sky-500"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-sky-400"
                     />
                   )}
                 </button>
@@ -96,19 +96,19 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <a
             href={`mailto:${personal.email}`}
-            className="hidden md:flex items-center justify-center px-6 py-2.5 rounded-full bg-sky-50 text-sky-600 font-extrabold text-xs uppercase tracking-widest border border-sky-100 hover:bg-sky-500 hover:text-white transition-all shadow-sm"
+            className="hidden md:flex items-center justify-center px-6 py-2.5 rounded-full bg-slate-900 text-sky-400 font-extrabold text-xs uppercase tracking-widest border border-sky-500/30 hover:bg-sky-500 hover:text-white transition-all shadow-sm"
             data-cursor
           >
             Hire Me
           </a>
           <button
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-slate-50 border border-slate-200"
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-slate-900 border border-slate-800"
             onClick={() => setMenuOpen(!menuOpen)}
             data-cursor
           >
             {menuOpen
-              ? <X size={18} className="text-slate-900" />
-              : <Menu size={18} className="text-slate-900" />
+              ? <X size={18} className="text-white" />
+              : <Menu size={18} className="text-white" />
             }
           </button>
         </div>
@@ -120,7 +120,7 @@ export default function Navbar() {
           <motion.div
             className="fixed inset-0 z-40 flex flex-col justify-center items-center"
             style={{
-              background: 'rgba(255, 255, 255, 0.98)',
+              background: 'rgba(3, 7, 18, 0.98)',
               backdropFilter: 'blur(30px)',
             }}
             initial={{ opacity: 0, clipPath: 'circle(0% at calc(100% - 44px) 35px)' }}
@@ -139,7 +139,7 @@ export default function Navbar() {
                 >
                   <button
                     onClick={() => scrollTo(item.href)}
-                    className="text-4xl font-black transition-colors text-slate-900"
+                    className="text-4xl font-black transition-colors text-white hover:text-sky-400"
                     data-cursor
                   >
                     {item.label}
