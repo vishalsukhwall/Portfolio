@@ -19,7 +19,6 @@ export default function App() {
 
   // Initialize smooth scrolling
   useLenis();
-
   return (
     <>
       <Preloader onComplete={() => setLoaded(true)} />
