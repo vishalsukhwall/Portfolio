@@ -34,6 +34,7 @@ export default function Cursor() {
     };
     rafRef.current = requestAnimationFrame(animate);
 
+    
     const onEnter = () => setIsHovering(true);
     const onLeave = () => setIsHovering(false);
     const onDown  = () => setIsClicking(true);
