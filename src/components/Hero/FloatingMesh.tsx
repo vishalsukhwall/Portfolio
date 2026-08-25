@@ -32,10 +32,11 @@ const FloatingMesh: React.FC = () => {
   const geometry = useMemo(() => new THREE.IcosahedronGeometry(1.5, detail), [detail]);
   
   useEffect(() => {
+    const material = materialRef.current;
     return () => {
       geometry.dispose();
-      if (materialRef.current) {
-        materialRef.current.dispose();
+      if (material) {
+        material.dispose();
       }
     };
   }, [geometry]);

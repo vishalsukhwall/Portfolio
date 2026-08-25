@@ -21,18 +21,16 @@ export const reportWebVitals = async () => {
 export const monitorFrameRate = () => {
   if (typeof window === 'undefined') return () => {};
   
-  let frameCount = 0;
+  let _frameCount = 0;
   let lastTime = performance.now();
   let animationFrameId: number;
 
   const loop = () => {
-    frameCount++;
+    _frameCount++;
     const currentTime = performance.now();
     
     if (currentTime - lastTime >= 1000) {
-      // Uncomment to debug FPS
-      // console.log(`FPS: ${frameCount}`);
-      frameCount = 0;
+      _frameCount = 0;
       lastTime = currentTime;
     }
     animationFrameId = requestAnimationFrame(loop);
