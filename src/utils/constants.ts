@@ -59,10 +59,10 @@ export const MESH_CONFIG = {
   }
 };
 
-export const PORTFOLIO_NAME = import.meta.env.VITE_PORTFOLIO_NAME || 'John Doe';
-export const PORTFOLIO_TITLE = import.meta.env.VITE_PORTFOLIO_TITLE || 'Creative Technologist & Full-Stack Engineer';
-export const PORTFOLIO_DESCRIPTION = import.meta.env.VITE_PORTFOLIO_DESCRIPTION || 'Building interactive digital experiences';
-export const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'hello@example.com';
+export const PORTFOLIO_NAME = import.meta.env.VITE_PORTFOLIO_NAME || 'Vishal Sukhwal';
+export const PORTFOLIO_TITLE = import.meta.env.VITE_PORTFOLIO_TITLE || 'Software Engineer & Full-Stack Developer';
+export const PORTFOLIO_DESCRIPTION = import.meta.env.VITE_PORTFOLIO_DESCRIPTION || 'Building high-performance web applications, interactive 3D experiences, and modern scalable solutions.';
+export const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'vishalsukhwal@example.com';
 
 export const SOCIAL_URLS = {
   github: import.meta.env.VITE_GITHUB_URL || 'https://github.com',

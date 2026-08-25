@@ -2,6 +2,7 @@ import React from 'react';
 import { Section } from '@components/common/Section';
 import { ContactForm } from './ContactForm';
 import { SocialLinks } from './SocialLinks';
+import { CONTACT_EMAIL, PORTFOLIO_NAME } from '@utils/constants';
 
 export const Contact: React.FC = () => {
   return (
@@ -24,7 +25,7 @@ export const Contact: React.FC = () => {
             </p>
             <div className="flex items-center gap-4 text-neutral-300 hover:text-accent transition-colors w-fit">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              <a href="mailto:hello@example.com" className="text-lg">hello@example.com</a>
+              <a href={`mailto:${CONTACT_EMAIL}`} className="text-lg">{CONTACT_EMAIL}</a>
             </div>
           </div>
           
@@ -36,7 +37,7 @@ export const Contact: React.FC = () => {
       </div>
       
       <footer className="mt-24 pt-8 border-t border-neutral-800 text-center text-neutral-500 text-sm">
-        <p>&copy; {new Date().getFullYear()} John Doe. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} {PORTFOLIO_NAME}. All rights reserved.</p>
       </footer>
     </Section>
   );

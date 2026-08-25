@@ -6,6 +6,8 @@ import { NavBar } from './NavBar';
 import { ThemeToggle } from './ThemeToggle';
 import { MobileMenu } from './MobileMenu';
 
+import { PORTFOLIO_NAME } from '@utils/constants';
+
 export const Header: React.FC = () => {
   const { scrollY } = useScrollPosition();
   const isScrolled = scrollY > 0;
@@ -21,10 +23,12 @@ export const Header: React.FC = () => {
       <Container className="h-full flex justify-between items-center">
         <a 
           href="#home" 
-          className="text-xl font-bold tracking-tight hover:text-accent transition-colors"
+          className="text-xl font-bold tracking-tight hover:text-accent transition-colors flex items-center gap-1"
           aria-label="Home"
         >
-          Portfolio
+          <span className="text-cyan-400">&lt;</span>
+          <span>{PORTFOLIO_NAME.split(' ')[0]}</span>
+          <span className="text-cyan-400">/&gt;</span>
         </a>
         
         <div className="flex items-center gap-4">
