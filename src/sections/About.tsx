@@ -57,7 +57,7 @@ export default function About() {
     },
   };
 
-  // Card-specific animation (slightly more pronounced)
+  // Card-specific animation
   const cardVariant: Variants = {
     hidden: { y: 20, opacity: 0 },
     show: {
@@ -71,53 +71,46 @@ export default function About() {
     <FlipSection>
       <section
         id="about"
-        className="relative w-full bg-white text-slate-900 py-28 sm:py-36 lg:py-44 overflow-hidden border-b border-slate-100/50"
+        className="relative w-full bg-[#030712] text-slate-100 py-20 sm:py-28 overflow-hidden border-b border-white/5"
       >
         {/* Subtle background decoration */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-sky-50/20 rounded-full blur-3xl opacity-30 -z-10"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-sky-50/10 rounded-full blur-3xl opacity-20 -z-10"></div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl opacity-20 -z-10"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-sky-500/5 rounded-full blur-3xl opacity-10 -z-10"></div>
         </div>
 
         {/* Main content container */}
-        <div ref={sectionRef} className="max-w-6xl mx-auto px-6 sm:px-12 lg:px-16 w-full relative z-10">
+        <div ref={sectionRef} className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 w-full relative z-10">
           <motion.div
             variants={container}
             initial="hidden"
             animate={inView ? 'show' : 'hidden'}
-            className="space-y-20 sm:space-y-28 lg:space-y-32"
+            className="space-y-16 sm:space-y-20"
           >
             {/* ============ SECTION HEADER ============ */}
-            <div className="space-y-6 sm:space-y-10 max-w-4xl">
+            <div className="space-y-5 max-w-3xl">
               {/* Badge */}
               <motion.div variants={itemVariant}>
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-50/60 border border-sky-200/80 backdrop-blur-sm">
-                  <div className="w-1.5 h-1.5 rounded-full bg-sky-500"></div>
-                  <span className="text-xs font-semibold tracking-wide text-sky-700 uppercase">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 backdrop-blur-sm">
+                  <div className="w-1.5 h-1.5 rounded-full bg-sky-400"></div>
+                  <span className="text-[11px] font-semibold tracking-wide text-sky-400 uppercase">
                     Professional Profile
                   </span>
                 </div>
               </motion.div>
 
-              {/* Hero Headline */}
+              {/* Headline */}
               <motion.h1
                 variants={itemVariant}
-                className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.15] text-slate-900"
+                className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.2] text-white"
               >
-                <span className="block">Crafting</span>
-                <span className="block">
-                  <span className="relative">
-                    intelligent systems
-                    <span className="absolute bottom-1 left-0 right-0 h-1 bg-sky-500/20 -z-10 blur-sm"></span>
-                  </span>
-                </span>
-                <span className="block">with technical excellence</span>
+                <span>Crafting intelligent systems with technical excellence</span>
               </motion.h1>
 
               {/* Subheading / Bio */}
               <motion.p
                 variants={itemVariant}
-                className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl font-light"
+                className="text-base sm:text-lg text-slate-400 leading-relaxed font-light"
               >
                 {personal.about}
               </motion.p>
@@ -125,32 +118,32 @@ export default function About() {
 
             {/* ============ STRENGTHS GRID ============ */}
             <motion.div variants={itemVariant} className="w-full">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {strengths.map((item, idx) => {
                   const Icon = item.icon;
                   return (
                     <motion.div
                       key={idx}
                       variants={cardVariant}
-                      className="group relative p-8 sm:p-9 lg:p-10 rounded-2xl bg-slate-50/40 border border-slate-200/60 hover:border-sky-300/80 hover:bg-white/60 transition-all duration-500 ease-out backdrop-blur-sm flex flex-col space-y-5"
+                      className="group relative p-6 sm:p-7 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-sky-500/40 hover:bg-slate-900/90 transition-all duration-300 ease-out backdrop-blur-sm flex flex-col space-y-4"
                     >
                       {/* Icon Container */}
-                      <div className="w-12 h-12 rounded-xl bg-white border border-sky-200/50 flex items-center justify-center text-sky-600 group-hover:shadow-md transition-all duration-500">
-                        <Icon size={24} strokeWidth={1.8} />
+                      <div className="w-10 h-10 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center text-sky-400 group-hover:shadow-sm transition-all duration-300">
+                        <Icon size={20} strokeWidth={1.8} />
                       </div>
 
                       {/* Text Content */}
-                      <div className="space-y-2 flex-1 flex flex-col">
-                        <h3 className="text-base sm:text-lg font-semibold text-slate-900 tracking-tight">
+                      <div className="space-y-1.5 flex-1 flex flex-col">
+                        <h3 className="text-sm sm:text-base font-semibold text-white tracking-tight">
                           {item.title}
                         </h3>
-                        <p className="text-sm text-slate-600 leading-relaxed font-light">
+                        <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-light">
                           {item.description}
                         </p>
                       </div>
 
                       {/* Hover accent line */}
-                      <div className="absolute bottom-0 left-0 w-0 group-hover:w-full h-px bg-sky-500/30 transition-all duration-500"></div>
+                      <div className="absolute bottom-0 left-0 w-0 group-hover:w-full h-px bg-sky-400/40 transition-all duration-300"></div>
                     </motion.div>
                   );
                 })}
@@ -159,72 +152,72 @@ export default function About() {
 
             {/* ============ ACADEMIC BACKGROUND ============ */}
             <motion.div variants={itemVariant} className="w-full">
-              <div className="space-y-8">
+              <div className="space-y-6">
                 {/* Section label */}
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-sky-500"></div>
-                  <span className="text-xs font-semibold tracking-wide text-slate-500 uppercase">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-sky-400"></div>
+                  <span className="text-[11px] font-semibold tracking-wide text-slate-400 uppercase">
                     Academic Foundation
                   </span>
                 </div>
 
                 {/* Education cards grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {education.map((edu) => (
                     <motion.div
                       key={edu.degree}
                       variants={cardVariant}
-                      className="group relative p-9 sm:p-10 lg:p-12 rounded-2xl bg-slate-50/40 border border-slate-200/60 hover:border-sky-300/80 hover:bg-white/60 transition-all duration-500 ease-out backdrop-blur-sm flex flex-col justify-between space-y-8"
+                      className="group relative p-7 sm:p-8 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-sky-500/40 hover:bg-slate-900/90 transition-all duration-300 ease-out backdrop-blur-sm flex flex-col justify-between space-y-6"
                     >
                       {/* Top Section: Icon + Degree Info */}
-                      <div className="space-y-6">
-                        <div className="flex items-start gap-5 sm:gap-6">
+                      <div className="space-y-4">
+                        <div className="flex items-start gap-4">
                           {/* Icon */}
-                          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-white border border-sky-200/50 flex items-center justify-center text-sky-600 flex-shrink-0 group-hover:shadow-md transition-all duration-500">
-                            <GraduationCap size={32} strokeWidth={1.6} />
+                          <div className="w-12 h-12 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center text-sky-400 flex-shrink-0 group-hover:shadow-sm transition-all duration-300">
+                            <GraduationCap size={24} strokeWidth={1.6} />
                           </div>
 
                           {/* Degree & Institution */}
                           <div className="space-y-1 flex-1 min-w-0">
-                            <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
+                            <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
                               {edu.degree}
                             </h3>
-                            <p className="text-sm sm:text-base font-medium text-slate-600">
+                            <p className="text-xs sm:text-sm font-medium text-slate-400">
                               {edu.institution}
                             </p>
                           </div>
                         </div>
 
                         {/* Location & Year */}
-                        <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm font-medium text-slate-600">
-                          <div className="flex items-center gap-2">
-                            <MapPin size={16} className="text-sky-600 flex-shrink-0" />
+                        <div className="flex flex-wrap items-center gap-4 text-xs font-medium text-slate-400">
+                          <div className="flex items-center gap-1.5">
+                            <MapPin size={14} className="text-sky-400 flex-shrink-0" />
                             <span>{edu.location}</span>
                           </div>
-                          <div className="flex items-center gap-2">
-                            <Calendar size={16} className="text-sky-600 flex-shrink-0" />
+                          <div className="flex items-center gap-1.5">
+                            <Calendar size={14} className="text-sky-400 flex-shrink-0" />
                             <span>{edu.year}</span>
                           </div>
                         </div>
                       </div>
 
                       {/* Divider */}
-                      <div className="w-full h-px bg-slate-200/50 group-hover:bg-slate-300/30 transition-colors duration-500"></div>
+                      <div className="w-full h-px bg-white/5 group-hover:bg-white/10 transition-colors duration-300"></div>
 
                       {/* Bottom Section: Performance */}
-                      <div className="flex items-center justify-between pt-2">
-                        <span className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">
                           Performance
                         </span>
-                        <div className="px-3.5 py-2 rounded-lg bg-sky-50/80 border border-sky-200/60 group-hover:shadow-md transition-all duration-500">
-                          <span className="text-sm font-bold text-sky-700">
+                        <div className="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 group-hover:shadow-xs transition-all duration-300">
+                          <span className="text-xs font-bold text-sky-400">
                             {edu.cgpa}/10
                           </span>
                         </div>
                       </div>
 
                       {/* Hover accent line */}
-                      <div className="absolute bottom-0 left-0 w-0 group-hover:w-full h-px bg-sky-500/30 transition-all duration-500"></div>
+                      <div className="absolute bottom-0 left-0 w-0 group-hover:w-full h-px bg-sky-400/40 transition-all duration-300"></div>
                     </motion.div>
                   ))}
                 </div>
