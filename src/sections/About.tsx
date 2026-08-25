@@ -170,7 +170,7 @@ export default function About() {
 
                 {/* Education cards grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-                  {education.map((edu, idx) => (
+                  {education.map((edu) => (
                     <motion.div
                       key={edu.degree}
                       variants={cardVariant}

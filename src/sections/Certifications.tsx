@@ -12,69 +12,69 @@ export default function Certifications() {
     <FlipSection>
       <section
         id="certifications"
-        className="section-padding relative overflow-hidden bg-slate-950 text-slate-100 py-24 sm:py-32"
+        className="relative overflow-hidden bg-white text-slate-900 py-28 sm:py-36 border-b border-slate-100"
       >
-        {/* Soft Ambient Glow */}
+        {/* Soft Ambient Light Decoration */}
         <div
-          className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[550px] h-[550px] rounded-full pointer-events-none blur-3xl opacity-15"
-          style={{ background: 'radial-gradient(circle, rgba(56,189,248,0.5) 0%, transparent 70%)' }}
+          className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[650px] h-[650px] rounded-full pointer-events-none blur-3xl opacity-20 -z-10"
+          style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.12) 0%, transparent 70%)' }}
         />
 
-        <div ref={ref} className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
+        <div ref={ref} className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 w-full relative z-10">
           
-          {/* Centered Header */}
+          {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="space-y-4 max-w-3xl mx-auto text-center mb-16"
+            className="space-y-4 max-w-3xl text-left mb-16 sm:mb-20"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-sky-400 text-xs font-bold tracking-widest uppercase shadow-2xs">
-              <Sparkles size={13} className="text-sky-400" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-200 text-sky-600 text-xs font-bold tracking-widest uppercase shadow-2xs">
+              <Sparkles size={13} className="text-sky-500" />
               Verified Credentials
             </div>
             
-            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-              Licenses & <span className="gradient-text-sky">Certifications</span>
+            <h2 className="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
+              Licenses & <span className="text-sky-600">Certifications.</span>
             </h2>
 
-            <p className="text-slate-400 text-base sm:text-lg font-normal leading-relaxed">
+            <p className="text-lg sm:text-xl text-slate-600 font-normal leading-relaxed pt-2">
               Continuous commitment to advancing knowledge in autonomous AI agents, practical hackathons, and algorithmic problem solving.
             </p>
           </motion.div>
 
           {/* 3-Column Centered Responsive Card Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {certifications.map((cert, i) => (
               <motion.div
                 key={cert.title}
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="p-8 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-slate-800/80 shadow-xl hover:border-sky-500/40 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group text-left"
+                className="p-8 sm:p-10 rounded-3xl bg-slate-50/70 border border-slate-200/80 shadow-sm hover:border-sky-300 hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group text-left"
               >
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <div className="flex items-center justify-between">
-                    <div className="w-12 h-12 rounded-xl bg-sky-950/80 border border-sky-800/50 flex items-center justify-center text-2xl group-hover:scale-105 transition-transform flex-shrink-0">
-                      {cert.icon || <Award size={22} className="text-sky-400" />}
+                    <div className="w-14 h-14 rounded-2xl bg-white border border-sky-200/80 flex items-center justify-center text-sky-600 group-hover:scale-105 transition-transform flex-shrink-0 shadow-sm">
+                      {cert.icon || <Award size={28} strokeWidth={1.8} />}
                     </div>
-                    <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-800 text-sky-300 border border-slate-700">
+                    <span className="px-3 py-1.5 rounded-lg text-[11px] font-extrabold uppercase tracking-wider bg-sky-50 text-sky-700 border border-sky-100">
                       {cert.year}
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-bold text-white tracking-tight group-hover:text-sky-400 transition-colors leading-snug">
+                    <h3 className="text-xl font-extrabold text-slate-900 tracking-tight group-hover:text-sky-600 transition-colors leading-snug">
                       {cert.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-sky-400 font-semibold mt-1">
+                    <p className="text-sm text-sky-600 font-bold mt-2">
                       {cert.issuer}
                     </p>
                   </div>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-slate-800/80 flex items-center gap-1.5 text-xs font-semibold text-slate-400">
-                  <CheckCircle size={14} className="text-sky-400" />
+                <div className="pt-6 mt-8 border-t border-slate-200/60 flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                  <CheckCircle size={16} className="text-sky-500" strokeWidth={2.5} />
                   <span>Verified Competency</span>
                 </div>
               </motion.div>

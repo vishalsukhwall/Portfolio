@@ -10,7 +10,6 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
-
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   return (
     <AnimatePresence>
@@ -19,20 +18,19 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* Backdrop */}
           <motion.div
             className="fixed inset-0 z-[200]"
-            style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(10px)' }}
+            style={{ background: 'rgba(15, 23, 42, 0.4)', backdropFilter: 'blur(8px)' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
           />
 
-
           {/* Modal */}
           <motion.div
             className="fixed z-[201] inset-x-4 md:inset-x-auto md:left-1/2 md:-translate-x-1/2
-                       top-1/2 -translate-y-1/2 w-full md:w-[600px] rounded-3xl overflow-hidden bg-slate-900 border border-slate-800 text-white"
+                       top-1/2 -translate-y-1/2 w-full md:w-[600px] rounded-3xl overflow-hidden bg-white border border-slate-200 text-slate-900"
             style={{
-              boxShadow: `0 24px 64px rgba(0,0,0,0.6), 0 0 40px rgba(56,189,248,0.1)`,
+              boxShadow: `0 24px 64px rgba(15, 23, 42, 0.15), 0 0 40px rgba(2, 132, 199, 0.05)`,
             }}
             initial={{ opacity: 0, scale: 0.88, y: '-40%' }}
             animate={{ opacity: 1, scale: 1, y: '-50%' }}
@@ -42,20 +40,20 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             {/* Top color bar */}
             <div
               className="h-1.5 w-full"
-              style={{ background: 'linear-gradient(90deg, #0284c7, #38bdf8, #00a8ff)' }}
+              style={{ background: 'linear-gradient(90deg, #0284c7, #38bdf8, #bae6fd)' }}
             />
 
-            <div className="p-8 space-y-6">
+            <div className="p-8 sm:p-10 space-y-6">
               {/* Header */}
               <div className="flex items-start justify-between">
                 <div>
                   <p
-                    className="text-xs font-bold tracking-widest uppercase mb-1.5 text-sky-400"
+                    className="text-xs font-extrabold tracking-widest uppercase mb-2 text-sky-600"
                   >
                     {project.subtitle}
                   </p>
                   <h3
-                    className="text-2xl sm:text-3xl font-black tracking-tight text-white"
+                    className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900"
                     style={{ lineHeight: 1.1 }}
                   >
                     {project.title}
@@ -64,40 +62,40 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 <button
                   onClick={onClose}
                   data-cursor
-                  className="flex items-center justify-center w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition-all text-slate-300 hover:text-white"
+                  className="flex items-center justify-center w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 hover:bg-slate-100 transition-all text-slate-500 hover:text-slate-900 shadow-2xs"
                 >
-                  <X size={16} />
+                  <X size={18} strokeWidth={2.5} />
                 </button>
               </div>
 
               {/* Description */}
               <p
-                className="text-sm leading-relaxed text-slate-300"
+                className="text-sm sm:text-base leading-relaxed text-slate-600 font-medium"
               >
                 {project.longDescription}
               </p>
 
               {/* Tags */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 pt-2">
                 {project.tags.map((tag) => (
-                  <span key={tag} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold text-sky-300 bg-sky-950/80 border border-sky-800/60">
-                    <Tag size={10} />
+                  <span key={tag} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-bold text-sky-700 bg-sky-50 border border-sky-100 uppercase tracking-wide">
+                    <Tag size={12} strokeWidth={2.5} />
                     {tag}
                   </span>
                 ))}
               </div>
 
               {/* Links */}
-              <div className="flex items-center gap-3 pt-2">
+              <div className="flex flex-col sm:flex-row items-center gap-3 pt-6 border-t border-slate-100">
                 {project.live && (
                   <a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
                     data-cursor
-                    className="flex-1 py-3 px-5 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-500 hover:from-sky-700 hover:to-cyan-600 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md shadow-sky-500/20"
+                    className="w-full sm:w-auto flex-1 py-3.5 px-5 rounded-xl bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 text-white font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all shadow-md shadow-sky-500/20"
                   >
-                    <ExternalLink size={14} />
+                    <ExternalLink size={16} strokeWidth={2.5} />
                     View Live Demo
                   </a>
                 )}
@@ -106,9 +104,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor
-                  className="flex-1 py-3 px-5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all"
+                  className="w-full sm:w-auto flex-1 py-3.5 px-5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all shadow-2xs"
                 >
-                  <GithubIcon size={14} />
+                  <GithubIcon size={16} />
                   View Source
                 </a>
               </div>
