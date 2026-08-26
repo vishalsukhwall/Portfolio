@@ -3,32 +3,32 @@ import { SOCIAL_URLS, CONTACT_EMAIL } from '@utils/constants';
 export interface SocialLink {
   platform: string;
   url: string;
-  icon: 'github' | 'linkedin' | 'twitter' | 'email';
+  icon: 'github' | 'linkedin' | 'instagram' | 'email';
   label: string;
 }
 
 export const socialLinks: SocialLink[] = [
   {
-    platform: 'GitHub',
+    platform: 'github',
     url: SOCIAL_URLS.github,
     icon: 'github',
     label: 'Visit my GitHub profile'
   },
   {
-    platform: 'LinkedIn',
+    platform: 'linkedin',
     url: SOCIAL_URLS.linkedin,
     icon: 'linkedin',
     label: 'Connect with me on LinkedIn'
   },
   {
-    platform: 'Twitter',
-    url: SOCIAL_URLS.twitter,
-    icon: 'twitter',
-    label: 'Follow me on Twitter'
+    platform: 'instagram',
+    url: SOCIAL_URLS.instagram,
+    icon: 'instagram',
+    label: 'Follow me on Instagram'
   },
   {
-    platform: 'Email',
-    url: `mailto:${CONTACT_EMAIL}`,
+    platform: 'email',
+    url: `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}&su=Portfolio%20Inquiry`,
     icon: 'email',
     label: 'Send me an email'
   }
