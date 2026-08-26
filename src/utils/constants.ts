@@ -59,7 +59,7 @@ export const MESH_CONFIG = {
   }
 };
 
-export const PORTFOLIO_NAME = import.meta.env.VITE_PORTFOLIO_NAME || 'Vishal Sukhwal';
+export const PORTFOLIO_NAME = import.meta.env.VITE_PORTFOLIO_NAME || 'VISHAL SUKHWAL';
 export const PORTFOLIO_TITLE = import.meta.env.VITE_PORTFOLIO_TITLE || 'Software Engineer & Full-Stack Developer';
 export const PORTFOLIO_DESCRIPTION = import.meta.env.VITE_PORTFOLIO_DESCRIPTION || 'Building high-performance web applications, interactive 3D experiences, and modern scalable solutions.';
 export const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'vishalsukhwal@example.com';
