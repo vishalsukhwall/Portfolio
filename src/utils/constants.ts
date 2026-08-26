@@ -77,6 +77,6 @@ export const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'vishalsukhwa
 
 export const SOCIAL_URLS = {
   github: import.meta.env.VITE_GITHUB_URL || 'https://github.com/vishalsukhwall',
-  linkedin: import.meta.env.VITE_LINKEDIN_URL || 'www.linkedin.com/in/vishal-sukhwal-89a574378',
+  linkedin: import.meta.env.VITE_LINKEDIN_URL || 'https://www.linkedin.com/in/vishal-sukhwal-89a574378',
   instagram: import.meta.env.VITE_INSTAGRAM_URL || 'https://instagram.com/vishalsukhwall'
 };
