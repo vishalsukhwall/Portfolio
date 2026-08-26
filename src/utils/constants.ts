@@ -60,12 +60,23 @@ export const MESH_CONFIG = {
 };
 
 export const PORTFOLIO_NAME = import.meta.env.VITE_PORTFOLIO_NAME || 'VISHAL SUKHWAL';
+
 export const PORTFOLIO_TITLE = import.meta.env.VITE_PORTFOLIO_TITLE || 'Software Engineer & Full-Stack Developer';
-export const PORTFOLIO_DESCRIPTION = import.meta.env.VITE_PORTFOLIO_DESCRIPTION || 'Building high-performance web applications, interactive 3D experiences, and modern scalable solutions.';
-export const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'vishalsukhwal@example.com';
+
+export const PORTFOLIO_TITLES: string[] = [
+  'Software Engineer',
+  'Full-Stack Developer',
+  'Problem Solver & Tech Enthusiast'
+];
+
+export const PORTFOLIO_DESCRIPTION =
+  import.meta.env.VITE_PORTFOLIO_DESCRIPTION ||
+  'Building high-performance web applications, interactive 3D experiences, and modern scalable solutions.';
+
+export const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'vishalsukhwal33@gmail.com';
 
 export const SOCIAL_URLS = {
-  github: import.meta.env.VITE_GITHUB_URL || 'https://github.com',
-  linkedin: import.meta.env.VITE_LINKEDIN_URL || 'https://linkedin.com',
-  twitter: import.meta.env.VITE_TWITTER_URL || 'https://twitter.com'
+  github: import.meta.env.VITE_GITHUB_URL || 'https://github.com/vishalsukhwall',
+  linkedin: import.meta.env.VITE_LINKEDIN_URL || 'www.linkedin.com/in/vishal-sukhwal-89a574378',
+  instagram: import.meta.env.VITE_INSTAGRAM_URL || 'https://instagram.com/vishalsukhwall'
 };

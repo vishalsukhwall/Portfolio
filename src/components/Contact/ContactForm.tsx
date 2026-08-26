@@ -128,7 +128,7 @@ export const ContactForm: React.FC = () => {
           label="Name"
           type="text"
           required
-          placeholder="John Doe"
+          placeholder="John"
           value={formData.name.value}
           onChange={handleChange}
           onBlur={handleBlur}
