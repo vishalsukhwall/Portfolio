@@ -14,7 +14,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onProjectClick }) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.08
       }
     }
   };
@@ -24,8 +24,8 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onProjectClick }) => {
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-100px' }}
-      className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full"
+      viewport={{ once: true, margin: '-60px' }}
+      className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl mx-auto px-4"
     >
       {projects.map((project, index) => (
         <ProjectCard
@@ -40,3 +40,4 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onProjectClick }) => {
 };
 
 ProjectGrid.displayName = 'ProjectGrid';
+export default ProjectGrid;

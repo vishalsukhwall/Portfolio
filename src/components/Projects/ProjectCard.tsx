@@ -27,8 +27,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateX = ((y - centerY) / centerY) * -10;
-    const rotateY = ((x - centerX) / centerX) * 10;
+    const rotateX = ((y - centerY) / centerY) * -8;
+    const rotateY = ((x - centerX) / centerX) * 8;
 
     setRotation({ x: rotateX, y: rotateY });
   };
@@ -50,18 +50,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
     }
   };
 
-  const isFeatured = project.featured;
-
   const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    hidden: { opacity: 0, y: 20, scale: 0.96 },
     visible: { 
       opacity: 1, 
       y: 0, 
       scale: 1,
       transition: { 
-        duration: 0.5, 
+        duration: 0.4, 
         ease: 'easeOut',
-        delay: prefersReducedMotion ? 0 : index * 0.1 
+        delay: prefersReducedMotion ? 0 : index * 0.08 
       }
     }
   };
@@ -71,10 +69,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
       variants={prefersReducedMotion ? undefined : cardVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
+      viewport={{ once: true, margin: '-40px' }}
       className={cn(
-        'group relative rounded-xl overflow-hidden cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900',
-        isFeatured ? 'md:col-span-2' : ''
+        'group relative rounded-2xl overflow-hidden cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-accent'
       )}
       style={{ perspective: '1000px' }}
       onClick={onClick}
@@ -88,37 +85,45 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onMouseEnter={handleMouseEnter}
-        className="w-full h-full bg-neutral-900/50 border border-neutral-800 rounded-xl overflow-hidden transition-all duration-300 group-hover:border-accent"
+        className="w-full h-full bg-neutral-900/70 border border-neutral-800 rounded-2xl overflow-hidden transition-all duration-300 group-hover:border-accent/60 group-hover:shadow-[0_12px_30px_rgba(0,0,0,0.5)] flex flex-col"
         style={{
           transform: prefersReducedMotion ? 'none' : `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) scale(${isHovered ? 1.02 : 1})`,
           transformStyle: 'preserve-3d',
-          transition: isHovered ? 'none' : 'transform 0.5s ease-out'
+          transition: isHovered ? 'none' : 'transform 0.4s ease-out'
         }}
       >
+        {/* Balanced Thumbnail Height */}
         <div 
-          className="w-full aspect-video relative overflow-hidden"
+          className="w-full h-48 sm:h-52 relative overflow-hidden bg-neutral-950/50"
           style={{ background: project.image }}
         >
-          <div className="absolute inset-0 bg-neutral-950/20 group-hover:bg-accent/20 transition-colors duration-500 mix-blend-overlay" />
+          <div className="absolute inset-0 bg-neutral-950/20 group-hover:bg-accent/10 transition-colors duration-300 mix-blend-overlay" />
         </div>
         
-        <div className="p-6 flex flex-col h-[calc(100%-56.25%)]">
-          <h3 className="text-xl font-bold text-white mb-2 line-clamp-1">{project.title}</h3>
-          <p className="text-neutral-400 text-sm mb-4 line-clamp-3 flex-grow">{project.description}</p>
-          
-          <div className="flex flex-wrap gap-2 mb-6">
-            {project.technologies.slice(0, 4).map((tech: string) => (
-              <TechBadge key={tech} name={tech} />
-            ))}
-            {project.technologies.length > 4 && (
-              <TechBadge name={`+${project.technologies.length - 4}`} />
-            )}
+        {/* Comfortable Body Padding & Readable Text */}
+        <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
+          <div>
+            <h3 className="text-lg font-bold text-white mb-2 line-clamp-1 group-hover:text-accent transition-colors">
+              {project.title}
+            </h3>
+            <p className="text-neutral-400 text-sm line-clamp-2 leading-relaxed">
+              {project.description}
+            </p>
           </div>
           
-          <div className="flex items-center gap-4 mt-auto">
-            <span className="text-sm font-medium text-accent group-hover:underline underline-offset-4">
+          <div>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.technologies.slice(0, 4).map((tech: string) => (
+                <TechBadge key={tech} name={tech} />
+              ))}
+              {project.technologies.length > 4 && (
+                <TechBadge name={`+${project.technologies.length - 4}`} />
+              )}
+            </div>
+            
+            <div className="flex items-center text-sm font-semibold text-accent group-hover:translate-x-1 transition-transform">
               View Details &rarr;
-            </span>
+            </div>
           </div>
         </div>
       </div>
@@ -127,3 +132,4 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
 };
 
 ProjectCard.displayName = 'ProjectCard';
+export default ProjectCard;``
