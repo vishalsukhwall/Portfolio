@@ -128,7 +128,7 @@ export const ContactForm: React.FC = () => {
           label="Name"
           type="text"
           required
-          placeholder="John"
+          placeholder="Your Name"
           value={formData.name.value}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -140,7 +140,7 @@ export const ContactForm: React.FC = () => {
           label="Email"
           type="email"
           required
-          placeholder="john@example.com"
+          placeholder="Your EMAIL"
           value={formData.email.value}
           onChange={handleChange}
           onBlur={handleBlur}
