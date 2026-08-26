@@ -5,7 +5,7 @@ export const projects: Project[] = [
     id: 'wealthy-names',
     title: 'Wealthy Names',
     description: 'A responsive platform featuring curated domain and brand naming tools with integrated content and blogs.',
-    image: '/projects/wealthynames.png', // public/projects/wealthynames.png me image save karein
+    image: 'linear-gradient(135deg, #0a0a2e 0%, #1a0a3e 50%, #00d4ff 100%)',
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
     liveUrl: 'https://wealthynames.vercel.app/',
     githubUrl: 'https://github.com/vishalsukhwall/wealthnames',
@@ -21,7 +21,7 @@ export const projects: Project[] = [
     id: 'ai-career-mentor',
     title: 'AI Career Mentor',
     description: 'An AI-powered guidance platform delivering automated roadmaps and mentorship insights using open-source LLMs.',
-    image: '/projects/ai-career-mentor.png', // public/projects/ai-career-mentor.png
+    image: 'linear-gradient(135deg, #0a2e0a 0%, #1a3e1a 50%, #00ff88 100%)',
     technologies: ['Python', 'Streamlit', 'Hugging Face API', 'NLP'],
     githubUrl: 'https://github.com/vishalsukhwall',
     featured: true,
@@ -36,7 +36,7 @@ export const projects: Project[] = [
     id: 'aarambhh',
     title: 'AARAMBHH Full-Stack App',
     description: 'A scalable web application featuring end-to-end data workflows, structured APIs, and intuitive user dashboards.',
-    image: '/projects/aarambhh.png', // public/projects/aarambhh.png
+    image: 'linear-gradient(135deg, #2e0a2e 0%, #3e1a3e 50%, #ff006e 100%)',
     technologies: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'Tailwind CSS'],
     githubUrl: 'https://github.com/vishalsukhwall',
     featured: false,
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     id: 'sms-spam-detector',
     title: 'SMS Spam Detection Engine',
     description: 'A Machine Learning text classification pipeline serving NLP-driven spam prediction through a Flask web interface.',
-    image: '/projects/sms-spam.png', // public/projects/sms-spam.png
+    image: 'linear-gradient(135deg, #1a1a2e 0%, #2a2a3e 50%, #ffaa00 100%)',
     technologies: ['Python', 'Scikit-Learn', 'Flask', 'Naive Bayes', 'NLP'],
     githubUrl: 'https://github.com/vishalsukhwall',
     featured: false,

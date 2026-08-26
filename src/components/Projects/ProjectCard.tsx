@@ -64,6 +64,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
     }
   };
 
+  const isImagePath = project.image.startsWith('/') || project.image.startsWith('http');
+
   return (
     <motion.div
       variants={prefersReducedMotion ? undefined : cardVariants}
@@ -92,15 +94,24 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
           transition: isHovered ? 'none' : 'transform 0.4s ease-out'
         }}
       >
-        {/* Balanced Thumbnail Height */}
-        <div 
-          className="w-full h-48 sm:h-52 relative overflow-hidden bg-neutral-950/50"
-          style={{ background: project.image }}
-        >
+        {/* Thumbnail Image Container */}
+        <div className="w-full h-48 sm:h-52 relative overflow-hidden bg-neutral-950">
+          {isImagePath ? (
+            <img 
+              src={project.image} 
+              alt={project.title} 
+              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" 
+            />
+          ) : (
+            <div 
+              className="w-full h-full" 
+              style={{ background: project.image }} 
+            />
+          )}
           <div className="absolute inset-0 bg-neutral-950/20 group-hover:bg-accent/10 transition-colors duration-300 mix-blend-overlay" />
         </div>
         
-        {/* Comfortable Body Padding & Readable Text */}
+        {/* Card Body */}
         <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
           <div>
             <h3 className="text-lg font-bold text-white mb-2 line-clamp-1 group-hover:text-accent transition-colors">
@@ -132,4 +143,4 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
 };
 
 ProjectCard.displayName = 'ProjectCard';
-export default ProjectCard;``
+export default ProjectCard;
