@@ -5,7 +5,7 @@ export const projects: Project[] = [
     id: 'wealthy-names',
     title: 'Wealthy Names',
     description: 'A responsive platform featuring curated domain and brand naming tools with integrated content and blogs.',
-    image: 'linear-gradient(135deg, #0a0a2e 0%, #1a0a3e 50%, #00d4ff 100%)',
+    image: '/wealthynames.png',
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
     liveUrl: 'https://wealthynames.vercel.app/',
     githubUrl: 'https://github.com/vishalsukhwall/wealthnames',
