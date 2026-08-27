@@ -10,9 +10,19 @@ export const NavBar: React.FC = () => {
     e.preventDefault();
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
+    
     if (element) {
-      const y = element.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      if (targetId === 'contact') {
+        // Contact ke liye exact vertical screen center scroll
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      } else {
+        // Baaki sabhi sections ke liye navbar offset scroll
+        const y = element.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
     }
   };
 

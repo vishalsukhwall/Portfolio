@@ -6,6 +6,7 @@ import { validateName, validateEmail, validateSubject, validateMessage } from '@
 import { submitContactForm } from '@utils/api';
 import type { FormStatus as FormStatusType, ContactFormData, FormField } from '@/types/contact';
 import { useToastStore } from '@stores/toastStore';
+import { cn } from '@utils/cn';
 
 const initialField: FormField = { value: '', touched: false };
 
@@ -39,7 +40,7 @@ export const ContactForm: React.FC = () => {
       [fieldName]: {
         ...prev[fieldName],
         value,
-        error: undefined // Clear error on change
+        error: undefined
       }
     }));
   };
@@ -62,7 +63,6 @@ export const ContactForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate all fields
     const nameValidation = validateName(formData.name.value);
     const emailValidation = validateEmail(formData.email.value);
     const subjectValidation = validateSubject(formData.subject.value);
@@ -120,9 +120,9 @@ export const ContactForm: React.FC = () => {
     <form 
       onSubmit={handleSubmit} 
       noValidate 
-      className="w-full max-w-xl mx-auto space-y-6"
+      className="w-full space-y-5 bg-neutral-900/40 backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-neutral-800/80 shadow-2xl shadow-black/50"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <FormInput
           id="name"
           label="Name"
@@ -140,7 +140,7 @@ export const ContactForm: React.FC = () => {
           label="Email"
           type="email"
           required
-          placeholder="Your EMAIL"
+          placeholder="your.email@example.com"
           value={formData.email.value}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -179,12 +179,26 @@ export const ContactForm: React.FC = () => {
       <button
         type="submit"
         disabled={isSubmitDisabled}
-        className="w-full py-3 px-6 rounded-lg bg-accent text-neutral-950 font-bold hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-neutral-950 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className={cn(
+          "w-full py-3.5 px-6 rounded-full font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2",
+          "bg-white text-neutral-950 shadow-lg shadow-white/10 hover:bg-neutral-200 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
+        )}
       >
-        {status === 'loading' ? 'Sending...' : 'Send Message'}
+        {status === 'loading' ? (
+          <span className="animate-pulse">Sending...</span>
+        ) : (
+          <>
+            <span>Send Message</span>
+            <svg className="w-4 h-4 text-neutral-950" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
+          </>
+        )}
       </button>
     </form>
   );
 };
 
 ContactForm.displayName = 'ContactForm';
+export default ContactForm;
