@@ -6,7 +6,9 @@ import { NavBar } from './NavBar';
 import { ThemeToggle } from './ThemeToggle';
 import { MobileMenu } from './MobileMenu';
 
+
 import { PORTFOLIO_NAME } from '@utils/constants';
+
 
 export const Header: React.FC = () => {
   const { scrollY } = useScrollPosition();
