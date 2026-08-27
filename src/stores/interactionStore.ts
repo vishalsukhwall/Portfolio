@@ -18,6 +18,7 @@ export const useInteractionStore = create<InteractionState>((set) => ({
   activeSection: 'home',
   mobileMenuOpen: false,
   
+  
   setMousePosition: (x, y) => set({ mousePosition: { x, y } }),
   setScrollPosition: (scrollPosition) => set({ scrollPosition }),
   setActiveSection: (activeSection) => set({ activeSection }),
