@@ -26,6 +26,7 @@ const Lights: React.FC<LightsProps> = ({ deviceCapability }) => {
         shadow-camera-bottom={-50}
       />
       
+      
       <pointLight
         position={[-15, 10, 5]}
         intensity={0.6}
