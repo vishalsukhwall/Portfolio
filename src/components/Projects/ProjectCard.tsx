@@ -119,6 +119,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
             </h3>
             <p className="text-neutral-400 text-sm line-clamp-2 leading-relaxed">
               {project.description}
+              
             </p>
           </div>
           

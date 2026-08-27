@@ -28,6 +28,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onProjectClick }) => {
       className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl mx-auto px-4"
     >
       {projects.map((project, index) => (
+        
         <ProjectCard
           key={project.id}
           project={project}
