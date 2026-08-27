@@ -9,6 +9,7 @@ const ScrollIndicator: React.FC = () => {
   
   const opacity = Math.max(1 - scrollY / 100, 0);
 
+  
   if (opacity === 0) return null;
 
   return (

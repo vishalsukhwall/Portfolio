@@ -51,7 +51,6 @@ const HeroContent: React.FC = () => {
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, titleIndex, titles, prefersReducedMotion]);
 
-  
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
