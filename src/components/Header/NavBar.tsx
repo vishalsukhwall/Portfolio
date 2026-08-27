@@ -11,14 +11,13 @@ export const NavBar: React.FC = () => {
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
     if (element) {
-      const y = element.getBoundingClientRect().top + window.pageYOffset - 64; // SCROLL_OFFSET
+      const y = element.getBoundingClientRect().top + window.pageYOffset - 80;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
-  
   return (
-    <nav className="hidden lg:flex items-center gap-8" aria-label="Main navigation">
+    <nav className="hidden md:flex items-center gap-1 bg-neutral-900/60 p-1 rounded-full border border-neutral-800/60" aria-label="Main navigation">
       {NAV_LINKS.map((link) => {
         const isActive = activeSection === link.href.replace('#', '');
         return (
@@ -27,19 +26,20 @@ export const NavBar: React.FC = () => {
             href={link.href}
             onClick={(e) => handleScroll(e, link.href)}
             className={cn(
-              "text-sm font-medium transition-colors relative py-2",
-              isActive ? "text-accent" : "text-neutral-400 hover:text-accent"
+              "text-xs sm:text-sm font-medium px-3.5 py-1.5 rounded-full transition-all duration-200",
+              isActive 
+                ? "bg-neutral-800 text-white font-semibold shadow-sm" 
+                : "text-neutral-400 hover:text-neutral-200 hover:bg-neutral-800/40"
             )}
             aria-current={isActive ? "page" : undefined}
           >
             {link.label}
-            {isActive && (
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-accent rounded-t-full" />
-            )}
           </a>
         );
       })}
     </nav>
   );
 };
+
 NavBar.displayName = 'NavBar';
+export default NavBar;
