@@ -177,5 +177,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
   );
 };
 
+
 ProjectModal.displayName = 'ProjectModal';
 export default ProjectModal;
