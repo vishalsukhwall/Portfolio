@@ -1,79 +1,58 @@
-import React, { useRef } from 'react';
-import { Badge } from '@components/common/Badge';
+import React from 'react';
 import { cn } from '@utils/cn';
 
 export interface SkillCardProps {
-  icon: string;
+  icon: string | React.ReactNode;
   category: string;
   skills: string[];
-  description: string;
-  proficiency: number;
+  description?: string;
+  proficiency?: number;
+  className?: string;
 }
 
-export const SkillCard: React.FC<SkillCardProps> = ({ icon, category, skills, description, proficiency }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current || window.matchMedia('(hover: none)').matches) return;
-    
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    
-    const rotateX = ((y - centerY) / centerY) * -8;
-    const rotateY = ((x - centerX) / centerX) * 8;
-    
-    cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-  };
-
-  const handleMouseLeave = () => {
-    if (!cardRef.current) return;
-    cardRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-  };
-
+export const SkillCard: React.FC<SkillCardProps> = ({ 
+  icon, 
+  category, 
+  skills, 
+  description, 
+  className 
+}) => {
   return (
-    <div className="perspective-1000 h-full">
-      <div
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        className={cn(
-          "h-full flex flex-col p-6 rounded-xl transition-all duration-300 ease-out",
-          "bg-neutral-900/50 light:bg-white border border-neutral-800",
-          "hover:border-accent hover:shadow-[0_0_20px_rgba(0,212,255,0.15)]"
-        )}
-      >
-        <div className="text-4xl mb-4">{icon}</div>
-        <h3 className="text-xl font-bold mb-2">{category}</h3>
-        <p className="text-sm text-neutral-400 mb-6 flex-grow">{description}</p>
-        
-        <div className="flex flex-wrap gap-2 mb-6">
-          {skills.map((skill) => (
-            <Badge key={skill} variant="default">{skill}</Badge>
-          ))}
+    <div
+      className={cn(
+        "h-full flex flex-col justify-between p-6 rounded-3xl transition-all duration-300 ease-out",
+        "bg-[#0b0c0e]/90 backdrop-blur-xl border border-neutral-800/80 shadow-xl",
+        "hover:border-neutral-700 hover:shadow-2xl hover:shadow-black/60 hover:-translate-y-1",
+        className
+      )}
+    >
+      {/* Card Header */}
+      <div className="flex items-center gap-3.5 mb-5">
+        <div className="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 text-lg shrink-0">
+          {icon}
         </div>
-        
-        <div className="flex items-center gap-1 mt-auto">
-          {[...Array(5)].map((_, i) => (
-            <svg
-              key={i}
-              className={cn("w-4 h-4", i < proficiency ? "text-accent fill-accent" : "text-neutral-700 fill-none")}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
-          ))}
+        <div>
+          <h3 className="text-base font-bold text-white tracking-tight">{category}</h3>
+          {description && (
+            <p className="text-xs text-neutral-400 mt-0.5">{description}</p>
+          )}
         </div>
+      </div>
+
+      {/* Skills Mini-Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 w-full mt-auto">
+        {skills.map((skill) => (
+          <div
+            key={skill}
+            className="flex items-center justify-center px-3 py-2 rounded-xl bg-neutral-900/80 border border-neutral-800 text-xs font-medium text-neutral-300 hover:border-neutral-700 hover:bg-neutral-800/50 transition-all text-center truncate cursor-default"
+          >
+            {skill}
+          </div>
+        ))}
       </div>
     </div>
   );
 };
+
 SkillCard.displayName = 'SkillCard';
+export default SkillCard;
