@@ -9,6 +9,7 @@ import { useDeviceCapability } from '@hooks/useDeviceCapability';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
+  
 }
 
 interface ErrorBoundaryState {

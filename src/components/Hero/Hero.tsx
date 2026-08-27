@@ -18,6 +18,7 @@ const Hero: React.FC = () => {
         <HeroContent />
       </div>
       
+      
       <div className="h-[60vh] lg:h-full w-full relative z-0">
         <HeroCanvas />
       </div>

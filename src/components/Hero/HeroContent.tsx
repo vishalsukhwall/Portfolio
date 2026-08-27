@@ -46,6 +46,7 @@ const HeroContent: React.FC = () => {
           setTitleIndex((prev) => (prev + 1) % titles.length);
         }
       }
+      
     }, typingSpeed);
 
     return () => clearTimeout(timer);
