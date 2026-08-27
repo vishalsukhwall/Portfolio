@@ -49,7 +49,6 @@ export const projects: Project[] = [
   },
   {
     
-    
     id: 'sms-spam-detector',
     title: 'SMS Spam Detection Engine',
     description: 'A Machine Learning text classification pipeline serving NLP-driven spam prediction through a Flask web interface.',
