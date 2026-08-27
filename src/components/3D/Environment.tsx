@@ -5,7 +5,6 @@ const Environment: React.FC = () => {
   return null;
 };
 
-
 Environment.displayName = 'Environment';
 
 export default React.memo(Environment);
