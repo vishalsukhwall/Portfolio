@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 
 interface InteractionState {
+  
   mousePosition: { x: number; y: number };
   scrollPosition: number;
   activeSection: string;

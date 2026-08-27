@@ -46,12 +46,12 @@ const HeroContent: React.FC = () => {
           setTitleIndex((prev) => (prev + 1) % titles.length);
         }
       }
-      
     }, typingSpeed);
 
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, titleIndex, titles, prefersReducedMotion]);
 
+  
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
