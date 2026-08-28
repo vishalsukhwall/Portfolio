@@ -7,11 +7,10 @@ import { useMousePosition } from '@hooks/useMousePosition';
 import { useScrollPosition } from '@hooks/useScrollPosition';
 
 const FloatingMesh: React.FC = () => {
-  
+
   const meshRef = useRef<THREE.Mesh>(null);
   const materialRef = useRef<THREE.MeshPhysicalMaterial>(null);
   const [hovered, setHovered] = useState(false);
-  
   const deviceCapability = useDeviceCapability();
   const prefersReducedMotion = usePreferredReducedMotion();
   const mousePosition = useMousePosition();
