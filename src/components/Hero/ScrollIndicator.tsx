@@ -17,7 +17,6 @@ const ScrollIndicator: React.FC = () => {
       className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-10"
       style={{ opacity }}
       aria-hidden="true"
-      
     >
       <span className="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-2">
         Scroll
@@ -26,6 +25,7 @@ const ScrollIndicator: React.FC = () => {
         animate={prefersReducedMotion ? {} : { y: [0, 8, 0] }}
         transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
       >
+
         <svg 
           width="24" 
           height="24" 
@@ -37,6 +37,7 @@ const ScrollIndicator: React.FC = () => {
           strokeLinejoin="round" 
           className="text-neutral-400 dark:text-neutral-500"
         >
+          
           <path d="M6 9l6 6 6-6" />
         </svg>
       </motion.div>
