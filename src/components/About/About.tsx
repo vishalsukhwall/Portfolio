@@ -377,6 +377,7 @@ export const About: React.FC = () => {
               </div>
 
             </div>
+            
 
             {/* ROW 3: DevOps & Cloud */}
             <div className="bg-[#0b0d10]/95 backdrop-blur-xl border border-neutral-800/80 rounded-[24px] px-6 py-4 flex flex-wrap items-center justify-between gap-4 hover:border-orange-500/30 transition-all duration-300 shadow-2xl">

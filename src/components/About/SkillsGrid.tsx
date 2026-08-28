@@ -264,6 +264,7 @@ export const SkillsGrid: React.FC = () => {
             </div>
             <h3 className="text-sm font-bold text-white tracking-tight">DevOps & Cloud</h3>
           </div>
+          
 
           <div className="flex flex-wrap items-center gap-2.5">
             {[

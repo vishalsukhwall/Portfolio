@@ -12,8 +12,8 @@ const Projects = React.lazy(() => import('@components/Projects/Projects').then(m
 const Contact = React.lazy(() => import('@components/Contact/Contact').then(module => ({ default: module.Contact })));
 
 const LoadingSpinner = () => (
-  <div className="w-full min-h-[50vh] flex items-center justify-center">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent"></div>
+  <div className="w-full min-h-[40vh] flex items-center justify-center">
+    <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-teal-400"></div>
   </div>
 );
 
@@ -41,7 +41,6 @@ const App: React.FC = () => {
       }
     );
 
-    // Give DOM time to render lazy components
     const timeoutId = setTimeout(() => {
       const sections = document.querySelectorAll('section[id]');
       sections.forEach((section) => observer.observe(section));
@@ -56,14 +55,17 @@ const App: React.FC = () => {
   return (
     <>
       <Header />
-      <main id="main-content">
+      <main id="main-content" className="flex flex-col space-y-12 sm:space-y-16 pb-20">
         <Hero />
+        
         <Suspense fallback={<LoadingSpinner />}>
           <About />
         </Suspense>
+
         <Suspense fallback={<LoadingSpinner />}>
           <Projects />
         </Suspense>
+
         <Suspense fallback={<LoadingSpinner />}>
           <Contact />
         </Suspense>
