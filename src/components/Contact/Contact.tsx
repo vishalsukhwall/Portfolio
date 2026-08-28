@@ -62,12 +62,14 @@ export const Contact: React.FC = () => {
             </div>
           </div>
           
+          
           <div className="pt-2 border-t border-neutral-900">
             <h4 className="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-3">Connect With Me</h4>
             <SocialLinks />
           </div>
         </div>
       </div>
+
       
       {/* Compact Footer */}
       <footer className="mt-12 pt-6 border-t border-neutral-900 text-center text-neutral-500 text-xs">
