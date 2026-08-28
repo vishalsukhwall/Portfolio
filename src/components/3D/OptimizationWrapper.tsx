@@ -5,6 +5,7 @@ interface OptimizationWrapperProps {
   children: React.ReactNode;
 }
 
+
 const OptimizationWrapper: React.FC<OptimizationWrapperProps> = ({ children }) => {
   return (
     <>

@@ -5,11 +5,13 @@ interface LightsProps {
   deviceCapability: DeviceCapability;
 }
 
+
 const Lights: React.FC<LightsProps> = ({ deviceCapability }) => {
   const isLow = deviceCapability === 'low';
   const isMedium = deviceCapability === 'medium';
   
   const shadowMapSize = isLow || isMedium ? 1024 : 2048;
+
 
   return (
     <>
