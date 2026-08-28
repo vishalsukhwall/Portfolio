@@ -3,5 +3,4 @@ declare module '@react-three/fiber' {
     // Custom elements for r3f can be added here
   }
 }
-
 export {};

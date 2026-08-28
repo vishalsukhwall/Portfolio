@@ -1,4 +1,5 @@
 export interface Project {
+
   id: string;
   title: string;
   description: string;
@@ -12,5 +13,6 @@ export interface Project {
     solution: string;
     result: string;
     images: string[];
+    
   };
 }
