@@ -25,12 +25,14 @@ export const SkillCard: React.FC<SkillCardProps> = ({
         "hover:border-neutral-700 hover:shadow-2xl hover:shadow-black/60 hover:-translate-y-1",
         className
       )}
+
     >
       {/* Card Header */}
       <div className="flex items-center gap-3.5 mb-5">
         <div className="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 text-lg shrink-0">
           {icon}
         </div>
+        
         <div>
           <h3 className="text-base font-bold text-white tracking-tight">{category}</h3>
           {description && (
