@@ -21,7 +21,6 @@ const App: React.FC = () => {
   // Initialize theme
   useTheme();
   
-  // Track scroll position
   useScrollPosition();
   
   const setActiveSection = useInteractionStore((state) => state.setActiveSection);
