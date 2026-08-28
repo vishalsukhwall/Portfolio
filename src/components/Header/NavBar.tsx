@@ -26,6 +26,7 @@ export const NavBar: React.FC = () => {
     }
   };
 
+  
   return (
     <nav className="hidden md:flex items-center gap-1 bg-neutral-900/60 p-1 rounded-full border border-neutral-800/60" aria-label="Main navigation">
       {NAV_LINKS.map((link) => {

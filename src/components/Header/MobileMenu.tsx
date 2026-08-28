@@ -8,6 +8,7 @@ export const MobileMenu: React.FC = () => {
   const { mobileMenuOpen, setMobileMenuOpen, activeSection } = useInteractionStore();
   const menuRef = useRef<HTMLDivElement>(null);
 
+
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -38,6 +39,7 @@ export const MobileMenu: React.FC = () => {
     }
   };
 
+
   return (
     <div className="lg:hidden">
       <button
@@ -53,6 +55,7 @@ export const MobileMenu: React.FC = () => {
           <span className={cn("w-full h-0.5 bg-current transform transition-all duration-300", mobileMenuOpen ? "-rotate-45 -translate-y-2" : "")} />
         </div>
       </button>
+
 
       <AnimatePresence>
         {mobileMenuOpen && (
