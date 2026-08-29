@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import type { Project } from '@/types/project';
 import { ProjectModal } from './ProjectModal';
 
@@ -142,18 +142,69 @@ const projectsDeckData: DeckProject[] = [
 ];
 
 export const Projects: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState<number>(1);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const activeProject = projectsDeckData[currentIndex];
+  // Sync scroll on wheel / drag
+  const handleScroll = () => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    const scrollLeft = container.scrollLeft;
+    const itemWidth = container.clientWidth;
+    const newIdx = Math.round(scrollLeft / itemWidth);
+    if (newIdx !== currentIndex && newIdx >= 0 && newIdx < projectsDeckData.length) {
+      setCurrentIndex(newIdx);
+    }
+  };
+
+  // Convert vertical mouse wheel into smooth horizontal scroll
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        // Prevent default body scrolling while hovering inside the deck container
+        const isAtStart = container.scrollLeft === 0 && e.deltaY < 0;
+        const isAtEnd =
+          container.scrollLeft + container.clientWidth >= container.scrollWidth - 5 &&
+          e.deltaY > 0;
+
+        if (!isAtStart && !isAtEnd) {
+          e.preventDefault();
+          container.scrollBy({
+            left: e.deltaY * 1.5,
+            behavior: 'auto',
+          });
+        }
+      }
+    };
+
+    container.addEventListener('wheel', onWheel, { passive: false });
+    return () => container.removeEventListener('wheel', onWheel);
+  }, []);
+
+  const scrollToProject = (index: number) => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    const itemWidth = container.clientWidth;
+    container.scrollTo({
+      left: index * itemWidth,
+      behavior: 'smooth',
+    });
+    setCurrentIndex(index);
+  };
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : projectsDeckData.length - 1));
+    const prevIdx = currentIndex > 0 ? currentIndex - 1 : projectsDeckData.length - 1;
+    scrollToProject(prevIdx);
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev < projectsDeckData.length - 1 ? prev + 1 : 0));
+    const nextIdx = currentIndex < projectsDeckData.length - 1 ? currentIndex + 1 : 0;
+    scrollToProject(nextIdx);
   };
 
   const handleCloseModal = () => {
@@ -168,7 +219,7 @@ export const Projects: React.FC = () => {
       id="projects"
       className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-[#050608] text-white scroll-mt-24 selection:bg-teal-500/30"
     >
-      {/* Background Subtle Ambient Glow */}
+      {/* Subtle Background Glows */}
       <div className="absolute top-1/3 left-10 w-[500px] h-[500px] bg-teal-500/[0.03] rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-purple-500/[0.03] rounded-full blur-[160px] pointer-events-none" />
 
@@ -176,7 +227,7 @@ export const Projects: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* LEFT COLUMN: Deck Navigation */}
-          <div className="lg:col-span-4 flex flex-col justify-between self-stretch space-y-8 lg:space-y-12">
+          <div className="lg:col-span-4 flex flex-col justify-between self-stretch space-y-8 lg:space-y-12 lg:sticky lg:top-28">
             
             {/* Header */}
             <div className="space-y-3">
@@ -192,13 +243,13 @@ export const Projects: React.FC = () => {
             </div>
 
             {/* Project List / Tabs */}
-            <div className="space-y-2 py-4">
+            <div className="space-y-2 py-2">
               {projectsDeckData.map((project, idx) => {
                 const isActive = idx === currentIndex;
                 return (
                   <button
                     key={project.id}
-                    onClick={() => setCurrentIndex(idx)}
+                    onClick={() => scrollToProject(idx)}
                     className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl font-mono text-xs tracking-wider transition-all duration-300 text-left ${
                       isActive
                         ? 'bg-[#12161f] text-white font-bold border border-neutral-700/60 shadow-[0_0_20px_rgba(45,212,191,0.08)]'
@@ -215,8 +266,7 @@ export const Projects: React.FC = () => {
             </div>
 
             {/* Bottom Controls */}
-            <div className="flex items-center gap-3 pt-4">
-              {/* Arrow Up */}
+            <div className="flex items-center gap-3 pt-2">
               <button
                 onClick={handlePrev}
                 aria-label="Previous project"
@@ -227,7 +277,6 @@ export const Projects: React.FC = () => {
                 </svg>
               </button>
 
-              {/* Arrow Down */}
               <button
                 onClick={handleNext}
                 aria-label="Next project"
@@ -238,7 +287,6 @@ export const Projects: React.FC = () => {
                 </svg>
               </button>
 
-              {/* View Archives Button */}
               <a
                 href="https://github.com/vishalsukhwal33"
                 target="_blank"
@@ -254,94 +302,112 @@ export const Projects: React.FC = () => {
 
           </div>
 
-          {/* RIGHT COLUMN: Project Viewport Showcase Card */}
-          <div className="lg:col-span-8 bg-[#0b0d10]/95 backdrop-blur-2xl border border-neutral-800/80 rounded-[36px] overflow-hidden shadow-2xl flex flex-col justify-between transition-all duration-500 hover:border-neutral-700">
-            
-            {/* Viewport Mockup Area */}
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-[#07080b] group">
-              <img
-                src={activeProject.image}
-                alt={activeProject.title}
-                className="w-full h-full object-cover object-center opacity-85 transition-all duration-700 group-hover:scale-[1.02] group-hover:opacity-100"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d10] via-transparent to-black/40" />
+          {/* RIGHT COLUMN: Horizontal Scroll Container (Snap Carousel) */}
+          <div
+            ref={scrollContainerRef}
+            onScroll={handleScroll}
+            className="lg:col-span-8 w-full flex flex-row overflow-x-auto snap-x snap-mandatory scrollbar-none"
+            style={{
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              WebkitOverflowScrolling: 'touch',
+            }}
+          >
+            {projectsDeckData.map((project) => (
+              <div
+                key={project.id}
+                className="w-full shrink-0 snap-center px-1"
+              >
+                <div className="bg-[#0b0d10]/95 backdrop-blur-2xl border border-neutral-800/80 rounded-[36px] overflow-hidden shadow-2xl flex flex-col justify-between transition-all duration-500 hover:border-neutral-700">
+                  
+                  {/* Viewport Mockup Area */}
+                  <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-[#07080b] group">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-center opacity-85 transition-all duration-700 group-hover:scale-[1.02] group-hover:opacity-100"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d10] via-transparent to-black/40" />
 
-              {/* Top Tag Badge */}
-              <div className="absolute top-5 right-5">
-                <span className="px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-neutral-700/60 text-[10px] font-mono uppercase tracking-widest text-neutral-300 font-bold shadow-lg">
-                  {activeProject.badge}
-                </span>
-              </div>
-            </div>
-
-            {/* Bottom Content Area */}
-            <div className="p-6 sm:p-8 md:p-10 space-y-6">
-              
-              {/* Title & Metrics Row */}
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 border-b border-neutral-800/80 pb-5">
-                <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                  {activeProject.title}
-                </h3>
-
-                {/* Metrics */}
-                <div className="flex items-center gap-6">
-                  <div className="text-left sm:text-right">
-                    <div className="text-[10px] font-mono font-bold text-neutral-500 tracking-wider uppercase">
-                      {activeProject.metrics.label1}
-                    </div>
-                    <div className="text-sm font-mono font-bold text-neutral-200">
-                      {activeProject.metrics.value1}
+                    {/* Top Tag Badge */}
+                    <div className="absolute top-5 right-5">
+                      <span className="px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-neutral-700/60 text-[10px] font-mono uppercase tracking-widest text-neutral-300 font-bold shadow-lg">
+                        {project.badge}
+                      </span>
                     </div>
                   </div>
-                  <div className="text-left sm:text-right">
-                    <div className="text-[10px] font-mono font-bold text-neutral-500 tracking-wider uppercase">
-                      {activeProject.metrics.label2}
+
+                  {/* Bottom Content Area */}
+                  <div className="p-6 sm:p-8 md:p-10 space-y-6">
+                    
+                    {/* Title & Metrics Row */}
+                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 border-b border-neutral-800/80 pb-5">
+                      <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                        {project.title}
+                      </h3>
+
+                      {/* Metrics */}
+                      <div className="flex items-center gap-6">
+                        <div className="text-left sm:text-right">
+                          <div className="text-[10px] font-mono font-bold text-neutral-500 tracking-wider uppercase">
+                            {project.metrics.label1}
+                          </div>
+                          <div className="text-sm font-mono font-bold text-neutral-200">
+                            {project.metrics.value1}
+                          </div>
+                        </div>
+                        <div className="text-left sm:text-right">
+                          <div className="text-[10px] font-mono font-bold text-neutral-500 tracking-wider uppercase">
+                            {project.metrics.label2}
+                          </div>
+                          <div className="text-sm font-mono font-bold text-neutral-200">
+                            {project.metrics.value2}
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="text-sm font-mono font-bold text-neutral-200">
-                      {activeProject.metrics.value2}
+
+                    {/* Description */}
+                    <p className="text-neutral-400 text-sm sm:text-[15px] leading-relaxed font-normal">
+                      {project.description}
+                    </p>
+
+                    {/* Tech Badges & Live CTA Row */}
+                    <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+                      
+                      {/* Tech Badges */}
+                      <div className="flex flex-wrap items-center gap-2">
+                        {project.techStack.map((tech) => (
+                          <div
+                            key={tech.name}
+                            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#12141a]/90 border text-xs font-semibold ${tech.color}`}
+                          >
+                            <span>{tech.icon}</span>
+                            <span>{tech.name}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Live Demo Action */}
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-black font-bold text-xs hover:bg-neutral-200 transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                      >
+                        <span>Live Demo</span>
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </a>
+
                     </div>
+
                   </div>
+
                 </div>
               </div>
-
-              {/* Description */}
-              <p className="text-neutral-400 text-sm sm:text-[15px] leading-relaxed font-normal">
-                {activeProject.description}
-              </p>
-
-              {/* Tech Badges & Live CTA Row */}
-              <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-                
-                {/* Tech Badges */}
-                <div className="flex flex-wrap items-center gap-2">
-                  {activeProject.techStack.map((tech) => (
-                    <div
-                      key={tech.name}
-                      className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#12141a]/90 border text-xs font-semibold ${tech.color}`}
-                    >
-                      <span>{tech.icon}</span>
-                      <span>{tech.name}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Live Demo Action */}
-                <a
-                  href={activeProject.liveUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-black font-bold text-xs hover:bg-neutral-200 transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
-                >
-                  <span>Live Demo</span>
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </a>
-
-              </div>
-
-            </div>
-
+            ))}
           </div>
 
         </div>
