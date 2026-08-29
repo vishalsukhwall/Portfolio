@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { cn } from '@utils/cn';
-import { PORTFOLIO_NAME, PORTFOLIO_DESCRIPTION } from '@utils/constants';
+import { PORTFOLIO_DESCRIPTION } from '@utils/constants';
 import { usePreferredReducedMotion } from '@hooks/usePreferredReducedMotion';
 
 const HeroContent: React.FC = () => {
@@ -32,23 +32,25 @@ const HeroContent: React.FC = () => {
       variants={containerVariants}
     >
       {/* 1. Status Pill Badge */}
-      <motion.div
+     <motion.div
         variants={itemVariants}
-        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-900/90 border border-neutral-800 text-neutral-300 text-xs font-semibold tracking-wider uppercase mb-8 shadow-sm backdrop-blur-md"
+        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-900/90 border border-neutral-800 text-neutral-300 text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase mb-6 shadow-sm backdrop-blur-md"
       >
-        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
         Available for Full-time & Projects
       </motion.div>
 
-      {/* 2. Massive Bold Center Name with Gradient & Dot */}
+      {/* 2. Micro-Adjusted Two-Line Name Heading (0.5 Down) */}
       <motion.h1
         variants={itemVariants}
-        className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tight mb-6 select-none"
+        className="text-5xl sm:text-[4.2rem] md:text-[5.2rem] lg:text-[7.5rem] font-extrabold tracking-tight mb-6 select-none leading-[1.03]"
       >
-        <span className="bg-gradient-to-b from-white via-neutral-100 to-neutral-400 bg-clip-text text-transparent">
-          {PORTFOLIO_NAME || 'Vishal Sukhwal'}
+        <span className="block bg-gradient-to-b from-white via-neutral-100 to-neutral-400 bg-clip-text text-transparent">
+          Vishal
         </span>
-        <span className="text-teal-400"></span>
+        <span className="block bg-gradient-to-b from-white via-neutral-200 to-neutral-500 bg-clip-text text-transparent">
+          Sukhwal
+        </span>
       </motion.h1>
 
       {/* 3. Subheadings & Description */}
