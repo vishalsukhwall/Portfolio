@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { cn } from '@utils/cn';
 import type { Project } from '@/types/project';
@@ -24,24 +24,32 @@ interface ProjectCardProps {
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClick }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0, rawX: 0, rawY: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [imageFailed, setImageFailed] = useState(false);
   const prefersReducedMotion = usePreferredReducedMotion();
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (prefersReducedMotion || !cardRef.current) return;
 
     const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const rawX = e.clientX - rect.left;
+    const rawY = e.clientY - rect.top;
 
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateX = ((y - centerY) / centerY) * -4;
-    const rotateY = ((x - centerX) / centerX) * 4;
+    const rotateX = ((rawY - centerY) / centerY) * -5;
+    const rotateY = ((rawX - centerX) / centerX) * 5;
 
     setRotation({ x: rotateX, y: rotateY });
-  };
+    setMousePosition({
+      x: (rawX / rect.width) * 100,
+      y: (rawY / rect.height) * 100,
+      rawX,
+      rawY,
+    });
+  }, [prefersReducedMotion]);
 
   const handleMouseLeave = () => {
     if (prefersReducedMotion) return;
@@ -61,21 +69,26 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
   };
 
   const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 30, scale: 0.97 },
+    hidden: { opacity: 0, y: 24, scale: 0.98 },
     visible: { 
       opacity: 1, 
       y: 0, 
       scale: 1,
       transition: { 
-        duration: 0.5, 
-        ease: 'easeOut',
-        delay: prefersReducedMotion ? 0 : index * 0.1 
+        duration: 0.45, 
+        ease: [0.16, 1, 0.3, 1],
+        delay: prefersReducedMotion ? 0 : index * 0.08 
       }
     }
   };
 
-  const isImagePath = project.image?.startsWith('/') || project.image?.startsWith('http');
-  const badgeText = project.badge || (project.technologies?.[0] ? `${project.technologies[0].toUpperCase()} APP` : 'FEATURED');
+  const isImagePath = Boolean(
+    project.image && 
+    (project.image.startsWith('/') || project.image.startsWith('http')) && 
+    !imageFailed
+  );
+
+  const badgeText = project.badge || (project.technologies?.[0] ? `${project.technologies[0].toUpperCase()} PLATFORM` : 'FEATURED SYSTEM');
 
   return (
     <motion.div
@@ -84,64 +97,97 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
       whileInView="visible"
       viewport={{ once: true, margin: '-40px' }}
       className={cn(
-        'group relative w-full rounded-[32px] sm:rounded-[36px] overflow-hidden cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-teal-400'
+        'group relative w-full rounded-[32px] sm:rounded-[36px] overflow-visible cursor-pointer outline-none select-none focus-visible:ring-2 focus-visible:ring-teal-400/80'
       )}
-      style={{ perspective: '1200px' }}
+      style={{ perspective: '1400px' }}
       onClick={onClick}
       onKeyDown={handleKeyDown}
       role="button"
       tabIndex={0}
-      aria-label={`View details for ${project.title}`}
+      aria-label={`Open preview and logs for ${project.title}`}
     >
+      {/* Outer Border Light Follower (Spotlight Glow) */}
+      <div 
+        className="pointer-events-none absolute -inset-[1px] rounded-[33px] sm:rounded-[37px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0 blur-[1px]"
+        style={{
+          background: `radial-gradient(400px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(45,212,191,0.25), transparent 70%)`
+        }}
+      />
+
+      {/* Main Glassmorphic Card Container */}
       <div
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onMouseEnter={handleMouseEnter}
-        className="w-full bg-[#0b0d10]/95 backdrop-blur-2xl border border-neutral-800/80 rounded-[32px] sm:rounded-[36px] overflow-hidden transition-all duration-300 group-hover:border-neutral-700 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.8)] flex flex-col"
+        className="relative z-10 w-full bg-[#0b0d10]/95 backdrop-blur-2xl border border-neutral-800/80 group-hover:border-neutral-700/80 rounded-[32px] sm:rounded-[36px] overflow-hidden transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.85)] flex flex-col"
         style={{
-          transform: prefersReducedMotion ? 'none' : `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) scale(${isHovered ? 1.01 : 1})`,
+          transform: prefersReducedMotion 
+            ? 'none' 
+            : `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) translateY(${isHovered ? -4 : 0}px)`,
           transformStyle: 'preserve-3d',
-          transition: isHovered ? 'none' : 'transform 0.4s ease-out'
+          transition: isHovered ? 'transform 0.1s ease-out' : 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
-        {/* Thumbnail Viewport Area */}
-        <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-[#07080b]">
+        {/* Subtle Radial Surface Glare */}
+        <div 
+          className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 mix-blend-soft-light"
+          style={{
+            background: `radial-gradient(600px circle at ${mousePosition.rawX}px ${mousePosition.rawY}px, rgba(255,255,255,0.08), transparent 80%)`
+          }}
+        />
+
+        {/* Viewport Area */}
+        <div 
+          className="relative w-full h-56 sm:h-64 md:h-72 overflow-hidden bg-[#07090e] border-b border-neutral-800/60"
+          style={{ transform: 'translateZ(15px)' }}
+        >
           {isImagePath ? (
             <img 
               src={project.image} 
-              alt={project.title} 
-              className="w-full h-full object-cover object-center opacity-85 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100" 
+              alt={project.title}
+              onError={() => setImageFailed(true)}
+              className="w-full h-full object-cover object-top opacity-85 transition-transform duration-700 ease-out group-hover:scale-[1.04] group-hover:opacity-100" 
             />
           ) : (
-            <div 
-              className="w-full h-full" 
-              style={{ background: project.image || '#12141a' }} 
-            />
+            <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0e1626] via-[#07090e] to-black">
+              <div className="absolute inset-0 bg-[radial-gradient(#14b8a6_1px,transparent_1px)] [background-size:16px_16px] opacity-15" />
+              <div className="w-14 h-14 rounded-2xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400 text-2xl shadow-[0_0_25px_rgba(20,184,166,0.2)]">
+                ⚡
+              </div>
+              <p className="mt-3 text-xs font-mono tracking-widest text-neutral-400 uppercase font-semibold">
+                {project.title}
+              </p>
+            </div>
           )}
-          
-          {/* Subtle Viewport Gradients */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d10] via-transparent to-black/40" />
+
+          {/* Shadow Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d10] via-transparent to-black/30 pointer-events-none" />
 
           {/* Top Tag Badge */}
-          <div className="absolute top-5 right-5 z-10">
-            <span className="px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-neutral-700/60 text-[10px] font-mono uppercase tracking-widest text-neutral-300 font-bold shadow-lg">
+          <div className="absolute top-5 right-5 z-20">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-neutral-700/80 text-[10px] font-mono uppercase tracking-widest text-neutral-300 font-bold shadow-lg">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
               {badgeText}
             </span>
           </div>
         </div>
-        
-        {/* Card Body */}
-        <div className="p-6 sm:p-8 md:p-10 flex flex-col justify-between space-y-6">
-          
-          {/* Title & Metrics Row */}
-          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 border-b border-neutral-800/80 pb-5">
-            <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight group-hover:text-teal-300 transition-colors">
-              {project.title}
-            </h3>
 
-            {/* Metrics (Optional / Dynamic) */}
-            <div className="flex items-center gap-6">
+        {/* Content Body */}
+        <div 
+          className="p-6 sm:p-8 md:p-9 flex flex-col justify-between space-y-6"
+          style={{ transform: 'translateZ(25px)' }}
+        >
+          {/* Header Row: Title & Metrics */}
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 border-b border-neutral-800/80 pb-5">
+            <div>
+              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-tight group-hover:text-teal-300 transition-colors">
+                {project.title}
+              </h3>
+            </div>
+
+            {/* Metrics */}
+            <div className="flex items-center gap-6 self-start sm:self-auto">
               <div className="text-left sm:text-right">
                 <div className="text-[10px] font-mono font-bold text-neutral-500 tracking-wider uppercase">
                   {project.metrics?.label1 || 'LIGHTHOUSE'}
@@ -162,13 +208,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
           </div>
 
           {/* Description */}
-          <p className="text-neutral-400 text-sm sm:text-[15px] leading-relaxed line-clamp-3 font-normal">
+          <p className="text-neutral-400 text-sm sm:text-[15px] leading-relaxed line-clamp-2 font-normal">
             {project.description}
           </p>
-          
-          {/* Tech Badges & CTA */}
+
+          {/* Tech Badges & Interactive CTA */}
           <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-            
             {/* Tech Badges */}
             <div className="flex flex-wrap items-center gap-2">
               {project.technologies?.slice(0, 4).map((tech: string) => (
@@ -178,17 +223,21 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
                 <TechBadge name={`+${project.technologies.length - 4}`} />
               )}
             </div>
-            
-            {/* Action CTA Button */}
-            <div className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-black font-bold text-xs group-hover:bg-neutral-200 transition-all group-hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-              <span>View Project</span>
-              <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+
+            {/* Live CTA Button */}
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-bold text-xs group-hover:bg-neutral-200 transition-all duration-300 group-hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+              <span>View System</span>
+              <svg 
+                className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth={2.5} 
+                viewBox="0 0 24 24"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </div>
-
           </div>
-
         </div>
       </div>
     </motion.div>
