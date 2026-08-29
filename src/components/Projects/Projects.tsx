@@ -28,7 +28,7 @@ const projectsDeckData: DeckProject[] = [
   {
     id: 'aarambhh',
     number: '01',
-    name: 'AARAMBHH PLATFORM',
+    name: 'Aarambhh Platform',
     badge: 'FULL STACK APP',
     title: 'Aarambhh Platform',
     description:
@@ -56,7 +56,7 @@ const projectsDeckData: DeckProject[] = [
   {
     id: 'lakshpath',
     number: '02',
-    name: 'LAKSHPATH GLOBAL',
+    name: 'Lakshpath Global',
     badge: 'VISA PLATFORM',
     title: 'Lakshpath Global',
     description:
@@ -83,7 +83,7 @@ const projectsDeckData: DeckProject[] = [
   {
     id: 'ai-career',
     number: '03',
-    name: 'AI CAREER MENTOR',
+    name: 'AI Career Mentor',
     badge: 'AI / LLM AGENT',
     title: 'AI Career Mentor',
     description:
@@ -110,7 +110,7 @@ const projectsDeckData: DeckProject[] = [
   {
     id: 'spam-detect',
     number: '04',
-    name: 'SMS SPAM DETECTOR',
+    name: 'SMS Spam Sentinel',
     badge: 'ML PIPELINE',
     title: 'SMS Spam Detection Pipeline',
     description:
@@ -137,7 +137,7 @@ const projectsDeckData: DeckProject[] = [
   {
     id: 'wealthy-names',
     number: '05',
-    name: 'WEALTHY NAMES',
+    name: 'Wealthy Names Edge',
     badge: 'LIVE WEB APP',
     title: 'Wealthy Names Web',
     description:
@@ -254,7 +254,7 @@ export const Projects: React.FC = () => {
               </h2>
             </div>
 
-            {/* Tabs List */}
+            {/* Tabs List (Editorial Title Styling) */}
             <div className="space-y-2 py-2">
               {projectsDeckData.map((project, idx) => {
                 const isActive = idx === currentIndex;
@@ -265,16 +265,18 @@ export const Projects: React.FC = () => {
                       setDirection(idx > currentIndex ? 'down' : 'up');
                       setCurrentIndex(idx);
                     }}
-                    className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl font-mono text-xs tracking-wider transition-all duration-300 text-left ${
+                    className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 text-left ${
                       isActive
-                        ? 'bg-[#12161f] text-white font-bold border border-neutral-700/60 shadow-[0_0_20px_rgba(45,212,191,0.08)]'
+                        ? 'bg-[#12161f] text-white border border-neutral-700/60 shadow-[0_0_20px_rgba(45,212,191,0.08)]'
                         : 'text-neutral-500 hover:text-neutral-300 hover:bg-[#0c0e14]/60'
                     }`}
                   >
-                    <span className={isActive ? 'text-[#2dd4bf]' : 'text-neutral-600'}>
+                    <span className={`font-mono text-xs ${isActive ? 'text-[#2dd4bf] font-bold' : 'text-neutral-600'}`}>
                       {project.number}
                     </span>
-                    <span className="truncate">{project.name}</span>
+                    <span className={`font-serif tracking-wide text-sm truncate ${isActive ? 'italic font-bold text-white' : 'font-medium'}`}>
+                      {project.name}
+                    </span>
                   </button>
                 );
               })}
@@ -319,12 +321,11 @@ export const Projects: React.FC = () => {
           {/* RIGHT COLUMN: Static Card Viewport with Inner Layer Transitions */}
           <div className="lg:col-span-8 w-full bg-[#0b0d10]/95 backdrop-blur-2xl border border-neutral-800/80 rounded-[36px] overflow-hidden shadow-2xl flex flex-col justify-between transition-all duration-300 hover:border-neutral-700">
             
-            {/* 1. Static Visual Image/Banner Frame (Never moves up or leaves container) */}
+            {/* 1. Static Visual Image/Banner Frame */}
             <div 
               onClick={() => setModalProject(activeProject)}
               className="relative w-full h-[220px] sm:h-[260px] overflow-hidden bg-[#07090e] cursor-pointer group"
             >
-              {/* Inner animated visual layer */}
               <div 
                 key={`img-${activeProject.id}`}
                 className={`w-full h-full flex items-center justify-center relative overflow-hidden bg-gradient-to-br ${activeProject.accentBg} transition-all duration-500 ease-out`}
@@ -337,10 +338,10 @@ export const Projects: React.FC = () => {
                   <div className="w-16 h-16 mx-auto rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl shadow-[0_0_30px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:scale-110">
                     {activeProject.previewIcon}
                   </div>
-                  <p className="text-sm font-mono font-bold text-white tracking-wider uppercase">
+                  <p className="text-base font-serif italic font-bold text-white tracking-wide">
                     {activeProject.title}
                   </p>
-                  <p className="text-xs text-neutral-400">
+                  <p className="text-xs font-mono text-neutral-400 uppercase tracking-wider">
                     {activeProject.previewSubtitle}
                   </p>
                 </div>
@@ -357,7 +358,7 @@ export const Projects: React.FC = () => {
               </div>
             </div>
 
-            {/* 2. Inner Content Body (Animated smoothly in place) */}
+            {/* 2. Inner Content Body (Updated Font Styling for Title) */}
             <div 
               key={`content-${activeProject.id}`}
               className="p-6 sm:p-8 md:p-10 space-y-6 transition-all duration-500 ease-out"
@@ -367,10 +368,14 @@ export const Projects: React.FC = () => {
             >
               {/* Header Title & Metrics */}
               <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 border-b border-neutral-800/80 pb-5">
+                
+                {/* ADVANCED EDITORIAL / LUXURY SERIF GRADIENT TITLE */}
                 <h3 
                   onClick={() => setModalProject(activeProject)}
-                  className="text-2xl sm:text-3xl font-bold text-white tracking-tight cursor-pointer hover:text-teal-300 transition-colors"
+                  className="text-3xl sm:text-4xl font-serif italic font-bold tracking-tight bg-gradient-to-r from-white via-neutral-100 to-neutral-400 bg-clip-text text-transparent cursor-pointer hover:from-teal-200 hover:to-teal-400 transition-all duration-300"
                 >
+                  <span className="not-italic font-mono text-xs tracking-widest text-teal-400 mr-2 uppercase font-semibold">
+                  </span>
                   {activeProject.title}
                 </h3>
 
@@ -476,7 +481,7 @@ export const Projects: React.FC = () => {
             >
               ✕
             </button>
-            <h2 className="text-2xl sm:text-3xl font-bold">{modalProject.title}</h2>
+            <h2 className="text-2xl sm:text-3xl font-serif italic font-bold">{modalProject.title}</h2>
             <p className="text-neutral-400 text-sm leading-relaxed">{modalProject.description}</p>
             {modalProject.challenge && (
               <div className="space-y-3 bg-[#12141a]/60 p-4 rounded-xl border border-neutral-800">
