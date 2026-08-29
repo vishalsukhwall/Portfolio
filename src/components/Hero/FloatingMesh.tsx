@@ -28,7 +28,6 @@ const FloatingMesh: React.FC = () => {
   }, [scrollPosition]);
 
   const detail = deviceCapability === 'low' ? 1 : 3;
-  
   const geometry = useMemo(() => new THREE.IcosahedronGeometry(1.5, detail), [detail]);
   
   useEffect(() => {
