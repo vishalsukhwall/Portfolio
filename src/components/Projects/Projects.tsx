@@ -26,32 +26,33 @@ interface DeckProject {
 
 const projectsDeckData: DeckProject[] = [
   {
-    id: 'aarambhh',
+    id: 'pawscan',
     number: '01',
-    name: 'Aarambhh Platform',
-    badge: 'FULL STACK APP',
-    title: 'Aarambhh Platform',
+    name: 'PawScan Engine',
+    badge: 'CV / TRANSFER LEARNING',
+    title: 'PawScan – Pet Classifier',
     description:
-      'Engineered a scalable full-stack community & resource management portal with high-performance server rendering and real-time state management.',
+      'Lightweight computer vision web application classifying dog and cat breeds in real time using transfer learning with MobileNetV2, backed by an optimized Flask REST API under strict 512MB RAM constraints.',
     accentBg: 'from-teal-950/60 via-[#07090e] to-black',
-    previewIcon: '🚀',
-    previewSubtitle: 'Next-Gen Community Ecosystem',
+    previewIcon: '🐾',
+    previewSubtitle: 'TensorFlow & MobileNetV2 Vision',
     metrics: {
-      label1: 'PERFORMANCE',
-      value1: '99',
-      label2: 'UPTIME',
-      value2: '99.9%',
+      label1: 'INFERENCE',
+      value1: '<150ms',
+      label2: 'RAM LIMIT',
+      value2: '512MB',
     },
     techStack: [
-      { name: 'React', icon: '⚛️', color: 'border-cyan-500/30 text-cyan-400 bg-cyan-950/20' },
-      { name: 'TypeScript', icon: 'TS', color: 'border-blue-500/30 text-blue-400 bg-blue-950/20' },
-      { name: 'MongoDB', icon: '🍃', color: 'border-emerald-500/30 text-emerald-400 bg-emerald-950/20' },
-      { name: 'Tailwind', icon: '🌊', color: 'border-teal-500/30 text-teal-400 bg-teal-950/20' },
+      { name: 'Python', icon: '🐍', color: 'border-yellow-500/30 text-yellow-400 bg-yellow-950/20' },
+      { name: 'TensorFlow', icon: '🧠', color: 'border-orange-500/30 text-orange-400 bg-orange-950/20' },
+      { name: 'Flask', icon: '🧪', color: 'border-neutral-500/30 text-neutral-300 bg-neutral-900' },
+      { name: 'Render', icon: '☁️', color: 'border-cyan-500/30 text-cyan-400 bg-cyan-950/20' },
     ],
-    liveUrl: 'https://wealthynames.vercel.app/#blog',
-    challenge: 'Handling complex relational data flow while maintaining sub-100ms render speeds across dynamic user sessions.',
-    solution: 'Implemented optimized caching layers, modular component architecture, and indexed MongoDB queries.',
-    result: 'Reduced initial page load latency by 45% and scaled user interactions seamlessly.',
+    liveUrl: 'https://dog-vs-cat-classifier-v58n.onrender.com',
+    githubUrl: 'https://github.com/vishalsukhwall',
+    challenge: 'Deploying deep learning models on cloud platforms with severe memory restrictions (<512MB RAM) causing Out-Of-Memory crashes.',
+    solution: 'Utilized MobileNetV2 transfer learning with reduced weights and optimized image array processing directly inside Flask REST endpoints.',
+    result: 'Reduced runtime memory footprint by >70% while keeping inference response time strictly under 150ms.',
   },
   {
     id: 'lakshpath',
@@ -254,7 +255,7 @@ export const Projects: React.FC = () => {
               </h2>
             </div>
 
-            {/* Tabs List (Editorial Title Styling) */}
+            {/* Tabs List */}
             <div className="space-y-2 py-2">
               {projectsDeckData.map((project, idx) => {
                 const isActive = idx === currentIndex;
@@ -305,7 +306,7 @@ export const Projects: React.FC = () => {
               </button>
 
               <a
-                href="https://github.com/vishalsukhwal33"
+                href="https://github.com/vishalsukhwall"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0e1015] border border-neutral-800 text-xs font-semibold text-neutral-300 hover:text-white hover:border-neutral-600 transition-all hover:scale-105"
@@ -358,7 +359,7 @@ export const Projects: React.FC = () => {
               </div>
             </div>
 
-            {/* 2. Inner Content Body (Updated Font Styling for Title) */}
+            {/* 2. Inner Content Body */}
             <div 
               key={`content-${activeProject.id}`}
               className="p-6 sm:p-8 md:p-10 space-y-6 transition-all duration-500 ease-out"
@@ -368,8 +369,6 @@ export const Projects: React.FC = () => {
             >
               {/* Header Title & Metrics */}
               <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 border-b border-neutral-800/80 pb-5">
-                
-                {/* ADVANCED EDITORIAL / LUXURY SERIF GRADIENT TITLE */}
                 <h3 
                   onClick={() => setModalProject(activeProject)}
                   className="text-3xl sm:text-4xl font-serif italic font-bold tracking-tight bg-gradient-to-r from-white via-neutral-100 to-neutral-400 bg-clip-text text-transparent cursor-pointer hover:from-teal-200 hover:to-teal-400 transition-all duration-300"
@@ -447,7 +446,7 @@ export const Projects: React.FC = () => {
         </div>
       </div>
 
-      {/* Embedded CSS Keyframes for In-Place Smooth Slide & Fade */}
+      {/* Embedded CSS Keyframes */}
       <style>{`
         @keyframes slideFromBottom {
           from { opacity: 0; transform: translateY(18px) scale(0.98); }
