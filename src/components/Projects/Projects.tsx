@@ -8,6 +8,7 @@ interface DeckProject {
   title: string;
   description: string;
   accentBg: string;
+  image?: string;
   previewIcon: string;
   previewSubtitle: string;
   metrics: {
@@ -33,7 +34,8 @@ const projectsDeckData: DeckProject[] = [
     title: 'PawScan – Pet Classifier',
     description:
       'Lightweight computer vision web application classifying dog and cat breeds in real time using transfer learning with MobileNetV2, backed by an optimized Flask REST API under strict 512MB RAM constraints.',
-    accentBg: 'from-teal-950/60 via-[#07090e] to-black',
+    accentBg: 'from-emerald-950/70 via-[#07090e] to-black',
+    image: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=1200&q=80',
     previewIcon: '🐾',
     previewSubtitle: 'TensorFlow & MobileNetV2 Vision',
     metrics: {
@@ -319,7 +321,7 @@ export const Projects: React.FC = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Static Card Viewport with Inner Layer Transitions */}
+          {/* RIGHT COLUMN: Static Card Viewport */}
           <div className="lg:col-span-8 w-full bg-[#0b0d10]/95 backdrop-blur-2xl border border-neutral-800/80 rounded-[36px] overflow-hidden shadow-2xl flex flex-col justify-between transition-all duration-300 hover:border-neutral-700">
             
             {/* 1. Static Visual Image/Banner Frame */}
@@ -334,15 +336,29 @@ export const Projects: React.FC = () => {
                   animation: `${direction === 'down' ? 'slideFromBottom' : 'slideFromTop'} 0.45s ease-out forwards`
                 }}
               >
-                <div className="absolute w-72 h-72 rounded-full bg-white/[0.04] blur-3xl pointer-events-none" />
+                {/* Background Wallpaper with Dark Vignette */}
+                {activeProject.image ? (
+                  <div className="absolute inset-0 z-0">
+                    <img
+                      src={activeProject.image}
+                      alt={activeProject.title}
+                      className="w-full h-full object-cover opacity-35 scale-105 group-hover:scale-110 transition-transform duration-700 ease-out brightness-90 contrast-125"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d10] via-[#0b0d10]/60 to-transparent" />
+                  </div>
+                ) : (
+                  <div className="absolute w-72 h-72 rounded-full bg-white/[0.04] blur-3xl pointer-events-none" />
+                )}
+
+                {/* Central Floating Badge */}
                 <div className="relative z-10 text-center space-y-2 p-6">
-                  <div className="w-16 h-16 mx-auto rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl shadow-[0_0_30px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:scale-110">
+                  <div className="w-16 h-16 mx-auto rounded-2xl bg-black/40 backdrop-blur-md border border-white/15 flex items-center justify-center text-3xl shadow-[0_0_30px_rgba(0,0,0,0.6)] transition-all duration-300 group-hover:scale-110 group-hover:border-teal-500/40">
                     {activeProject.previewIcon}
                   </div>
-                  <p className="text-base font-serif italic font-bold text-white tracking-wide">
+                  <p className="text-base font-serif italic font-bold text-white tracking-wide drop-shadow-md">
                     {activeProject.title}
                   </p>
-                  <p className="text-xs font-mono text-neutral-400 uppercase tracking-wider">
+                  <p className="text-xs font-mono text-teal-400 uppercase tracking-widest font-semibold drop-shadow">
                     {activeProject.previewSubtitle}
                   </p>
                 </div>
