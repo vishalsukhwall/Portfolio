@@ -2,6 +2,22 @@ import type { Project } from '@/types/project';
 
 export const projects: Project[] = [
   {
+    id: 'dog-vs-cat',
+    title: 'Dog vs Cat Classifier',
+    description: 'A deep learning computer vision web application classifying dog and cat breeds in real time using transfer learning with MobileNetV2.',
+    image: 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=1200&q=80',
+    technologies: ['Python', 'TensorFlow', 'MobileNetV2', 'Flask', 'Render'],
+    liveUrl: 'https://dog-vs-cat-classifier-v58n.onrender.com',
+    githubUrl: 'https://github.com/vishalsukhwall/dog-vs-cat-classifier',
+    featured: true,
+    caseStudy: {
+      challenge: 'Deploying deep learning models under strict cloud memory limits (<512MB RAM) without crashing server instances.',
+      solution: 'Used lightweight MobileNetV2 transfer learning weights paired with an optimized Flask REST endpoint for real-time inference.',
+      result: 'Reduced server memory footprint by >70% while keeping prediction response time under 150ms.',
+      images: []
+    }
+  },
+  {
     id: 'wealthy-names',
     title: 'Wealthy Names',
     description: 'A responsive platform featuring curated domain and brand naming tools with integrated content and blogs.',
@@ -29,21 +45,6 @@ export const projects: Project[] = [
       challenge: 'Creating an accessible, interactive tool to parse career profiles and recommend structured learning paths in real-time.',
       solution: 'Integrated Hugging Face inference APIs within a lightweight Streamlit web application interface.',
       result: 'Enabled users to receive instant, contextual career mentorship recommendations.',
-      images: []
-    }
-  },
-  {
-    id: 'aarambhh',
-    title: 'AARAMBHH Full-Stack App',
-    description: 'A scalable web application featuring end-to-end data workflows, structured APIs, and intuitive user dashboards.',
-    image: 'linear-gradient(135deg, #2e0a2e 0%, #3e1a3e 50%, #ff006e 100%)',
-    technologies: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'Tailwind CSS'],
-    githubUrl: 'https://github.com/vishalsukhwall',
-    featured: false,
-    caseStudy: {
-      challenge: 'Designing a full-stack architecture that cleanly separates client-side state from backend database queries.',
-      solution: 'Built RESTful services with Node.js/Express, integrated MongoDB schemas, and connected a type-safe React frontend.',
-      result: 'Achieved streamlined data persistence and clean, modular component code.',
       images: []
     }
   },

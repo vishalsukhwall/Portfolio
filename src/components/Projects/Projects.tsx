@@ -27,17 +27,17 @@ interface DeckProject {
 
 const projectsDeckData: DeckProject[] = [
   {
-    id: 'pawscan',
+    id: 'dog-vs-cat',
     number: '01',
-    name: 'PawScan Engine',
+    name: 'Dog vs Cat AI',
     badge: 'CV / TRANSFER LEARNING',
-    title: 'PawScan – Pet Classifier',
+    title: 'Dog vs Cat Classifier',
     description:
-      'Lightweight computer vision web application classifying dog and cat breeds in real time using transfer learning with MobileNetV2, backed by an optimized Flask REST API under strict 512MB RAM constraints.',
-    accentBg: 'from-emerald-950/70 via-[#07090e] to-black',
-    image: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=1200&q=80',
-    previewIcon: '🐾',
-    previewSubtitle: 'TensorFlow & MobileNetV2 Vision',
+      'Real-time deep learning image classification platform powered by MobileNetV2 and TensorFlow, serving instant predictions via an optimized Flask REST API under strict 512MB RAM cloud constraints.',
+    accentBg: 'from-amber-950/60 via-[#07090e] to-black',
+    image: 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=1200&q=80',
+    previewIcon: '🐶🐱',
+    previewSubtitle: 'TensorFlow MobileNetV2 Vision',
     metrics: {
       label1: 'INFERENCE',
       value1: '<150ms',
@@ -51,10 +51,10 @@ const projectsDeckData: DeckProject[] = [
       { name: 'Render', icon: '☁️', color: 'border-cyan-500/30 text-cyan-400 bg-cyan-950/20' },
     ],
     liveUrl: 'https://dog-vs-cat-classifier-v58n.onrender.com',
-    githubUrl: 'https://github.com/vishalsukhwall',
-    challenge: 'Deploying deep learning models on cloud platforms with severe memory restrictions (<512MB RAM) causing Out-Of-Memory crashes.',
-    solution: 'Utilized MobileNetV2 transfer learning with reduced weights and optimized image array processing directly inside Flask REST endpoints.',
-    result: 'Reduced runtime memory footprint by >70% while keeping inference response time strictly under 150ms.',
+    githubUrl: 'https://github.com/vishalsukhwall/dog-vs-cat-classifier',
+    challenge: 'Hosting deep learning computer vision models on low-tier cloud instances without triggering Out-Of-Memory (OOM) failures.',
+    solution: 'Engineered a transfer learning pipeline using pre-trained MobileNetV2 weights with optimized stream-based image preprocessing.',
+    result: 'Reduced memory overhead by >70% with real-time classification response latency below 150ms.',
   },
   {
     id: 'lakshpath',
@@ -105,7 +105,8 @@ const projectsDeckData: DeckProject[] = [
       { name: 'Streamlit', icon: '👑', color: 'border-rose-500/30 text-rose-400 bg-rose-950/20' },
       { name: 'HuggingFace', icon: '🤗', color: 'border-amber-500/30 text-amber-400 bg-amber-950/20' },
     ],
-    liveUrl: '#',
+    liveUrl: 'https://ai-career-mentor-nanf.onrender.com/', // <-- Yahan link add hua
+    githubUrl: 'https://github.com/vishalsukhwall',
     challenge: 'Formatting raw unstructured resume text and matching it against dynamic industry skill graphs.',
     solution: 'Engineered specialized few-shot prompt pipelines coupled with Hugging Face inference APIs.',
     result: 'Generates tailored technical roadmaps and actionable resume feedback in under 1.5 seconds.',
@@ -321,10 +322,10 @@ export const Projects: React.FC = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Static Card Viewport */}
+          {/* RIGHT COLUMN: Static Card Viewport with Wallpaper Background */}
           <div className="lg:col-span-8 w-full bg-[#0b0d10]/95 backdrop-blur-2xl border border-neutral-800/80 rounded-[36px] overflow-hidden shadow-2xl flex flex-col justify-between transition-all duration-300 hover:border-neutral-700">
             
-            {/* 1. Static Visual Image/Banner Frame */}
+            {/* 1. Visual Banner Frame with Custom Dark Animal Wallpaper */}
             <div 
               onClick={() => setModalProject(activeProject)}
               className="relative w-full h-[220px] sm:h-[260px] overflow-hidden bg-[#07090e] cursor-pointer group"
@@ -336,13 +337,13 @@ export const Projects: React.FC = () => {
                   animation: `${direction === 'down' ? 'slideFromBottom' : 'slideFromTop'} 0.45s ease-out forwards`
                 }}
               >
-                {/* Background Wallpaper with Dark Vignette */}
+                {/* Wallpaper Image with Vignette */}
                 {activeProject.image ? (
                   <div className="absolute inset-0 z-0">
                     <img
                       src={activeProject.image}
                       alt={activeProject.title}
-                      className="w-full h-full object-cover opacity-35 scale-105 group-hover:scale-110 transition-transform duration-700 ease-out brightness-90 contrast-125"
+                      className="w-full h-full object-cover opacity-40 scale-105 group-hover:scale-110 transition-transform duration-700 ease-out brightness-90 contrast-125"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d10] via-[#0b0d10]/60 to-transparent" />
                   </div>
@@ -352,13 +353,13 @@ export const Projects: React.FC = () => {
 
                 {/* Central Floating Badge */}
                 <div className="relative z-10 text-center space-y-2 p-6">
-                  <div className="w-16 h-16 mx-auto rounded-2xl bg-black/40 backdrop-blur-md border border-white/15 flex items-center justify-center text-3xl shadow-[0_0_30px_rgba(0,0,0,0.6)] transition-all duration-300 group-hover:scale-110 group-hover:border-teal-500/40">
+                  <div className="w-16 h-16 mx-auto rounded-2xl bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center text-3xl shadow-[0_0_30px_rgba(0,0,0,0.7)] transition-all duration-300 group-hover:scale-110 group-hover:border-amber-500/40">
                     {activeProject.previewIcon}
                   </div>
                   <p className="text-base font-serif italic font-bold text-white tracking-wide drop-shadow-md">
                     {activeProject.title}
                   </p>
-                  <p className="text-xs font-mono text-teal-400 uppercase tracking-widest font-semibold drop-shadow">
+                  <p className="text-xs font-mono text-amber-400 uppercase tracking-widest font-semibold drop-shadow">
                     {activeProject.previewSubtitle}
                   </p>
                 </div>
@@ -387,9 +388,9 @@ export const Projects: React.FC = () => {
               <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 border-b border-neutral-800/80 pb-5">
                 <h3 
                   onClick={() => setModalProject(activeProject)}
-                  className="text-3xl sm:text-4xl font-serif italic font-bold tracking-tight bg-gradient-to-r from-white via-neutral-100 to-neutral-400 bg-clip-text text-transparent cursor-pointer hover:from-teal-200 hover:to-teal-400 transition-all duration-300"
+                  className="text-3xl sm:text-4xl font-serif italic font-bold tracking-tight bg-gradient-to-r from-white via-neutral-100 to-neutral-400 bg-clip-text text-transparent cursor-pointer hover:from-amber-200 hover:to-amber-400 transition-all duration-300"
                 >
-                  <span className="not-italic font-mono text-xs tracking-widest text-teal-400 mr-2 uppercase font-semibold">
+                  <span className="not-italic font-mono text-xs tracking-widest text-amber-400 mr-2 uppercase font-semibold">
                   </span>
                   {activeProject.title}
                 </h3>
