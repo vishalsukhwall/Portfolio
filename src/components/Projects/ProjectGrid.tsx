@@ -120,9 +120,9 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onProjectClick }) => {
             </button>
 
             <a
-              href="https://github.com/vishalsukhwal33"
+              href="https://github.com/vishalsukhwall"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0e1015] border border-neutral-800 text-xs font-semibold text-neutral-300 hover:text-white hover:border-neutral-600 transition-all hover:scale-105"
             >
               <span>View Archives</span>
