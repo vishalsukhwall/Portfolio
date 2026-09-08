@@ -57,33 +57,6 @@ const projectsDeckData: DeckProject[] = [
     result: 'Reduced memory overhead by >70% with real-time classification response latency below 150ms.',
   },
   {
-    id: 'lakshpath',
-    number: '02',
-    name: 'Lakshpath Global',
-    badge: 'VISA PLATFORM',
-    title: 'Lakshpath Global',
-    description:
-      'High-performance static architecture engineered for international scalability. Zero-JS content loads ensure accessibility in low-bandwidth immigration regions.',
-    accentBg: 'from-amber-950/50 via-[#07090e] to-black',
-    previewIcon: '🌍',
-    previewSubtitle: 'Zero-JS Fast Static Engine',
-    metrics: {
-      label1: 'LIGHTHOUSE',
-      value1: '100',
-      label2: 'SEO',
-      value2: 'Top 1%',
-    },
-    techStack: [
-      { name: 'Astro', icon: '🚀', color: 'border-orange-500/30 text-orange-400 bg-orange-950/20' },
-      { name: 'Svelte', icon: '🔥', color: 'border-red-500/30 text-red-400 bg-red-950/20' },
-      { name: 'Tailwind', icon: '🌊', color: 'border-teal-500/30 text-teal-400 bg-teal-950/20' },
-    ],
-    liveUrl: '#',
-    challenge: 'Target audience frequently browses from weak network infrastructure where heavy JS bundles fail to load.',
-    solution: 'Designed zero-JS static islands using modern asset pipelines for instant global delivery.',
-    result: 'Achieved flawless 100/100 Google Lighthouse scores across Performance, Accessibility, and SEO.',
-  },
-  {
     id: 'ai-career',
     number: '03',
     name: 'AI Career Mentor',
