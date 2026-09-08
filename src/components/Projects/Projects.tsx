@@ -58,7 +58,7 @@ const projectsDeckData: DeckProject[] = [
   },
   {
     id: 'ai-career',
-    number: '03',
+    number: '02',
     name: 'AI Career Mentor',
     badge: 'AI / LLM AGENT',
     title: 'AI Career Mentor',
@@ -78,7 +78,7 @@ const projectsDeckData: DeckProject[] = [
       { name: 'Streamlit', icon: '👑', color: 'border-rose-500/30 text-rose-400 bg-rose-950/20' },
       { name: 'HuggingFace', icon: '🤗', color: 'border-amber-500/30 text-amber-400 bg-amber-950/20' },
     ],
-    liveUrl: 'https://ai-career-mentor-nanf.onrender.com/', // <-- Yahan link add hua
+    liveUrl: 'https://ai-career-mentor-nanf.onrender.com/',
     githubUrl: 'https://github.com/vishalsukhwall',
     challenge: 'Formatting raw unstructured resume text and matching it against dynamic industry skill graphs.',
     solution: 'Engineered specialized few-shot prompt pipelines coupled with Hugging Face inference APIs.',
@@ -86,7 +86,7 @@ const projectsDeckData: DeckProject[] = [
   },
   {
     id: 'spam-detect',
-    number: '04',
+    number: '03',
     name: 'SMS Spam Sentinel',
     badge: 'ML PIPELINE',
     title: 'SMS Spam Detection Pipeline',
@@ -105,15 +105,17 @@ const projectsDeckData: DeckProject[] = [
       { name: 'Python', icon: '🐍', color: 'border-yellow-500/30 text-yellow-400 bg-yellow-950/20' },
       { name: 'Scikit-Learn', icon: '⚙️', color: 'border-orange-500/30 text-orange-400 bg-orange-950/20' },
       { name: 'Flask', icon: '🧪', color: 'border-neutral-500/30 text-neutral-300 bg-neutral-900' },
+      { name: 'Render', icon: '☁️', color: 'border-cyan-500/30 text-cyan-400 bg-cyan-950/20' },
     ],
-    liveUrl: '#',
+    liveUrl: 'https://sms-spam-detection-1-b9nj.onrender.com/',
+    githubUrl: 'https://github.com/vishalsukhwall',
     challenge: 'Mitigating false-positive classifications on transactional notification templates.',
     solution: 'Trained a Multinomial Naive Bayes classifier with TF-IDF vectorization and custom n-gram tokenization.',
     result: 'Attained 98.4% precision with sub-15 millisecond API inference turnaround.',
   },
   {
     id: 'wealthy-names',
-    number: '05',
+    number: '04',
     name: 'Wealthy Names Edge',
     badge: 'LIVE WEB APP',
     title: 'Wealthy Names Web',
@@ -134,6 +136,7 @@ const projectsDeckData: DeckProject[] = [
       { name: 'Vercel', icon: '▲', color: 'border-neutral-400/30 text-neutral-200 bg-neutral-900' },
     ],
     liveUrl: 'https://wealthynames.vercel.app/#blog',
+    githubUrl: 'https://github.com/vishalsukhwall/wealthnames',
     challenge: 'Building an ultra-responsive, mobile-first design with smooth animation triggers.',
     solution: 'Utilized React state hooks alongside Tailwind JIT compilation and Vercel edge caching.',
     result: 'Zero render lag across mobile viewports and instant asset hydration.',
@@ -295,10 +298,10 @@ export const Projects: React.FC = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Static Card Viewport with Wallpaper Background */}
+          {/* RIGHT COLUMN: Static Card Viewport */}
           <div className="lg:col-span-8 w-full bg-[#0b0d10]/95 backdrop-blur-2xl border border-neutral-800/80 rounded-[36px] overflow-hidden shadow-2xl flex flex-col justify-between transition-all duration-300 hover:border-neutral-700">
             
-            {/* 1. Visual Banner Frame with Custom Dark Animal Wallpaper */}
+            {/* 1. Visual Banner Frame */}
             <div 
               onClick={() => setModalProject(activeProject)}
               className="relative w-full h-[220px] sm:h-[260px] overflow-hidden bg-[#07090e] cursor-pointer group"
@@ -310,7 +313,6 @@ export const Projects: React.FC = () => {
                   animation: `${direction === 'down' ? 'slideFromBottom' : 'slideFromTop'} 0.45s ease-out forwards`
                 }}
               >
-                {/* Wallpaper Image with Vignette */}
                 {activeProject.image ? (
                   <div className="absolute inset-0 z-0">
                     <img
@@ -324,7 +326,6 @@ export const Projects: React.FC = () => {
                   <div className="absolute w-72 h-72 rounded-full bg-white/[0.04] blur-3xl pointer-events-none" />
                 )}
 
-                {/* Central Floating Badge */}
                 <div className="relative z-10 text-center space-y-2 p-6">
                   <div className="w-16 h-16 mx-auto rounded-2xl bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center text-3xl shadow-[0_0_30px_rgba(0,0,0,0.7)] transition-all duration-300 group-hover:scale-110 group-hover:border-amber-500/40">
                     {activeProject.previewIcon}
@@ -338,10 +339,8 @@ export const Projects: React.FC = () => {
                 </div>
               </div>
 
-              {/* Bottom Gradient Fade */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d10] via-transparent to-black/20 pointer-events-none" />
 
-              {/* Top Tag Badge */}
               <div className="absolute top-5 right-5 z-10">
                 <span className="px-3.5 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-neutral-700/80 text-[10px] font-mono uppercase tracking-widest text-neutral-300 font-bold shadow-lg">
                   {activeProject.badge}
@@ -357,14 +356,11 @@ export const Projects: React.FC = () => {
                 animation: `${direction === 'down' ? 'fadeInUp' : 'fadeInDown'} 0.45s ease-out forwards`
               }}
             >
-              {/* Header Title & Metrics */}
               <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 border-b border-neutral-800/80 pb-5">
                 <h3 
                   onClick={() => setModalProject(activeProject)}
                   className="text-3xl sm:text-4xl font-serif italic font-bold tracking-tight bg-gradient-to-r from-white via-neutral-100 to-neutral-400 bg-clip-text text-transparent cursor-pointer hover:from-amber-200 hover:to-amber-400 transition-all duration-300"
                 >
-                  <span className="not-italic font-mono text-xs tracking-widest text-amber-400 mr-2 uppercase font-semibold">
-                  </span>
                   {activeProject.title}
                 </h3>
 
@@ -388,12 +384,10 @@ export const Projects: React.FC = () => {
                 </div>
               </div>
 
-              {/* Description */}
               <p className="text-neutral-400 text-sm sm:text-[15px] leading-relaxed font-normal min-h-[48px]">
                 {activeProject.description}
               </p>
 
-              {/* Tech Badges & CTA */}
               <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
                 <div className="flex flex-wrap items-center gap-2">
                   {activeProject.techStack.map((tech) => (
@@ -436,7 +430,6 @@ export const Projects: React.FC = () => {
         </div>
       </div>
 
-      {/* Embedded CSS Keyframes */}
       <style>{`
         @keyframes slideFromBottom {
           from { opacity: 0; transform: translateY(18px) scale(0.98); }
