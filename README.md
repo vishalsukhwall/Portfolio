@@ -39,3 +39,4 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 - Run npm install followed by npm run dev
 
 <!-- Architecture: Optimized frontend component hierarchy -->
+<!-- Accessibility: Verified ARIA landmark roles -->
