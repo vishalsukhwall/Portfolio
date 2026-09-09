@@ -37,3 +37,5 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 - Clone the repository
 - Copy .env.example to .env
 - Run npm install followed by npm run dev
+
+<!-- Architecture: Optimized frontend component hierarchy -->
