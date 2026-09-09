@@ -42,3 +42,4 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 <!-- Accessibility: Verified ARIA landmark roles -->
 <!-- SEO: OpenGraph and Twitter card integration ready -->
 <!-- Build: Configured fast refresh and dynamic chunking -->
+<!-- Code quality: Lint rules synced with oxlintrc -->
