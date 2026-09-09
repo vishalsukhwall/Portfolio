@@ -41,3 +41,4 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 <!-- Architecture: Optimized frontend component hierarchy -->
 <!-- Accessibility: Verified ARIA landmark roles -->
 <!-- SEO: OpenGraph and Twitter card integration ready -->
+<!-- Build: Configured fast refresh and dynamic chunking -->
