@@ -22,10 +22,10 @@ const Hero: React.FC = () => {
       onMouseLeave={() => setIsHovered(false)}
       className={cn(
         "relative min-h-screen w-full flex flex-col items-center justify-center",
-        "overflow-hidden bg-[#050608] px-4 sm:px-6 lg:px-8 selection:bg-teal-500/30"
+        "overflow-hidden bg-[var(--bg-primary)] px-4 sm:px-6 lg:px-8 selection:bg-teal-500/30 transition-colors duration-300"
       )}
     >
-      {/* Dynamic Green Cursor Spotlight Light */}
+      {/* Dynamic Cursor Spotlight Light */}
       <div
         className="pointer-events-none absolute -inset-px transition-opacity duration-300 z-0"
         style={{
@@ -36,7 +36,7 @@ const Hero: React.FC = () => {
 
       {/* Subtle Static Center Glow */}
       <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-teal-500/[0.04] rounded-full blur-[140px] pointer-events-none z-0" 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-teal-500/[0.05] rounded-full blur-[140px] pointer-events-none z-0" 
       />
 
       {/* Centered Main Content */}

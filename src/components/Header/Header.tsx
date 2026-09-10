@@ -2,7 +2,6 @@ import React from 'react';
 import { useScrollPosition } from '@hooks/useScrollPosition';
 import { cn } from '@utils/cn';
 import { NavBar } from './NavBar';
-import { ThemeToggle } from './ThemeToggle';
 import { MobileMenu } from './MobileMenu';
 import { PORTFOLIO_NAME } from '@utils/constants';
 
@@ -19,7 +18,7 @@ export const Header: React.FC = () => {
           isScrolled && "bg-neutral-950/90 border-neutral-800 shadow-2xl scale-[0.99]"
         )}
       >
-        {/* 1. Left: Brand Name with Cyan Dot */}
+        {/* 1. Left: Brand Name */}
         <a 
           href="#home" 
           className="text-base sm:text-lg font-bold tracking-tight text-white hover:opacity-90 transition-opacity flex items-center gap-0.5 select-none shrink-0"
@@ -34,16 +33,9 @@ export const Header: React.FC = () => {
           <NavBar />
         </div>
 
-        {/* 3. Right: Divider + Theme Toggle + Mobile Menu */}
-        <div className="flex items-center gap-4 shrink-0">
-          <div className="hidden md:block h-4 w-[1px] bg-neutral-800" />
-          
-          <div className="flex items-center gap-2 text-teal-400">
-            <ThemeToggle />
-            <div className="md:hidden">
-              <MobileMenu />
-            </div>
-          </div>
+        {/* 3. Right: Mobile Menu Only */}
+        <div className="md:hidden flex items-center text-teal-400 shrink-0">
+          <MobileMenu />
         </div>
       </div>
     </header>
