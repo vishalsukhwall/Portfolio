@@ -3,7 +3,6 @@ import { FormInput } from './FormInput';
 import { FormTextarea } from './FormTextarea';
 import { FormStatus } from './FormStatus';
 import { validateName, validateEmail, validateSubject, validateMessage } from '@utils/validation';
-import { submitContactForm } from '@utils/api';
 import type { FormStatus as FormStatusType, ContactFormData, FormField } from '@/types/contact';
 import { useToastStore } from '@stores/toastStore';
 import { cn } from '@utils/cn';
@@ -84,14 +83,25 @@ export const ContactForm: React.FC = () => {
     setStatus('loading');
 
     try {
-      const response = await submitContactForm({
-        name: formData.name.value,
-        email: formData.email.value,
-        subject: formData.subject.value,
-        message: formData.message.value
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: '85a52d16-aa81-42b0-8a1b-169fd2690008',
+          name: formData.name.value,
+          email: formData.email.value,
+          subject: formData.subject.value,
+          message: formData.message.value,
+          from_name: 'Portfolio Contact Form'
+        })
       });
 
-      if (response.success) {
+      const result = await response.json();
+
+      if (result.success) {
         setStatus('success');
         setFormData({
           name: { ...initialField },
@@ -99,14 +109,14 @@ export const ContactForm: React.FC = () => {
           subject: { ...initialField },
           message: { ...initialField }
         });
-        addToast({ type: 'success', message: response.message });
+        addToast({ type: 'success', message: 'Message sent successfully! I will get back to you soon.' });
       } else {
         setStatus('error');
-        addToast({ type: 'error', message: response.message });
+        addToast({ type: 'error', message: result.message || 'Failed to send message.' });
       }
     } catch {
       setStatus('error');
-      addToast({ type: 'error', message: 'An unexpected error occurred.' });
+      addToast({ type: 'error', message: 'An unexpected network error occurred.' });
     } finally {
       setTimeout(() => {
         setStatus((current: FormStatusType) => current !== 'loading' ? 'idle' : current);
@@ -184,7 +194,6 @@ export const ContactForm: React.FC = () => {
           "bg-white text-neutral-950 shadow-lg shadow-white/10 hover:bg-neutral-200 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
         )}
       >
-        
         {status === 'loading' ? (
           <span className="animate-pulse">Sending...</span>
         ) : (
