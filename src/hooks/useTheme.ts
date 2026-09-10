@@ -37,6 +37,7 @@ export function useTheme() {
     };
   }, [setTheme]);
 
+  
   return {
     theme,
     toggleTheme,
