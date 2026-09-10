@@ -195,7 +195,7 @@ export const ContactForm: React.FC = () => {
         )}
       >
         {status === 'loading' ? (
-          <span className="animate-pulse">Sending...</span>
+          <span className="animate-pulse">Sending....</span>
         ) : (
           <>
             <span>Send Message</span>
