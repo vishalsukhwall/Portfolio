@@ -7,10 +7,15 @@ export function useTheme() {
   useEffect(() => {
     const root = window.document.documentElement;
     
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
+    // Purani theme classes reset karke current theme apply karein
+    root.classList.remove('light', 'dark');
+    root.classList.add(theme);
+
+    // localStorage me theme sync rakhein
+    try {
+      localStorage.setItem('portfolio-theme', theme);
+    } catch {
+      // Ignore if localStorage is unavailable
     }
   }, [theme]);
 
@@ -18,8 +23,9 @@ export function useTheme() {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     
     const handleChange = (e: MediaQueryListEvent) => {
-      // Only auto-switch if user hasn't actively set a preference in localStorage
-      if (!localStorage.getItem('portfolio-theme')) {
+      // Agar user ne manually koi theme select nahi ki ho tabhi system preference follow karein
+      const savedTheme = localStorage.getItem('portfolio-theme');
+      if (!savedTheme) {
         setTheme(e.matches ? 'dark' : 'light');
       }
     };

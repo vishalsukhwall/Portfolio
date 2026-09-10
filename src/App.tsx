@@ -52,7 +52,7 @@ const App: React.FC = () => {
   }, [setActiveSection]);
 
   return (
-    <>
+    <div className="min-h-screen bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 transition-colors duration-300">
       <Header />
       <main id="main-content" className="flex flex-col space-y-12 sm:space-y-16 pb-20">
         <Hero />
@@ -70,7 +70,7 @@ const App: React.FC = () => {
         </Suspense>
       </main>
       <ToastContainer />
-    </>
+    </div>
   );
 };
 
