@@ -32,7 +32,6 @@ export const Header: React.FC = () => {
         <div className="hidden md:flex flex-1 justify-center px-4">
           <NavBar />
         </div>
-
         {/* 3. Right: Mobile Menu Only */}
         <div className="md:hidden flex items-center text-teal-400 shrink-0">
           <MobileMenu />
