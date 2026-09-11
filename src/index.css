@@ -19,6 +19,7 @@
   --font-mono: 'Fira Code', monospace;
 }
 
+
 html, body {
   background-color: var(--bg-primary) !important;
   color: var(--text-primary) !important;
