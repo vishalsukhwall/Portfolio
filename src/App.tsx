@@ -17,6 +17,7 @@ const LoadingSpinner = () => (
   </div>
 );
 
+
 const App: React.FC = () => {
   // Initialize theme
   useTheme();
