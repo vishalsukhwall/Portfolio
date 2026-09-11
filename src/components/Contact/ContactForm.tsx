@@ -193,6 +193,7 @@ export const ContactForm: React.FC = () => {
           "w-full py-3.5 px-6 rounded-full font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2",
           "bg-white text-neutral-950 shadow-lg shadow-white/10 hover:bg-neutral-200 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
         )}
+        
       >
         {status === 'loading' ? (
           <span className="animate-pulse">Sending....</span>
