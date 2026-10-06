@@ -27,10 +27,10 @@ export const FormTextarea: React.FC<FormTextareaProps> = ({
   return (
     <div className={cn("w-full mb-4", className)}>
       <div className="flex justify-between items-end mb-2">
-        <label htmlFor={id} className="block text-sm font-medium text-neutral-300">
-          {label} {required && <span className="text-accent">*</span>}
+        <label htmlFor={id} className="block text-sm font-medium text-neutral-700 dark:text-neutral-300">
+          {label} {required && <span className="text-teal-600 dark:text-teal-400">*</span>}
         </label>
-        <span className="text-xs text-neutral-500">
+        <span className="text-xs text-neutral-500 dark:text-neutral-400 font-mono">
           {currentValueLength}/{maxLength}
         </span>
       </div>
@@ -45,16 +45,20 @@ export const FormTextarea: React.FC<FormTextareaProps> = ({
           aria-invalid={isInvalid}
           aria-describedby={isInvalid ? `${id}-error` : undefined}
           className={cn(
-            "w-full resize-none bg-neutral-800/50 border rounded-lg px-4 py-3 text-white transition-all outline-none",
-            "focus:border-accent focus:shadow-[0_0_15px_rgba(0,212,255,0.2)] focus:ring-1 focus:ring-accent",
-            isInvalid ? "border-red-500 animate-[shake_0.5s_ease-in-out]" : 
-            isValid ? "border-green-500" : "border-neutral-700"
+            "w-full resize-none rounded-xl px-4 py-3.5 transition-colors duration-200 outline-none text-sm",
+            "bg-neutral-100/90 dark:bg-neutral-900/80",
+            "border border-neutral-300 dark:border-neutral-800",
+            "text-neutral-900 dark:text-white",
+            "placeholder:text-neutral-400 dark:placeholder:text-neutral-500",
+            "focus:border-teal-500 focus:ring-1 focus:ring-teal-500",
+            isInvalid ? "border-rose-500 focus:border-rose-500 focus:ring-rose-500 animate-[shake_0.5s_ease-in-out]" : 
+            isValid ? "border-emerald-500 dark:border-emerald-500" : ""
           )}
           {...props}
         />
       </div>
       {isInvalid && (
-        <p id={`${id}-error`} role="alert" className="mt-2 text-sm text-red-400">
+        <p id={`${id}-error`} role="alert" className="mt-2 text-xs font-medium text-rose-500 dark:text-rose-400">
           {error}
         </p>
       )}
@@ -63,3 +67,4 @@ export const FormTextarea: React.FC<FormTextareaProps> = ({
 };
 
 FormTextarea.displayName = 'FormTextarea';
+export default FormTextarea;

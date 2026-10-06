@@ -87,16 +87,16 @@ export const ContactForm: React.FC = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          Accept: 'application/json',
         },
         body: JSON.stringify({
-          access_key: '85a52d16-aa81-42b0-8a1b-169fd2690008',
+          access_key: '76d52af6-b9fb-47ce-baff-cba775ec0c17',
           name: formData.name.value,
           email: formData.email.value,
-          subject: formData.subject.value,
+          subject: formData.subject.value || 'Portfolio Contact Inquiry',
           message: formData.message.value,
           from_name: 'Portfolio Contact Form'
-        })
+        }),
       });
 
       const result = await response.json();
@@ -116,10 +116,10 @@ export const ContactForm: React.FC = () => {
       }
     } catch {
       setStatus('error');
-      addToast({ type: 'error', message: 'An unexpected network error occurred.' });
+      addToast({ type: 'error', message: 'Network error. Please try again later.' });
     } finally {
       setTimeout(() => {
-        setStatus((current: FormStatusType) => current !== 'loading' ? 'idle' : current);
+        setStatus((current: FormStatusType) => (current !== 'loading' ? 'idle' : current));
       }, 3000);
     }
   };
@@ -130,7 +130,7 @@ export const ContactForm: React.FC = () => {
     <form 
       onSubmit={handleSubmit} 
       noValidate 
-      className="w-full space-y-5 bg-neutral-900/40 backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-neutral-800/80 shadow-2xl shadow-black/50"
+      className="w-full space-y-5 bg-white/90 dark:bg-neutral-900/60 backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-neutral-200/90 dark:border-neutral-800/80 shadow-lg dark:shadow-2xl transition-colors duration-300"
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <FormInput
@@ -191,16 +191,17 @@ export const ContactForm: React.FC = () => {
         disabled={isSubmitDisabled}
         className={cn(
           "w-full py-3.5 px-6 rounded-full font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2",
-          "bg-white text-neutral-950 shadow-lg shadow-white/10 hover:bg-neutral-200 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
+          "bg-neutral-900 text-white hover:bg-neutral-800 shadow-md",
+          "dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 dark:shadow-[0_0_20px_rgba(255,255,255,0.15)]",
+          "active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         )}
-        
       >
         {status === 'loading' ? (
-          <span className="animate-pulse">Sending....</span>
+          <span className="animate-pulse">Sending...</span>
         ) : (
           <>
             <span>Send Message</span>
-            <svg className="w-4 h-4 text-neutral-950" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
               <line x1="22" y1="2" x2="11" y2="13" />
               <polygon points="22 2 15 22 11 13 2 9 22 2" />
             </svg>

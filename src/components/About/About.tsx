@@ -2,11 +2,13 @@ import React from 'react';
 
 export const About: React.FC = () => {
   return (
-    <section id="about" className="relative min-h-screen py-24 px-4 sm:px-6 lg:px-8 bg-transparent text-neutral-900 dark:text-white scroll-mt-24 selection:bg-teal-500/30 transition-colors duration-300">
-      
+    <section 
+      id="about" 
+      className="relative w-full bg-transparent text-neutral-900 dark:text-white transition-colors duration-300 py-24 px-4 sm:px-6 lg:px-8 scroll-mt-24 selection:bg-teal-500/30"
+    >
       {/* Background Ambient Glows */}
-      <div className="absolute top-28 left-10 w-[500px] h-[500px] bg-teal-500/[0.04] rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute top-80 right-10 w-[500px] h-[500px] bg-purple-500/[0.04] rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-28 left-10 w-[500px] h-[500px] bg-teal-500/[0.04] dark:bg-teal-500/[0.04] rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-80 right-10 w-[500px] h-[500px] bg-purple-500/[0.04] dark:bg-purple-500/[0.04] rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto w-full space-y-24 relative z-10">
         
@@ -17,23 +19,23 @@ export const About: React.FC = () => {
           <div className="lg:col-span-6 space-y-7">
             
             {/* Tag */}
-            <div className="flex items-center gap-2.5 text-teal-500 dark:text-teal-400 font-mono text-[11px] tracking-widest uppercase font-bold">
-              <span className="w-6 h-[1.5px] bg-teal-500 dark:bg-teal-400 inline-block" />
+            <div className="flex items-center gap-2.5 text-teal-600 dark:text-teal-400 font-mono text-[11px] tracking-widest uppercase font-bold">
+              <span className="w-6 h-[1.5px] bg-teal-600 dark:bg-teal-400 inline-block" />
               <span>01. ABOUT ME</span>
             </div>
 
             {/* Main Catchy Heading */}
-            <h2 className="text-4xl sm:text-5xl lg:text-[54px] font-black tracking-tight leading-[1.12] text-neutral-950 dark:text-white transition-colors">
+            <h2 className="text-4xl sm:text-5xl lg:text-[54px] font-black tracking-tight leading-[1.12] text-neutral-900 dark:text-white">
               Bridging the gap between{' '}
-              <span className="bg-gradient-to-r from-teal-500 via-cyan-500 to-purple-600 dark:from-teal-300 dark:via-cyan-400 dark:to-purple-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-teal-600 via-cyan-500 to-purple-600 dark:from-teal-300 dark:via-cyan-400 dark:to-purple-500 bg-clip-text text-transparent">
                 Creative Code & AI.
               </span>
             </h2>
 
             {/* Paragraphs */}
-            <div className="space-y-4 text-neutral-600 dark:text-neutral-400 text-[14px] sm:text-[15px] leading-relaxed font-normal transition-colors">
+            <div className="space-y-4 text-neutral-600 dark:text-neutral-400 text-[14px] sm:text-[15px] leading-relaxed font-normal">
               <p>
-                Hello! I'm <strong className="text-neutral-900 dark:text-white font-medium">Vishal</strong>. My journey started with a simple curiosity: <span className="text-neutral-700 dark:text-neutral-200 italic font-serif">"How can I make this computer do the work for me?"</span>
+                Hello! I'm <strong className="text-neutral-900 dark:text-white font-semibold">Vishal</strong>. My journey started with a simple curiosity: <span className="text-neutral-800 dark:text-neutral-200 italic font-serif">"How can I make this computer do the work for me?"</span>
               </p>
               <p>
                 Today, I operate at the intersection of <strong className="text-neutral-900 dark:text-white font-semibold">Full Stack Engineering</strong> and <strong className="text-neutral-900 dark:text-white font-semibold">Autonomous Intelligence</strong>. I don't just build pretty websites; I engineer scalable digital ecosystems that work while you sleep.
@@ -41,9 +43,9 @@ export const About: React.FC = () => {
               <p>
                 While others copy-paste data, my clients relax as my <strong className="text-teal-600 dark:text-teal-400 font-semibold">n8n workflows</strong> and <strong className="text-teal-600 dark:text-teal-400 font-semibold">AI Agents</strong> handle the heavy lifting automatically.
               </p>
-              <p className="pt-2 text-neutral-800 dark:text-neutral-300">
+              <p className="pt-2 text-neutral-700 dark:text-neutral-300">
                 My philosophy is simple:{' '}
-                <span className="underline decoration-teal-500/80 dark:decoration-teal-400/80 decoration-2 underline-offset-4 font-bold text-neutral-950 dark:text-white cursor-pointer hover:text-teal-500 dark:hover:text-teal-300 transition-colors">
+                <span className="underline decoration-teal-500/80 decoration-2 underline-offset-4 font-bold text-neutral-900 dark:text-white cursor-pointer hover:text-teal-600 dark:hover:text-teal-300 transition-colors">
                   If it can be automated, it should be.
                 </span>
               </p>
@@ -57,8 +59,8 @@ export const About: React.FC = () => {
             <div className="grid grid-cols-2 gap-4">
               
               {/* Stat 1 */}
-              <div className="group relative bg-white/70 dark:bg-[#0b0d11]/90 backdrop-blur-xl border border-neutral-200 dark:border-neutral-800/80 rounded-2xl p-6 sm:p-7 flex flex-col justify-center transition-all duration-300 hover:border-teal-500/40 hover:bg-neutral-50 dark:hover:bg-[#0e1117] hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:-translate-y-1 cursor-default">
-                <span className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-neutral-900 dark:text-white tracking-tight mb-2 group-hover:text-teal-500 dark:group-hover:text-teal-300 transition-colors">
+              <div className="group relative bg-neutral-100/80 dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800/80 backdrop-blur-md rounded-2xl p-6 sm:p-7 flex flex-col justify-center transition-all duration-300 hover:border-teal-500/40 dark:hover:border-teal-400/40 hover:-translate-y-1 cursor-default shadow-sm dark:shadow-none">
+                <span className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-neutral-900 dark:text-white tracking-tight mb-2 group-hover:text-teal-600 dark:group-hover:text-teal-300 transition-colors">
                   2+
                 </span>
                 <span className="text-[10px] sm:text-[11px] font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-widest">
@@ -67,8 +69,8 @@ export const About: React.FC = () => {
               </div>
 
               {/* Stat 2 */}
-              <div className="group relative bg-white/70 dark:bg-[#0b0d11]/90 backdrop-blur-xl border border-neutral-200 dark:border-neutral-800/80 rounded-2xl p-6 sm:p-7 flex flex-col justify-center transition-all duration-300 hover:border-cyan-500/40 hover:bg-neutral-50 dark:hover:bg-[#0e1117] hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:-translate-y-1 cursor-default">
-                <span className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-neutral-900 dark:text-white tracking-tight mb-2 group-hover:text-cyan-500 dark:group-hover:text-cyan-300 transition-colors">
+              <div className="group relative bg-neutral-100/80 dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800/80 backdrop-blur-md rounded-2xl p-6 sm:p-7 flex flex-col justify-center transition-all duration-300 hover:border-cyan-500/40 dark:hover:border-cyan-400/40 hover:-translate-y-1 cursor-default shadow-sm dark:shadow-none">
+                <span className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-neutral-900 dark:text-white tracking-tight mb-2 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors">
                   10+
                 </span>
                 <span className="text-[10px] sm:text-[11px] font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-widest">
@@ -77,8 +79,8 @@ export const About: React.FC = () => {
               </div>
 
               {/* Stat 3 */}
-              <div className="group relative bg-white/70 dark:bg-[#0b0d11]/90 backdrop-blur-xl border border-neutral-200 dark:border-neutral-800/80 rounded-2xl p-6 sm:p-7 flex flex-col justify-center transition-all duration-300 hover:border-purple-500/40 hover:bg-neutral-50 dark:hover:bg-[#0e1117] hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] hover:-translate-y-1 cursor-default">
-                <span className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-neutral-900 dark:text-white tracking-tight mb-2 group-hover:text-purple-500 dark:group-hover:text-purple-300 transition-colors">
+              <div className="group relative bg-neutral-100/80 dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800/80 backdrop-blur-md rounded-2xl p-6 sm:p-7 flex flex-col justify-center transition-all duration-300 hover:border-purple-500/40 dark:hover:border-purple-400/40 hover:-translate-y-1 cursor-default shadow-sm dark:shadow-none">
+                <span className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-neutral-900 dark:text-white tracking-tight mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
                   500+
                 </span>
                 <span className="text-[10px] sm:text-[11px] font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-widest">
@@ -87,8 +89,8 @@ export const About: React.FC = () => {
               </div>
 
               {/* Stat 4 */}
-              <div className="group relative bg-white/70 dark:bg-[#0b0d11]/90 backdrop-blur-xl border border-neutral-200 dark:border-neutral-800/80 rounded-2xl p-6 sm:p-7 flex flex-col justify-center transition-all duration-300 hover:border-emerald-500/40 hover:bg-neutral-50 dark:hover:bg-[#0e1117] hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] hover:-translate-y-1 cursor-default">
-                <span className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-neutral-900 dark:text-white tracking-tight mb-2 group-hover:text-emerald-500 dark:group-hover:text-emerald-300 transition-colors">
+              <div className="group relative bg-neutral-100/80 dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800/80 backdrop-blur-md rounded-2xl p-6 sm:p-7 flex flex-col justify-center transition-all duration-300 hover:border-emerald-500/40 dark:hover:border-emerald-400/40 hover:-translate-y-1 cursor-default shadow-sm dark:shadow-none">
+                <span className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-neutral-900 dark:text-white tracking-tight mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
                   &lt;24h
                 </span>
                 <span className="text-[10px] sm:text-[11px] font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-widest">
@@ -99,11 +101,11 @@ export const About: React.FC = () => {
             </div>
 
             {/* Current Focus Highlight Card */}
-            <div className="group relative bg-white/70 dark:bg-[#0b0d11]/90 backdrop-blur-xl border border-neutral-200 dark:border-neutral-800/80 rounded-2xl p-6 sm:p-7 flex items-stretch justify-between overflow-hidden transition-all duration-300 hover:border-teal-500/40 hover:shadow-[0_0_35px_rgba(20,184,166,0.12)] hover:-translate-y-0.5">
+            <div className="group relative bg-neutral-100/80 dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800/80 backdrop-blur-md rounded-2xl p-6 sm:p-7 flex items-stretch justify-between overflow-hidden transition-all duration-300 hover:border-teal-500/40 dark:hover:border-teal-400/40 hover:-translate-y-0.5 shadow-sm dark:shadow-none">
               
               <div className="space-y-2 pr-6">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-teal-500 dark:bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)] animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
                   <span className="text-[10px] sm:text-[11px] font-bold text-teal-600 dark:text-teal-400 uppercase tracking-widest">
                     Current Focus
                   </span>
@@ -114,7 +116,7 @@ export const About: React.FC = () => {
               </div>
 
               {/* Right Teal Accent Panel */}
-              <div className="hidden sm:block w-20 bg-teal-50 dark:bg-gradient-to-br dark:from-teal-950/40 dark:to-teal-900/20 border border-teal-200 dark:border-teal-500/20 rounded-xl shrink-0 group-hover:border-teal-500/40 transition-colors" />
+              <div className="hidden sm:block w-20 bg-gradient-to-br from-teal-50 dark:from-teal-950/40 to-teal-100/50 dark:to-teal-900/20 border border-teal-200 dark:border-teal-500/20 rounded-xl shrink-0 group-hover:border-teal-400/50 transition-colors" />
 
             </div>
 
@@ -135,19 +137,19 @@ export const About: React.FC = () => {
 
             {/* Exact 3-Line Title */}
             <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-black tracking-tight leading-[1.08] flex flex-col items-start text-left">
-              <span className="text-neutral-950 dark:text-white block font-extrabold transition-colors">
+              <span className="text-neutral-900 dark:text-white block font-extrabold">
                 Full Stack Engineering
               </span>
-              <span className="bg-gradient-to-r from-teal-500 via-sky-500 to-indigo-600 dark:from-[#2dd4bf] dark:via-[#38bdf8] dark:to-[#818cf8] bg-clip-text text-transparent block font-extrabold">
+              <span className="bg-gradient-to-r from-teal-600 via-sky-600 to-indigo-600 dark:from-[#2dd4bf] dark:via-[#38bdf8] dark:to-[#818cf8] bg-clip-text text-transparent block font-extrabold">
                 Meets Autonomous
               </span>
-              <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-[#818cf8] dark:via-[#c084fc] dark:to-[#e879f9] bg-clip-text text-transparent block font-extrabold">
-                Intelligence<span className="text-pink-500 dark:text-[#e879f9]">.</span>
+              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-[#818cf8] dark:via-[#c084fc] dark:to-[#e879f9] bg-clip-text text-transparent block font-extrabold">
+                Intelligence<span className="text-pink-600 dark:text-[#e879f9]">.</span>
               </span>
             </h2>
 
             {/* Subtitle */}
-            <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base max-w-xl font-normal leading-relaxed pt-1 transition-colors">
+            <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base max-w-xl font-normal leading-relaxed pt-1">
               A complete command of the digital stack. From low-level algorithms in C++ to high-level AI orchestration in Python.
             </p>
           </div>
@@ -159,7 +161,7 @@ export const About: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
               
               {/* 1. AI & Automation */}
-              <div className="group lg:col-span-7 bg-white/70 dark:bg-[#0b0d10]/95 backdrop-blur-xl border border-neutral-200 dark:border-neutral-800/80 rounded-[32px] p-6 sm:p-8 flex flex-col justify-between hover:border-teal-500/30 transition-all duration-300 shadow-xl dark:shadow-2xl">
+              <div className="group lg:col-span-7 bg-neutral-100/80 dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800/80 backdrop-blur-md rounded-[32px] p-6 sm:p-8 flex flex-col justify-between hover:border-teal-500/30 transition-all duration-300 shadow-sm dark:shadow-2xl">
                 <div className="flex items-center gap-3.5 mb-7">
                   <div className="w-11 h-11 rounded-2xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-600 dark:text-teal-400 shadow-[0_0_15px_rgba(20,184,166,0.15)]">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
@@ -175,7 +177,7 @@ export const About: React.FC = () => {
                 <div className="grid grid-cols-3 gap-3">
                   
                   {/* n8n */}
-                  <div className="flex flex-col items-center justify-center py-5 px-3 rounded-2xl bg-neutral-100/80 dark:bg-[#12141a]/80 border border-neutral-200 dark:border-neutral-800/70 hover:border-rose-500/50 hover:bg-neutral-50 dark:hover:bg-[#161922] hover:shadow-[0_0_20px_rgba(244,63,94,0.2)] hover:scale-[1.03] transition-all duration-300 cursor-pointer group">
+                  <div className="flex flex-col items-center justify-center py-5 px-3 rounded-2xl bg-white/80 dark:bg-neutral-800/60 border border-neutral-200/90 dark:border-neutral-700/60 hover:border-rose-500/50 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:scale-[1.03] transition-all duration-300 cursor-pointer group">
                     <svg className="w-7 h-7 mb-2.5 fill-none stroke-rose-500 dark:stroke-rose-400 stroke-2" viewBox="0 0 24 24">
                       <circle cx="6" cy="12" r="3" />
                       <circle cx="18" cy="7" r="3" />
@@ -186,7 +188,7 @@ export const About: React.FC = () => {
                   </div>
 
                   {/* AI Agents */}
-                  <div className="flex flex-col items-center justify-center py-5 px-3 rounded-2xl bg-neutral-100/80 dark:bg-[#12141a]/80 border border-neutral-200 dark:border-neutral-800/70 hover:border-emerald-500/50 hover:bg-neutral-50 dark:hover:bg-[#161922] hover:shadow-[0_0_20px_rgba(52,211,153,0.2)] hover:scale-[1.03] transition-all duration-300 cursor-pointer group">
+                  <div className="flex flex-col items-center justify-center py-5 px-3 rounded-2xl bg-white/80 dark:bg-neutral-800/60 border border-neutral-200/90 dark:border-neutral-700/60 hover:border-emerald-400/50 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:scale-[1.03] transition-all duration-300 cursor-pointer group">
                     <svg className="w-7 h-7 mb-2.5 fill-none stroke-emerald-500 dark:stroke-emerald-400 stroke-2" viewBox="0 0 24 24">
                       <rect x="4" y="8" width="16" height="12" rx="3" />
                       <circle cx="9" cy="14" r="1.5" fill="#10b981" />
@@ -197,9 +199,9 @@ export const About: React.FC = () => {
                   </div>
 
                   {/* Python */}
-                  <div className="flex flex-col items-center justify-center py-5 px-3 rounded-2xl bg-neutral-100/80 dark:bg-[#12141a]/80 border border-neutral-200 dark:border-neutral-800/70 hover:border-yellow-500/50 hover:bg-neutral-50 dark:hover:bg-[#161922] hover:shadow-[0_0_20px_rgba(250,204,21,0.2)] hover:scale-[1.03] transition-all duration-300 cursor-pointer group">
+                  <div className="flex flex-col items-center justify-center py-5 px-3 rounded-2xl bg-white/80 dark:bg-neutral-800/60 border border-neutral-200/90 dark:border-neutral-700/60 hover:border-yellow-400/50 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:scale-[1.03] transition-all duration-300 cursor-pointer group">
                     <svg className="w-7 h-7 mb-2.5 fill-none" viewBox="0 0 24 24">
-                      <path d="M11.9 1C8.2 1 8.5 2.6 8.5 2.6l.01 1.7h3.5v.5H5.4S3.1 4.5 3.1 8.3c0 3.7 2 3.6 2 3.6h1.2V10.2s-.1-2 2-2h3.4s1.9.1 1.9-1.8V2.8S13.6 1 11.9 1z" fill="#38bdf8" />
+                      <path d="M11.9 1C8.2 1 8.5 2.6 8.5 2.6l.01 1.7h3.5v.5H5.4S3.1 4.5 3.1 8.3c0 3.7 2 3.6 2 3.6h1.2V10.2s-.1-2 2-2h3.4s1.9.1 1.9-1.8V2.8S13.6 1 11.9 1z" fill="#0284c7" />
                       <circle cx="7" cy="3" r="0.7" fill="#fff" />
                       <path d="M12.1 23c3.7 0 3.4-1.6 3.4-1.6l-.01-1.7h-3.5v-.5h6.6s2.3.3 2.3-3.5c0-3.7-2-3.6-2-3.6h-1.2v1.7s.1 2-2 2h-3.4s-1.9-.1-1.9 1.8v3.6s0 1.8 1.7 1.8z" fill="#eab308" />
                       <circle cx="17" cy="21" r="0.7" fill="#fff" />
@@ -208,7 +210,7 @@ export const About: React.FC = () => {
                   </div>
 
                   {/* OpenAI */}
-                  <div className="flex flex-col items-center justify-center py-5 px-3 rounded-2xl bg-neutral-100/80 dark:bg-[#12141a]/80 border border-neutral-200 dark:border-neutral-800/70 hover:border-teal-500/50 hover:bg-neutral-50 dark:hover:bg-[#161922] hover:shadow-[0_0_20px_rgba(45,212,191,0.2)] hover:scale-[1.03] transition-all duration-300 cursor-pointer group">
+                  <div className="flex flex-col items-center justify-center py-5 px-3 rounded-2xl bg-white/80 dark:bg-neutral-800/60 border border-neutral-200/90 dark:border-neutral-700/60 hover:border-teal-400/50 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:scale-[1.03] transition-all duration-300 cursor-pointer group">
                     <svg className="w-7 h-7 mb-2.5 fill-none stroke-teal-600 dark:stroke-teal-300 stroke-[1.6]" viewBox="0 0 24 24">
                       <path d="M12 2a4 4 0 0 1 3.5 2.1l.5.9 2.5-.5a4 4 0 0 1 4.5 3.1 4 4 0 0 1-.9 3.8l-.7.7 1.7 1.9a4 4 0 0 1-.8 5.4 4 4 0 0 1-3.9.5l-1-.4-.6 2.4a4 4 0 0 1-4.7 2.9 4 4 0 0 1-3-2.6l-.2-1-2.4.6a4 4 0 0 1-4.7-2.9 4 4 0 0 1 .8-3.8l.8-.8-1.8-1.9a4 4 0 0 1 .8-5.4 4 4 0 0 1 3.9-.5l1 .4.6-2.4a4 4 0 0 1 4-2.4z" />
                     </svg>
@@ -216,8 +218,8 @@ export const About: React.FC = () => {
                   </div>
 
                   {/* LangChain */}
-                  <div className="flex flex-col items-center justify-center py-5 px-3 rounded-2xl bg-neutral-100/80 dark:bg-[#12141a]/80 border border-neutral-200 dark:border-neutral-800/70 hover:border-emerald-500/50 hover:bg-neutral-50 dark:hover:bg-[#161922] hover:shadow-[0_0_20px_rgba(52,211,153,0.2)] hover:scale-[1.03] transition-all duration-300 cursor-pointer group">
-                    <div className="w-8 h-8 mb-2 rounded-lg bg-emerald-500/10 dark:bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                  <div className="flex flex-col items-center justify-center py-5 px-3 rounded-2xl bg-white/80 dark:bg-neutral-800/60 border border-neutral-200/90 dark:border-neutral-700/60 hover:border-emerald-400/50 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:scale-[1.03] transition-all duration-300 cursor-pointer group">
+                    <div className="w-8 h-8 mb-2 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
                       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                         <path d="M3.9 12c0-1.7 1.4-3.1 3.1-3.1h4V7H7c-2.8 0-5 2.2-5 5s2.2 5 5 5h4v-1.9H7c-1.7 0-3.1-1.4-3.1-3.1zm5.1 1h6v-2H9v2zm8-6h-4v1.9h4c1.7 0 3.1 1.4 3.1 3.1s-1.4 3.1-3.1 3.1h-4V17h4c2.8 0 5-2.2 5-5s-2.2-5-5-5z" />
                       </svg>
@@ -226,7 +228,7 @@ export const About: React.FC = () => {
                   </div>
 
                   {/* Flask */}
-                  <div className="flex flex-col items-center justify-center py-5 px-3 rounded-2xl bg-neutral-100/80 dark:bg-[#12141a]/80 border border-neutral-200 dark:border-neutral-800/70 hover:border-neutral-400/50 hover:bg-neutral-50 dark:hover:bg-[#161922] hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:scale-[1.03] transition-all duration-300 cursor-pointer group">
+                  <div className="flex flex-col items-center justify-center py-5 px-3 rounded-2xl bg-white/80 dark:bg-neutral-800/60 border border-neutral-200/90 dark:border-neutral-700/60 hover:border-neutral-400/50 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:scale-[1.03] transition-all duration-300 cursor-pointer group">
                     <svg className="w-7 h-7 mb-2.5 fill-none stroke-neutral-700 dark:stroke-neutral-300 stroke-2" viewBox="0 0 24 24">
                       <path d="M10 2h4M12 2v7l5 9a2.5 2.5 0 0 1-2.2 3.7H9.2A2.5 2.5 0 0 1 7 18l5-9V2" />
                     </svg>
@@ -237,7 +239,7 @@ export const About: React.FC = () => {
               </div>
 
               {/* 2. CS Core */}
-              <div className="lg:col-span-5 bg-white/70 dark:bg-[#0b0d10]/95 backdrop-blur-xl border border-neutral-200 dark:border-neutral-800/80 rounded-[32px] p-6 sm:p-8 flex flex-col justify-between hover:border-cyan-500/30 transition-all duration-300 shadow-xl dark:shadow-2xl">
+              <div className="lg:col-span-5 bg-neutral-100/80 dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800/80 backdrop-blur-md rounded-[32px] p-6 sm:p-8 flex flex-col justify-between hover:border-cyan-500/30 transition-all duration-300 shadow-sm dark:shadow-2xl">
                 <div className="flex items-center gap-3.5 mb-6">
                   <div className="w-11 h-11 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.15)]">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -263,34 +265,34 @@ export const About: React.FC = () => {
                     { 
                       name: 'C++', 
                       badge: (
-                        <span className="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-950/80 text-blue-600 dark:text-blue-400 border border-blue-300 dark:border-blue-500/30 flex items-center justify-center font-bold text-[11px] font-mono">
+                        <span className="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-400 border border-blue-300 dark:border-blue-500/30 flex items-center justify-center font-bold text-[11px] font-mono">
                           C++
                         </span>
                       ),
-                      glow: 'hover:border-cyan-500/50'
+                      glow: 'hover:border-cyan-400/50'
                     },
                     { 
                       name: 'Java', 
                       badge: (
-                        <span className="w-7 h-7 rounded-full bg-orange-100 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 border border-orange-300 dark:border-orange-500/30 flex items-center justify-center text-xs">
+                        <span className="w-7 h-7 rounded-full bg-orange-100 dark:bg-orange-950/80 text-orange-700 dark:text-orange-400 border border-orange-300 dark:border-orange-500/30 flex items-center justify-center text-xs">
                           ☕
                         </span>
                       ),
-                      glow: 'hover:border-orange-500/50'
+                      glow: 'hover:border-orange-400/50'
                     },
                     { 
                       name: 'Spring', 
                       badge: (
-                        <span className="w-7 h-7 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-500/30 flex items-center justify-center text-xs">
+                        <span className="w-7 h-7 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-500/30 flex items-center justify-center text-xs">
                           🌱
                         </span>
                       ),
-                      glow: 'hover:border-emerald-500/50'
+                      glow: 'hover:border-emerald-400/50'
                     },
                   ].map((item) => (
                     <div 
                       key={item.name}
-                      className={`flex items-center gap-3.5 px-5 py-3.5 rounded-2xl bg-neutral-100/80 dark:bg-[#12141a]/80 border border-neutral-200 dark:border-neutral-800/70 hover:bg-neutral-50 dark:hover:bg-[#161922] transition-all duration-300 cursor-pointer ${item.glow}`}
+                      className={`flex items-center gap-3.5 px-5 py-3.5 rounded-2xl bg-white/80 dark:bg-neutral-800/60 border border-neutral-200/90 dark:border-neutral-700/60 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-all duration-300 cursor-pointer ${item.glow}`}
                     >
                       {item.badge}
                       <span className="text-xs font-semibold text-neutral-800 dark:text-neutral-200">{item.name}</span>
@@ -305,7 +307,7 @@ export const About: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
               
               {/* 3. Frontend Ecosystem */}
-              <div className="group lg:col-span-7 bg-white/70 dark:bg-[#0b0d10]/95 backdrop-blur-xl border border-neutral-200 dark:border-neutral-800/80 rounded-[32px] p-6 sm:p-8 flex flex-col justify-between hover:border-purple-500/30 transition-all duration-300 shadow-xl dark:shadow-2xl">
+              <div className="lg:col-span-7 bg-neutral-100/80 dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800/80 backdrop-blur-md rounded-[32px] p-6 sm:p-8 flex flex-col justify-between hover:border-purple-500/30 transition-all duration-300 shadow-sm dark:shadow-2xl">
                 <div className="flex items-center gap-3.5 mb-6">
                   <div className="w-11 h-11 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400 shadow-[0_0_15px_rgba(168,85,247,0.15)]">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
@@ -328,7 +330,7 @@ export const About: React.FC = () => {
                   ].map((item) => (
                     <div 
                       key={item.name}
-                      className="flex items-center gap-2.5 px-3.5 py-3 rounded-2xl bg-neutral-100/80 dark:bg-[#12141a]/80 border border-neutral-200 dark:border-neutral-800/70 hover:bg-neutral-50 dark:hover:bg-[#161922] transition-all duration-300 hover:scale-[1.03] cursor-pointer"
+                      className="flex items-center gap-2.5 px-3.5 py-3 rounded-2xl bg-white/80 dark:bg-neutral-800/60 border border-neutral-200/90 dark:border-neutral-700/60 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-all duration-300 hover:scale-[1.03] cursor-pointer"
                     >
                       <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${item.style}`}>
                         {item.tag}
@@ -340,9 +342,9 @@ export const About: React.FC = () => {
               </div>
 
               {/* 4. Backend & Data */}
-              <div className="lg:col-span-5 bg-white/70 dark:bg-[#0b0d10]/95 backdrop-blur-xl border border-neutral-200 dark:border-neutral-800/80 rounded-[32px] p-6 sm:p-8 flex flex-col justify-between hover:border-emerald-500/30 transition-all duration-300 shadow-xl dark:shadow-2xl">
+              <div className="lg:col-span-5 bg-neutral-100/80 dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800/80 backdrop-blur-md rounded-[32px] p-6 sm:p-8 flex flex-col justify-between hover:border-emerald-500/30 transition-all duration-300 shadow-sm dark:shadow-2xl">
                 <div className="flex items-center gap-3.5 mb-6">
-                  <div className="w-11 h-11 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-[0_0_15px_rgba(168,85,247,0.15)]">
+                  <div className="w-11 h-11 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
                     </svg>
@@ -352,21 +354,21 @@ export const About: React.FC = () => {
 
                 <div className="grid grid-cols-2 gap-2.5">
                   {[
-                    { name: 'Node.js', icon: '🟢', glow: 'hover:border-emerald-500/50' },
-                    { name: 'Express', tag: 'ex', glow: 'hover:border-neutral-400/50' },
-                    { name: 'NestJS', icon: '🦁', glow: 'hover:border-rose-500/50' },
-                    { name: 'PostgreSQL', icon: '🐘', glow: 'hover:border-blue-500/50' },
-                    { name: 'MongoDB', icon: '🍃', glow: 'hover:border-emerald-500/50' },
-                    { name: 'Redis', tag: 'R', glow: 'hover:border-red-500/50' },
+                    { name: 'Node.js', icon: '🟢' },
+                    { name: 'Express', tag: 'ex' },
+                    { name: 'NestJS', icon: '🦁' },
+                    { name: 'PostgreSQL', icon: '🐘' },
+                    { name: 'MongoDB', icon: '🍃' },
+                    { name: 'Redis', tag: 'R' },
                   ].map((item) => (
                     <div 
                       key={item.name}
-                      className={`flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-neutral-100/80 dark:bg-[#12141a]/80 border border-neutral-200 dark:border-neutral-800/70 hover:bg-neutral-50 dark:hover:bg-[#161922] transition-all duration-300 hover:scale-[1.02] cursor-pointer ${item.glow}`}
+                      className="flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-white/80 dark:bg-neutral-800/60 border border-neutral-200/90 dark:border-neutral-700/60 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
                     >
                       {item.icon ? (
                         <span className="text-sm shrink-0">{item.icon}</span>
                       ) : (
-                        <span className="text-xs font-mono font-bold px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-300">
+                        <span className="text-xs font-mono font-bold px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-neutral-700 text-neutral-800 dark:text-neutral-200">
                           {item.tag}
                         </span>
                       )}
@@ -379,9 +381,9 @@ export const About: React.FC = () => {
             </div>
 
             {/* ROW 3: DevOps & Cloud */}
-            <div className="bg-white/70 dark:bg-[#0b0d10]/95 backdrop-blur-xl border border-neutral-200 dark:border-neutral-800/80 rounded-[24px] px-6 py-4 flex flex-wrap items-center justify-between gap-4 hover:border-orange-500/30 transition-all duration-300 shadow-xl dark:shadow-2xl">
+            <div className="bg-neutral-100/80 dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800/80 backdrop-blur-md rounded-[24px] px-6 py-4 flex flex-wrap items-center justify-between gap-4 hover:border-orange-500/30 transition-all duration-300 shadow-sm dark:shadow-2xl">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-500 dark:text-orange-400 text-sm shadow-[0_0_10px_rgba(249,115,22,0.15)]">
+                <div className="w-8 h-8 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-600 dark:text-orange-400 text-sm shadow-[0_0_10px_rgba(249,115,22,0.15)]">
                   📦
                 </div>
                 <h3 className="text-sm font-bold text-neutral-900 dark:text-white tracking-tight">DevOps & Cloud</h3>
@@ -396,7 +398,7 @@ export const About: React.FC = () => {
                 ].map((tool) => (
                   <div
                     key={tool.name}
-                    className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100/80 dark:bg-[#12141a]/80 border border-neutral-200 dark:border-neutral-800 text-xs font-semibold text-neutral-700 dark:text-neutral-300 transition-all duration-300 hover:border-orange-500/50 hover:text-neutral-950 dark:hover:text-white hover:scale-105 cursor-pointer"
+                    className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 dark:bg-neutral-800/80 border border-neutral-300/80 dark:border-neutral-700/80 text-xs font-semibold text-neutral-700 dark:text-neutral-300 transition-all duration-300 hover:border-orange-400/50 hover:text-neutral-900 dark:hover:text-white hover:scale-105 cursor-pointer"
                   >
                     <span>{tool.tag}</span>
                     <span>{tool.name}</span>

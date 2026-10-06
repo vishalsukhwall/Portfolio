@@ -1,45 +1,59 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useThemeStore } from '@stores/themeStore';
+import type { Theme } from '@/types';
 
 export function useTheme() {
   const { theme, toggleTheme, setTheme } = useThemeStore();
 
+  // Synchronize the 'dark' class on <html> and update colorScheme
   useEffect(() => {
-    const root = window.document.documentElement;
-    
-    // Purani theme classes reset karke current theme apply karein
-    root.classList.remove('light', 'dark');
-    root.classList.add(theme);
+    const root = document.documentElement;
 
-    // localStorage me theme sync rakhein
-    try {
-      localStorage.setItem('portfolio-theme', theme);
-    } catch {
-      // Ignore if localStorage is unavailable
+    if (theme === 'dark') {
+      root.classList.add('dark');
+      root.classList.remove('light');
+    } else {
+      root.classList.remove('dark');
+      root.classList.add('light');
     }
+
+    root.style.colorScheme = theme;
   }, [theme]);
 
+  // Listen for OS system theme changes if user hasn't explicitly set a preference
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    
+
     const handleChange = (e: MediaQueryListEvent) => {
-      // Agar user ne manually koi theme select nahi ki ho tabhi system preference follow karein
-      const savedTheme = localStorage.getItem('portfolio-theme');
-      if (!savedTheme) {
+      const storedPreference = localStorage.getItem('portfolio-theme');
+      if (!storedPreference) {
         setTheme(e.matches ? 'dark' : 'light');
       }
     };
-    
+
     mediaQuery.addEventListener('change', handleChange);
-    
     return () => {
       mediaQuery.removeEventListener('change', handleChange);
     };
   }, [setTheme]);
 
+  const handleToggle = useCallback(() => {
+    toggleTheme();
+  }, [toggleTheme]);
+
+  const handleSetTheme = useCallback(
+    (newTheme: Theme) => {
+      setTheme(newTheme);
+    },
+    [setTheme]
+  );
+
   return {
     theme,
-    toggleTheme,
-    isDark: theme === 'dark'
+    toggleTheme: handleToggle,
+    setTheme: handleSetTheme,
+    isDark: theme === 'dark',
   };
 }
+
+export default useTheme;

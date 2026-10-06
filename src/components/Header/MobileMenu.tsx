@@ -8,7 +8,6 @@ export const MobileMenu: React.FC = () => {
   const { mobileMenuOpen, setMobileMenuOpen, activeSection } = useInteractionStore();
   const menuRef = useRef<HTMLDivElement>(null);
 
-
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -39,12 +38,11 @@ export const MobileMenu: React.FC = () => {
     }
   };
 
-
   return (
-    <div className="lg:hidden">
+    <div className="md:hidden">
       <button
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className="p-2 relative z-50 text-neutral-400 hover:text-accent focus:outline-none"
+        className="p-2 relative z-50 text-neutral-600 dark:text-neutral-400 hover:text-accent focus:outline-none"
         aria-expanded={mobileMenuOpen}
         aria-controls="mobile-menu"
         aria-label="Toggle menu"
@@ -55,7 +53,6 @@ export const MobileMenu: React.FC = () => {
           <span className={cn("w-full h-0.5 bg-current transform transition-all duration-300", mobileMenuOpen ? "-rotate-45 -translate-y-2" : "")} />
         </div>
       </button>
-
 
       <AnimatePresence>
         {mobileMenuOpen && (
@@ -74,7 +71,7 @@ export const MobileMenu: React.FC = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-64 bg-neutral-900 border-l border-white/10 z-50 flex flex-col p-6 shadow-2xl"
+              className="fixed top-0 right-0 bottom-0 w-64 bg-white dark:bg-neutral-900 border-l border-black/10 dark:border-white/10 z-50 flex flex-col p-6 shadow-2xl"
               aria-label="Mobile navigation"
             >
               <div className="flex flex-col gap-6 mt-16">
@@ -87,7 +84,9 @@ export const MobileMenu: React.FC = () => {
                       onClick={(e) => handleScroll(e, link.href)}
                       className={cn(
                         "text-lg font-medium transition-colors p-2 rounded-md",
-                        isActive ? "text-accent bg-accent/10" : "text-neutral-400 hover:text-accent hover:bg-white/5"
+                        isActive 
+                          ? "text-accent bg-accent/10" 
+                          : "text-neutral-600 dark:text-neutral-400 hover:text-accent hover:bg-black/5 dark:hover:bg-white/5"
                       )}
                     >
                       {link.label}
@@ -102,4 +101,6 @@ export const MobileMenu: React.FC = () => {
     </div>
   );
 };
+
 MobileMenu.displayName = 'MobileMenu';
+export default MobileMenu;

@@ -62,18 +62,18 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onProjectClick }) => {
           
           {/* Header */}
           <div className="space-y-3">
-            <div className="flex items-center gap-2.5 text-[#2dd4bf] font-mono text-xs tracking-widest uppercase font-bold">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#2dd4bf] inline-block animate-pulse" />
+            <div className="flex items-center gap-2.5 text-teal-600 dark:text-[#2dd4bf] font-mono text-xs tracking-widest uppercase font-bold">
+              <span className="w-2.5 h-2.5 rounded-full bg-teal-600 dark:bg-[#2dd4bf] inline-block animate-pulse" />
               <span>SYSTEM LOGS</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-serif font-black tracking-tight text-white leading-none">
+            <h2 className="text-4xl sm:text-5xl font-serif font-black tracking-tight text-neutral-900 dark:text-white leading-none">
               PROJECT <br />
               DECK
             </h2>
           </div>
 
           {/* Dynamic Numbered Project Tabs */}
-          <div className="space-y-2 py-4 border-l border-neutral-800/80 pl-4">
+          <div className="space-y-2 py-4 border-l border-neutral-300 dark:border-neutral-800/80 pl-4">
             {projects.map((project, idx) => {
               const isActive = idx === activeIndex;
               const formattedNumber = String(idx + 1).padStart(2, '0');
@@ -84,11 +84,11 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onProjectClick }) => {
                   onClick={() => scrollToProject(idx)}
                   className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl font-mono text-xs tracking-wider transition-all duration-300 text-left ${
                     isActive
-                      ? 'bg-[#12161f] text-white font-bold border border-neutral-700/60 shadow-[0_0_20px_rgba(45,212,191,0.08)]'
-                      : 'text-neutral-500 hover:text-neutral-200 hover:bg-[#0c0e14]/60'
+                      ? 'bg-neutral-200/80 dark:bg-[#12161f] text-neutral-900 dark:text-white font-bold border border-neutral-300 dark:border-neutral-700/60 shadow-sm'
+                      : 'text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-[#0c0e14]/60'
                   }`}
                 >
-                  <span className={isActive ? 'text-[#2dd4bf] font-bold' : 'text-neutral-600'}>
+                  <span className={isActive ? 'text-teal-600 dark:text-[#2dd4bf] font-bold' : 'text-neutral-400 dark:text-neutral-600'}>
                     {formattedNumber}
                   </span>
                   <span className="truncate uppercase">{project.title}</span>
@@ -102,7 +102,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onProjectClick }) => {
             <button
               onClick={handlePrev}
               aria-label="Previous project"
-              className="w-10 h-10 rounded-xl bg-[#0e1015] border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-600 flex items-center justify-center transition-all hover:scale-105 active:scale-95"
+              className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-[#0e1015] border border-neutral-300 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-600 flex items-center justify-center transition-all hover:scale-105 active:scale-95"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
@@ -112,7 +112,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onProjectClick }) => {
             <button
               onClick={handleNext}
               aria-label="Next project"
-              className="w-10 h-10 rounded-xl bg-[#0e1015] border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-600 flex items-center justify-center transition-all hover:scale-105 active:scale-95"
+              className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-[#0e1015] border border-neutral-300 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-600 flex items-center justify-center transition-all hover:scale-105 active:scale-95"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -120,10 +120,10 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ onProjectClick }) => {
             </button>
 
             <a
-              href="https://github.com/vishalsukhwall"
+              href="https://github.com/vishalsukhwal33"
               target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0e1015] border border-neutral-800 text-xs font-semibold text-neutral-300 hover:text-white hover:border-neutral-600 transition-all hover:scale-105"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-neutral-100 dark:bg-[#0e1015] border border-neutral-300 dark:border-neutral-800 text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-600 transition-all hover:scale-105"
             >
               <span>View Archives</span>
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">

@@ -120,7 +120,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onMouseEnter={handleMouseEnter}
-        className="relative z-10 w-full bg-[#0b0d10]/95 backdrop-blur-2xl border border-neutral-800/80 group-hover:border-neutral-700/80 rounded-[32px] sm:rounded-[36px] overflow-hidden transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.85)] flex flex-col"
+        className="relative z-10 w-full bg-white/90 dark:bg-[#0b0d10]/95 backdrop-blur-2xl border border-neutral-200/90 dark:border-neutral-800/80 group-hover:border-neutral-300 dark:group-hover:border-neutral-700/80 rounded-[32px] sm:rounded-[36px] overflow-hidden transition-all duration-300 shadow-md dark:shadow-[0_20px_50px_rgba(0,0,0,0.85)] flex flex-col"
         style={{
           transform: prefersReducedMotion 
             ? 'none' 
@@ -139,7 +139,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
 
         {/* Viewport Area */}
         <div 
-          className="relative w-full h-56 sm:h-64 md:h-72 overflow-hidden bg-[#07090e] border-b border-neutral-800/60"
+          className="relative w-full h-56 sm:h-64 md:h-72 overflow-hidden bg-neutral-100 dark:bg-[#07090e] border-b border-neutral-200 dark:border-neutral-800/60"
           style={{ transform: 'translateZ(15px)' }}
         >
           {isImagePath ? (
@@ -150,24 +150,24 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
               className="w-full h-full object-cover object-top opacity-85 transition-transform duration-700 ease-out group-hover:scale-[1.04] group-hover:opacity-100" 
             />
           ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0e1626] via-[#07090e] to-black">
+            <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-neutral-100 via-neutral-200 to-neutral-300 dark:from-[#0e1626] dark:via-[#07090e] dark:to-black">
               <div className="absolute inset-0 bg-[radial-gradient(#14b8a6_1px,transparent_1px)] [background-size:16px_16px] opacity-15" />
-              <div className="w-14 h-14 rounded-2xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400 text-2xl shadow-[0_0_25px_rgba(20,184,166,0.2)]">
+              <div className="w-14 h-14 rounded-2xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-600 dark:text-teal-400 text-2xl shadow-[0_0_25px_rgba(20,184,166,0.2)]">
                 ⚡
               </div>
-              <p className="mt-3 text-xs font-mono tracking-widest text-neutral-400 uppercase font-semibold">
+              <p className="mt-3 text-xs font-mono tracking-widest text-neutral-600 dark:text-neutral-400 uppercase font-semibold">
                 {project.title}
               </p>
             </div>
           )}
 
           {/* Shadow Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d10] via-transparent to-black/30 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/90 dark:from-[#0b0d10] via-transparent to-black/10 dark:to-black/30 pointer-events-none" />
 
           {/* Top Tag Badge */}
           <div className="absolute top-5 right-5 z-20">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-neutral-700/80 text-[10px] font-mono uppercase tracking-widest text-neutral-300 font-bold shadow-lg">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-black/70 backdrop-blur-md border border-neutral-300/80 dark:border-neutral-700/80 text-[10px] font-mono uppercase tracking-widest text-neutral-800 dark:text-neutral-300 font-bold shadow-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-500 dark:bg-teal-400 animate-pulse" />
               {badgeText}
             </span>
           </div>
@@ -179,9 +179,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
           style={{ transform: 'translateZ(25px)' }}
         >
           {/* Header Row: Title & Metrics */}
-          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 border-b border-neutral-800/80 pb-5">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800/80 pb-5">
             <div>
-              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-tight group-hover:text-teal-300 transition-colors">
+              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-neutral-900 dark:text-white tracking-tight group-hover:text-teal-600 dark:group-hover:text-teal-300 transition-colors">
                 {project.title}
               </h3>
             </div>
@@ -192,7 +192,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
                 <div className="text-[10px] font-mono font-bold text-neutral-500 tracking-wider uppercase">
                   {project.metrics?.label1 || 'LIGHTHOUSE'}
                 </div>
-                <div className="text-sm font-mono font-bold text-neutral-200">
+                <div className="text-sm font-mono font-bold text-neutral-800 dark:text-neutral-200">
                   {project.metrics?.value1 || '100'}
                 </div>
               </div>
@@ -200,7 +200,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
                 <div className="text-[10px] font-mono font-bold text-neutral-500 tracking-wider uppercase">
                   {project.metrics?.label2 || 'SEO'}
                 </div>
-                <div className="text-sm font-mono font-bold text-neutral-200">
+                <div className="text-sm font-mono font-bold text-neutral-800 dark:text-neutral-200">
                   {project.metrics?.value2 || 'Top 1%'}
                 </div>
               </div>
@@ -208,7 +208,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
           </div>
 
           {/* Description */}
-          <p className="text-neutral-400 text-sm sm:text-[15px] leading-relaxed line-clamp-2 font-normal">
+          <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-[15px] leading-relaxed line-clamp-2 font-normal">
             {project.description}
           </p>
 
@@ -225,7 +225,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
             </div>
 
             {/* Live CTA Button */}
-            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-bold text-xs group-hover:bg-neutral-200 transition-all duration-300 group-hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black font-bold text-xs group-hover:bg-neutral-800 dark:group-hover:bg-neutral-200 transition-all duration-300 group-hover:scale-105 active:scale-95 shadow-md dark:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
               <span>View System</span>
               <svg 
                 className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" 

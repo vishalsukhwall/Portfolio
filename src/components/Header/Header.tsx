@@ -3,6 +3,7 @@ import { useScrollPosition } from '@hooks/useScrollPosition';
 import { cn } from '@utils/cn';
 import { NavBar } from './NavBar';
 import { MobileMenu } from './MobileMenu';
+import { ThemeToggle } from './ThemeToggle';
 import { PORTFOLIO_NAME } from '@utils/constants';
 
 export const Header: React.FC = () => {
@@ -14,33 +15,35 @@ export const Header: React.FC = () => {
       <div 
         className={cn(
           "pointer-events-auto w-full max-w-4xl lg:max-w-5xl flex items-center justify-between px-6 sm:px-8 py-3 rounded-full transition-all duration-300",
-          "bg-neutral-950/70 backdrop-blur-xl border border-teal-950/40 shadow-[0_8px_32px_rgba(0,0,0,0.6)]",
-          isScrolled && "bg-neutral-950/90 border-neutral-800 shadow-2xl scale-[0.99]"
+          "bg-white/75 dark:bg-neutral-950/70 backdrop-blur-xl border border-black/[0.08] dark:border-teal-950/40 shadow-lg shadow-black/5 dark:shadow-[0_8px_32px_rgba(0,0,0,0.6)]",
+          isScrolled && "bg-white/90 dark:bg-neutral-950/90 border-black/[0.12] dark:border-neutral-800 shadow-xl scale-[0.99]"
         )}
       >
-        {/* 1. Left: Brand Name */}
+        {/* Left: Brand Name */}
         <a 
           href="#home" 
-          className="text-base sm:text-lg font-bold tracking-tight text-white hover:opacity-90 transition-opacity flex items-center gap-0.5 select-none shrink-0"
+          className="text-base sm:text-lg font-bold tracking-tight text-neutral-900 dark:text-white hover:opacity-90 transition-opacity flex items-center gap-0.5 select-none shrink-0"
           aria-label="Home"
         >
           <span>{PORTFOLIO_NAME || 'Vishal Sukhwal'}</span>
-          <span className="text-teal-400 font-extrabold text-xl leading-none"></span>
         </a>
         
-        {/* 2. Center: Centered Nav Links Pill */}
+        {/* Center: Nav Links */}
         <div className="hidden md:flex flex-1 justify-center px-4">
           <NavBar />
         </div>
-        {/* 3. Right: Mobile Menu Only */}
-        <div className="md:hidden flex items-center text-teal-400 shrink-0">
-          <MobileMenu />
+
+        {/* Right: Theme Toggle & Mobile Menu */}
+        <div className="flex items-center gap-2 shrink-0">
+          <ThemeToggle />
+          <div className="md:hidden">
+            <MobileMenu />
+          </div>
         </div>
       </div>
     </header>
   );
 };
-
 
 Header.displayName = 'Header';
 export default Header;

@@ -13,13 +13,12 @@ const Contact = React.lazy(() => import('@components/Contact/Contact').then(modu
 
 const LoadingSpinner = () => (
   <div className="w-full min-h-[40vh] flex items-center justify-center">
-    <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-teal-400"></div>
+    <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-teal-500"></div>
   </div>
 );
 
-
 const App: React.FC = () => {
-  // Initialize theme
+  // Initialize and synchronize theme
   useTheme();
   
   useScrollPosition();
@@ -53,7 +52,7 @@ const App: React.FC = () => {
   }, [setActiveSection]);
 
   return (
-    <div className="min-h-screen bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 transition-colors duration-300">
+    <div className="min-h-screen w-full bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300 ease-in-out">
       <Header />
       <main id="main-content" className="flex flex-col space-y-12 sm:space-y-16 pb-20">
         <Hero />

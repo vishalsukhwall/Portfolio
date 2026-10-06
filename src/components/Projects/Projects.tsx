@@ -33,10 +33,10 @@ const projectsDeckData: DeckProject[] = [
     badge: 'CV / TRANSFER LEARNING',
     title: 'Dog vs Cat Classifier',
     description:
-      'Real-time deep learning image classification platform powered by MobileNetV2 and TensorFlow, serving instant predictions via an optimized Flask REST API under strict 512MB RAM cloud constraints.',
+      'Real-time deep learning image classification web application powered by MobileNetV2 and TensorFlow, serving instant predictions via an optimized Flask REST API under strict 512MB RAM cloud constraints.',
     accentBg: 'from-amber-950/60 via-[#07090e] to-black',
     image: 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=1200&q=80',
-    previewIcon: '🐶🐱',
+    previewIcon: '🐾',
     previewSubtitle: 'TensorFlow MobileNetV2 Vision',
     metrics: {
       label1: 'INFERENCE',
@@ -58,7 +58,7 @@ const projectsDeckData: DeckProject[] = [
   },
   {
     id: 'ai-career',
-    number: '02',
+    number: '03',
     name: 'AI Career Mentor',
     badge: 'AI / LLM AGENT',
     title: 'AI Career Mentor',
@@ -78,7 +78,7 @@ const projectsDeckData: DeckProject[] = [
       { name: 'Streamlit', icon: '👑', color: 'border-rose-500/30 text-rose-400 bg-rose-950/20' },
       { name: 'HuggingFace', icon: '🤗', color: 'border-amber-500/30 text-amber-400 bg-amber-950/20' },
     ],
-    liveUrl: 'https://ai-career-mentor-nanf.onrender.com/',
+    liveUrl: 'https://ai-career-mentor-nanf.onrender.com/', // <-- Yahan link add hua
     githubUrl: 'https://github.com/vishalsukhwall',
     challenge: 'Formatting raw unstructured resume text and matching it against dynamic industry skill graphs.',
     solution: 'Engineered specialized few-shot prompt pipelines coupled with Hugging Face inference APIs.',
@@ -86,7 +86,7 @@ const projectsDeckData: DeckProject[] = [
   },
   {
     id: 'spam-detect',
-    number: '03',
+    number: '04',
     name: 'SMS Spam Sentinel',
     badge: 'ML PIPELINE',
     title: 'SMS Spam Detection Pipeline',
@@ -105,17 +105,15 @@ const projectsDeckData: DeckProject[] = [
       { name: 'Python', icon: '🐍', color: 'border-yellow-500/30 text-yellow-400 bg-yellow-950/20' },
       { name: 'Scikit-Learn', icon: '⚙️', color: 'border-orange-500/30 text-orange-400 bg-orange-950/20' },
       { name: 'Flask', icon: '🧪', color: 'border-neutral-500/30 text-neutral-300 bg-neutral-900' },
-      { name: 'Render', icon: '☁️', color: 'border-cyan-500/30 text-cyan-400 bg-cyan-950/20' },
-    ],
+    ],  
     liveUrl: 'https://sms-spam-detection-1-b9nj.onrender.com/',
-    githubUrl: 'https://github.com/vishalsukhwall',
     challenge: 'Mitigating false-positive classifications on transactional notification templates.',
     solution: 'Trained a Multinomial Naive Bayes classifier with TF-IDF vectorization and custom n-gram tokenization.',
     result: 'Attained 98.4% precision with sub-15 millisecond API inference turnaround.',
   },
   {
     id: 'wealthy-names',
-    number: '04',
+    number: '05',
     name: 'Wealthy Names Edge',
     badge: 'LIVE WEB APP',
     title: 'Wealthy Names Web',
@@ -136,7 +134,6 @@ const projectsDeckData: DeckProject[] = [
       { name: 'Vercel', icon: '▲', color: 'border-neutral-400/30 text-neutral-200 bg-neutral-900' },
     ],
     liveUrl: 'https://wealthynames.vercel.app/#blog',
-    githubUrl: 'https://github.com/vishalsukhwall/wealthnames',
     challenge: 'Building an ultra-responsive, mobile-first design with smooth animation triggers.',
     solution: 'Utilized React state hooks alongside Tailwind JIT compilation and Vercel edge caching.',
     result: 'Zero render lag across mobile viewports and instant asset hydration.',
@@ -156,7 +153,6 @@ export const Projects: React.FC = () => {
     currentIndexRef.current = currentIndex;
   }, [currentIndex]);
 
-  // Global Wheel Scroll Lock & Transition
   useEffect(() => {
     const handleGlobalWheel = (e: WheelEvent) => {
       if (!sectionRef.current || isTransitioningRef.current || modalProject) return;
@@ -211,30 +207,28 @@ export const Projects: React.FC = () => {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative min-h-screen py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#050608] text-white scroll-mt-20 selection:bg-teal-500/30 flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300 scroll-mt-20 selection:bg-teal-500/30 flex items-center justify-center overflow-hidden"
     >
-      {/* Background Subtle Ambient Glow */}
-      <div className="absolute top-1/4 left-10 w-[550px] h-[550px] bg-teal-500/[0.03] rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-10 w-[550px] h-[550px] bg-purple-500/[0.03] rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/4 left-10 w-[550px] h-[550px] bg-teal-500/[0.03] dark:bg-teal-500/[0.03] rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-[550px] h-[550px] bg-purple-500/[0.03] dark:bg-purple-500/[0.03] rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* LEFT COLUMN: Deck Navigation */}
+          {/* LEFT COLUMN */}
           <div className="lg:col-span-4 flex flex-col justify-between self-stretch space-y-8 lg:space-y-10">
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-[#2dd4bf] font-mono text-xs tracking-widest uppercase font-bold">
-                <span className="w-2 h-2 rounded-full bg-[#2dd4bf] inline-block animate-pulse" />
+              <div className="flex items-center gap-2 text-teal-600 dark:text-[#2dd4bf] font-mono text-xs tracking-widest uppercase font-bold">
+                <span className="w-2 h-2 rounded-full bg-teal-600 dark:bg-[#2dd4bf] inline-block animate-pulse" />
                 <span>SYSTEM LOGS</span>
               </div>
 
-              <h2 className="text-4xl sm:text-5xl font-serif font-black tracking-tight text-white leading-none">
+              <h2 className="text-4xl sm:text-5xl font-serif font-black tracking-tight text-neutral-900 dark:text-white leading-none">
                 PROJECT <br />
                 DECK
               </h2>
             </div>
 
-            {/* Tabs List */}
             <div className="space-y-2 py-2">
               {projectsDeckData.map((project, idx) => {
                 const isActive = idx === currentIndex;
@@ -247,14 +241,14 @@ export const Projects: React.FC = () => {
                     }}
                     className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 text-left ${
                       isActive
-                        ? 'bg-[#12161f] text-white border border-neutral-700/60 shadow-[0_0_20px_rgba(45,212,191,0.08)]'
-                        : 'text-neutral-500 hover:text-neutral-300 hover:bg-[#0c0e14]/60'
+                        ? 'bg-neutral-200/80 dark:bg-[#12161f] text-neutral-900 dark:text-white border border-neutral-300 dark:border-neutral-700/60 shadow-sm'
+                        : 'text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-300 hover:bg-neutral-100/80 dark:hover:bg-[#0c0e14]/60'
                     }`}
                   >
-                    <span className={`font-mono text-xs ${isActive ? 'text-[#2dd4bf] font-bold' : 'text-neutral-600'}`}>
+                    <span className={`font-mono text-xs ${isActive ? 'text-teal-600 dark:text-[#2dd4bf] font-bold' : 'text-neutral-400 dark:text-neutral-600'}`}>
                       {project.number}
                     </span>
-                    <span className={`font-serif tracking-wide text-sm truncate ${isActive ? 'italic font-bold text-white' : 'font-medium'}`}>
+                    <span className={`font-serif tracking-wide text-sm truncate ${isActive ? 'italic font-bold text-neutral-900 dark:text-white' : 'font-medium text-neutral-600 dark:text-neutral-400'}`}>
                       {project.name}
                     </span>
                   </button>
@@ -262,12 +256,11 @@ export const Projects: React.FC = () => {
               })}
             </div>
 
-            {/* Bottom Controls */}
             <div className="flex items-center gap-3 pt-2">
               <button
                 onClick={handlePrev}
                 aria-label="Previous project"
-                className="w-10 h-10 rounded-xl bg-[#0e1015] border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-600 flex items-center justify-center transition-all hover:scale-105 active:scale-95"
+                className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-[#0e1015] border border-neutral-300 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-600 flex items-center justify-center transition-all hover:scale-105 active:scale-95"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
@@ -277,7 +270,7 @@ export const Projects: React.FC = () => {
               <button
                 onClick={handleNext}
                 aria-label="Next project"
-                className="w-10 h-10 rounded-xl bg-[#0e1015] border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-600 flex items-center justify-center transition-all hover:scale-105 active:scale-95"
+                className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-[#0e1015] border border-neutral-300 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-600 flex items-center justify-center transition-all hover:scale-105 active:scale-95"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -288,7 +281,7 @@ export const Projects: React.FC = () => {
                 href="https://github.com/vishalsukhwall"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0e1015] border border-neutral-800 text-xs font-semibold text-neutral-300 hover:text-white hover:border-neutral-600 transition-all hover:scale-105"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-neutral-100 dark:bg-[#0e1015] border border-neutral-300 dark:border-neutral-800 text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-600 transition-all hover:scale-105"
               >
                 <span>View Archives</span>
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -298,13 +291,13 @@ export const Projects: React.FC = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Static Card Viewport */}
-          <div className="lg:col-span-8 w-full bg-[#0b0d10]/95 backdrop-blur-2xl border border-neutral-800/80 rounded-[36px] overflow-hidden shadow-2xl flex flex-col justify-between transition-all duration-300 hover:border-neutral-700">
+          {/* RIGHT COLUMN */}
+          <div className="lg:col-span-8 w-full bg-white/80 dark:bg-[#0b0d10]/95 backdrop-blur-2xl border border-neutral-200/90 dark:border-neutral-800/80 rounded-[36px] overflow-hidden shadow-lg dark:shadow-2xl flex flex-col justify-between transition-all duration-300 hover:border-neutral-300 dark:hover:border-neutral-700">
             
-            {/* 1. Visual Banner Frame */}
+            {/* Visual Banner Frame */}
             <div 
               onClick={() => setModalProject(activeProject)}
-              className="relative w-full h-[220px] sm:h-[260px] overflow-hidden bg-[#07090e] cursor-pointer group"
+              className="relative w-full h-[220px] sm:h-[260px] overflow-hidden bg-neutral-100 dark:bg-[#07090e] cursor-pointer group"
             >
               <div 
                 key={`img-${activeProject.id}`}
@@ -320,35 +313,35 @@ export const Projects: React.FC = () => {
                       alt={activeProject.title}
                       className="w-full h-full object-cover opacity-40 scale-105 group-hover:scale-110 transition-transform duration-700 ease-out brightness-90 contrast-125"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d10] via-[#0b0d10]/60 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/50 to-transparent dark:from-[#0b0d10] dark:via-[#0b0d10]/60 dark:to-transparent" />
                   </div>
                 ) : (
-                  <div className="absolute w-72 h-72 rounded-full bg-white/[0.04] blur-3xl pointer-events-none" />
+                  <div className="absolute w-72 h-72 rounded-full bg-teal-500/[0.06] dark:bg-white/[0.04] blur-3xl pointer-events-none" />
                 )}
 
                 <div className="relative z-10 text-center space-y-2 p-6">
-                  <div className="w-16 h-16 mx-auto rounded-2xl bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center text-3xl shadow-[0_0_30px_rgba(0,0,0,0.7)] transition-all duration-300 group-hover:scale-110 group-hover:border-amber-500/40">
+                  <div className="w-16 h-16 mx-auto rounded-2xl bg-white/80 dark:bg-black/50 backdrop-blur-md border border-black/10 dark:border-white/15 flex items-center justify-center text-3xl shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:shadow-[0_0_30px_rgba(0,0,0,0.7)] transition-all duration-300 group-hover:scale-110 group-hover:border-amber-500/40">
                     {activeProject.previewIcon}
                   </div>
-                  <p className="text-base font-serif italic font-bold text-white tracking-wide drop-shadow-md">
+                  <p className="text-base font-serif italic font-bold text-neutral-900 dark:text-white tracking-wide drop-shadow-sm dark:drop-shadow-md">
                     {activeProject.title}
                   </p>
-                  <p className="text-xs font-mono text-amber-400 uppercase tracking-widest font-semibold drop-shadow">
+                  <p className="text-xs font-mono text-amber-600 dark:text-amber-400 uppercase tracking-widest font-semibold drop-shadow-sm">
                     {activeProject.previewSubtitle}
                   </p>
                 </div>
               </div>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d10] via-transparent to-black/20 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#0b0d10] via-transparent to-black/5 dark:to-black/20 pointer-events-none" />
 
               <div className="absolute top-5 right-5 z-10">
-                <span className="px-3.5 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-neutral-700/80 text-[10px] font-mono uppercase tracking-widest text-neutral-300 font-bold shadow-lg">
+                <span className="px-3.5 py-1.5 rounded-full bg-white/90 dark:bg-black/70 backdrop-blur-md border border-neutral-300/80 dark:border-neutral-700/80 text-[10px] font-mono uppercase tracking-widest text-neutral-800 dark:text-neutral-300 font-bold shadow-md">
                   {activeProject.badge}
                 </span>
               </div>
             </div>
 
-            {/* 2. Inner Content Body */}
+            {/* Inner Content Body */}
             <div 
               key={`content-${activeProject.id}`}
               className="p-6 sm:p-8 md:p-10 space-y-6 transition-all duration-500 ease-out"
@@ -356,10 +349,10 @@ export const Projects: React.FC = () => {
                 animation: `${direction === 'down' ? 'fadeInUp' : 'fadeInDown'} 0.45s ease-out forwards`
               }}
             >
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 border-b border-neutral-800/80 pb-5">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800/80 pb-5">
                 <h3 
                   onClick={() => setModalProject(activeProject)}
-                  className="text-3xl sm:text-4xl font-serif italic font-bold tracking-tight bg-gradient-to-r from-white via-neutral-100 to-neutral-400 bg-clip-text text-transparent cursor-pointer hover:from-amber-200 hover:to-amber-400 transition-all duration-300"
+                  className="text-3xl sm:text-4xl font-serif italic font-bold tracking-tight bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-500 dark:from-white dark:via-neutral-100 dark:to-neutral-400 bg-clip-text text-transparent cursor-pointer hover:from-amber-600 hover:to-amber-500 dark:hover:from-amber-200 dark:hover:to-amber-400 transition-all duration-300"
                 >
                   {activeProject.title}
                 </h3>
@@ -369,7 +362,7 @@ export const Projects: React.FC = () => {
                     <div className="text-[10px] font-mono font-bold text-neutral-500 tracking-wider uppercase">
                       {activeProject.metrics.label1}
                     </div>
-                    <div className="text-sm font-mono font-bold text-neutral-200">
+                    <div className="text-sm font-mono font-bold text-neutral-800 dark:text-neutral-200">
                       {activeProject.metrics.value1}
                     </div>
                   </div>
@@ -377,14 +370,14 @@ export const Projects: React.FC = () => {
                     <div className="text-[10px] font-mono font-bold text-neutral-500 tracking-wider uppercase">
                       {activeProject.metrics.label2}
                     </div>
-                    <div className="text-sm font-mono font-bold text-neutral-200">
+                    <div className="text-sm font-mono font-bold text-neutral-800 dark:text-neutral-200">
                       {activeProject.metrics.value2}
                     </div>
                   </div>
                 </div>
               </div>
 
-              <p className="text-neutral-400 text-sm sm:text-[15px] leading-relaxed font-normal min-h-[48px]">
+              <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-[15px] leading-relaxed font-normal min-h-[48px]">
                 {activeProject.description}
               </p>
 
@@ -404,7 +397,7 @@ export const Projects: React.FC = () => {
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => setModalProject(activeProject)}
-                    className="px-4 py-2 rounded-full bg-neutral-900 border border-neutral-700 text-xs font-semibold text-neutral-300 hover:text-white hover:border-neutral-500 transition-all hover:scale-105"
+                    className="px-4 py-2 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 text-xs font-semibold text-neutral-800 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-500 transition-all hover:scale-105"
                   >
                     Details
                   </button>
@@ -413,7 +406,7 @@ export const Projects: React.FC = () => {
                     href={activeProject.liveUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-bold text-xs hover:bg-neutral-200 transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black font-bold text-xs hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all hover:scale-105 active:scale-95 shadow-md dark:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
                   >
                     <span>Live Demo</span>
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
@@ -449,27 +442,26 @@ export const Projects: React.FC = () => {
         }
       `}</style>
 
-      {/* Modal */}
       {modalProject && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
           <div 
             onClick={() => setModalProject(null)}
-            className="absolute inset-0 bg-black/80 backdrop-blur-md" 
+            className="absolute inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-md" 
           />
-          <div className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-[#0b0d10] border border-neutral-800 rounded-[28px] p-6 sm:p-8 z-10 text-white space-y-6 shadow-2xl">
+          <div className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-white dark:bg-[#0b0d10] border border-neutral-200 dark:border-neutral-800 rounded-[28px] p-6 sm:p-8 z-10 text-neutral-900 dark:text-white space-y-6 shadow-2xl">
             <button
               onClick={() => setModalProject(null)}
-              className="absolute top-5 right-5 p-2 bg-neutral-800 rounded-full text-neutral-300 hover:text-white"
+              className="absolute top-5 right-5 p-2 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 rounded-full text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors"
             >
               ✕
             </button>
-            <h2 className="text-2xl sm:text-3xl font-serif italic font-bold">{modalProject.title}</h2>
-            <p className="text-neutral-400 text-sm leading-relaxed">{modalProject.description}</p>
+            <h2 className="text-2xl sm:text-3xl font-serif italic font-bold text-neutral-900 dark:text-white">{modalProject.title}</h2>
+            <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">{modalProject.description}</p>
             {modalProject.challenge && (
-              <div className="space-y-3 bg-[#12141a]/60 p-4 rounded-xl border border-neutral-800">
-                <div className="text-xs font-mono font-bold text-rose-400">CHALLENGE: {modalProject.challenge}</div>
-                <div className="text-xs font-mono font-bold text-cyan-400">SOLUTION: {modalProject.solution}</div>
-                <div className="text-xs font-mono font-bold text-emerald-400">RESULT: {modalProject.result}</div>
+              <div className="space-y-3 bg-neutral-100/80 dark:bg-[#12141a]/60 p-4 rounded-xl border border-neutral-200 dark:border-neutral-800">
+                <div className="text-xs font-mono font-bold text-rose-600 dark:text-rose-400">CHALLENGE: {modalProject.challenge}</div>
+                <div className="text-xs font-mono font-bold text-cyan-600 dark:text-cyan-400">SOLUTION: {modalProject.solution}</div>
+                <div className="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">RESULT: {modalProject.result}</div>
               </div>
             )}
           </div>

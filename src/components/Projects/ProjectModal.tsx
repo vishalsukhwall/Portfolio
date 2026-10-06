@@ -84,14 +84,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 20 }}
             transition={{ type: 'spring', damping: 26, stiffness: 320 }}
-            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-[#0b0d10] rounded-[32px] shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-neutral-800 z-10 scrollbar-hide text-white"
+            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white dark:bg-[#0b0d10] rounded-[32px] shadow-2xl dark:shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-neutral-200 dark:border-neutral-800 z-10 scrollbar-hide text-neutral-900 dark:text-white"
           >
             {/* Close Button */}
             <button
               ref={closeButtonRef}
               onClick={onClose}
               aria-label="Close modal"
-              className="absolute top-5 right-5 z-30 p-2.5 bg-[#12141a]/90 hover:bg-neutral-800 rounded-full text-neutral-400 hover:text-white transition-all border border-neutral-700/80 backdrop-blur-md hover:scale-105"
+              className="absolute top-5 right-5 z-30 p-2.5 bg-neutral-100/90 hover:bg-neutral-200 dark:bg-[#12141a]/90 dark:hover:bg-neutral-800 rounded-full text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-all border border-neutral-200 dark:border-neutral-700/80 backdrop-blur-md hover:scale-105"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -100,7 +100,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
             </button>
 
             {/* Banner Image / Viewport */}
-            <div className="w-full h-64 sm:h-72 relative overflow-hidden bg-[#07080b]">
+            <div className="w-full h-64 sm:h-72 relative overflow-hidden bg-neutral-100 dark:bg-[#07080b]">
               {isImagePath ? (
                 <img
                   src={project.image}
@@ -110,12 +110,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
               ) : (
                 <div className="w-full h-full" style={{ background: project.image }} />
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d10] via-transparent to-black/40" />
+              <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#0b0d10] via-transparent to-black/10 dark:to-black/40" />
 
               {/* Tag Badge */}
               <div className="absolute top-5 left-5 z-10">
-                <span className="px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-neutral-700/60 text-[10px] font-mono uppercase tracking-widest text-[#2dd4bf] font-bold shadow-lg flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#2dd4bf] animate-pulse" />
+                <span className="px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-black/60 backdrop-blur-md border border-neutral-200 dark:border-neutral-700/60 text-[10px] font-mono uppercase tracking-widest text-teal-600 dark:text-[#2dd4bf] font-bold shadow-md flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-teal-500 dark:bg-[#2dd4bf] animate-pulse" />
                   CASE STUDY
                 </span>
               </div>
@@ -124,7 +124,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
             {/* Modal Body */}
             <div className="p-6 sm:p-8 md:p-10 -mt-6 relative z-10 space-y-6">
               <div>
-                <h2 id="modal-title" className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                <h2 id="modal-title" className="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-white tracking-tight">
                   {project.title}
                 </h2>
               </div>
@@ -137,36 +137,36 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
               </div>
 
               {/* Overview Description */}
-              <div className="text-neutral-300 text-sm sm:text-[15px] leading-relaxed font-normal border-b border-neutral-800/80 pb-6">
+              <div className="text-neutral-600 dark:text-neutral-300 text-sm sm:text-[15px] leading-relaxed font-normal border-b border-neutral-200 dark:border-neutral-800/80 pb-6">
                 <p>{project.description}</p>
               </div>
 
               {/* Case Study Details */}
               {project.caseStudy && (
                 <div className="space-y-4 pt-2">
-                  <div className="bg-[#12141a]/60 border border-neutral-800/80 rounded-2xl p-5 space-y-1.5">
-                    <h3 className="text-xs font-mono font-bold text-rose-400 tracking-wider uppercase flex items-center gap-2">
+                  <div className="bg-neutral-100/80 dark:bg-[#12141a]/60 border border-neutral-200 dark:border-neutral-800/80 rounded-2xl p-5 space-y-1.5">
+                    <h3 className="text-xs font-mono font-bold text-rose-600 dark:text-rose-400 tracking-wider uppercase flex items-center gap-2">
                       <span>•</span> The Challenge
                     </h3>
-                    <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm leading-relaxed">
                       {project.caseStudy.challenge}
                     </p>
                   </div>
 
-                  <div className="bg-[#12141a]/60 border border-neutral-800/80 rounded-2xl p-5 space-y-1.5">
-                    <h3 className="text-xs font-mono font-bold text-cyan-400 tracking-wider uppercase flex items-center gap-2">
+                  <div className="bg-neutral-100/80 dark:bg-[#12141a]/60 border border-neutral-200 dark:border-neutral-800/80 rounded-2xl p-5 space-y-1.5">
+                    <h3 className="text-xs font-mono font-bold text-cyan-600 dark:text-cyan-400 tracking-wider uppercase flex items-center gap-2">
                       <span>•</span> The Solution
                     </h3>
-                    <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm leading-relaxed">
                       {project.caseStudy.solution}
                     </p>
                   </div>
 
-                  <div className="bg-[#12141a]/60 border border-neutral-800/80 rounded-2xl p-5 space-y-1.5">
-                    <h3 className="text-xs font-mono font-bold text-emerald-400 tracking-wider uppercase flex items-center gap-2">
+                  <div className="bg-neutral-100/80 dark:bg-[#12141a]/60 border border-neutral-200 dark:border-neutral-800/80 rounded-2xl p-5 space-y-1.5">
+                    <h3 className="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase flex items-center gap-2">
                       <span>•</span> The Result
                     </h3>
-                    <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm leading-relaxed">
                       {project.caseStudy.result}
                     </p>
                   </div>
@@ -174,14 +174,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
               )}
 
               {/* CTAs */}
-              <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-neutral-800/80">
+              <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-neutral-200 dark:border-neutral-800/80">
                 <div className="flex flex-wrap items-center gap-3">
                   {project.liveUrl && (
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-black font-bold text-xs rounded-full hover:bg-neutral-200 transition-all hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                      className="inline-flex items-center gap-2 px-6 py-2.5 bg-neutral-900 text-white dark:bg-white dark:text-black font-bold text-xs rounded-full hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all hover:scale-105 shadow-md dark:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
                     >
                       <span>Live Demo</span>
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
@@ -195,7 +195,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#12141a] text-neutral-200 border border-neutral-800 hover:border-neutral-600 font-semibold text-xs rounded-full hover:text-white transition-all hover:scale-105"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-100 text-neutral-800 border border-neutral-300 hover:border-neutral-400 font-semibold text-xs rounded-full dark:bg-[#12141a] dark:text-neutral-200 dark:border-neutral-800 dark:hover:border-neutral-600 hover:text-neutral-950 dark:hover:text-white transition-all hover:scale-105"
                     >
                       <span>View Source</span>
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">

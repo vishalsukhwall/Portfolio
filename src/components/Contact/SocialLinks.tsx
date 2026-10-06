@@ -39,15 +39,15 @@ const getIcon = (iconName: string) => {
 const getPlatformStyle = (platform: string) => {
   switch (platform.toLowerCase()) {
     case 'github':
-      return 'hover:border-neutral-400 hover:text-white hover:shadow-[0_8px_25px_rgba(255,255,255,0.25)]';
+      return 'hover:border-neutral-400 dark:hover:border-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:shadow-[0_8px_25px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_8px_25px_rgba(255,255,255,0.25)]';
     case 'linkedin':
-      return 'hover:border-blue-500 hover:text-blue-400 hover:shadow-[0_8px_25px_rgba(10,102,194,0.35)]';
+      return 'hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 hover:shadow-[0_8px_25px_rgba(10,102,194,0.25)] dark:hover:shadow-[0_8px_25px_rgba(10,102,194,0.35)]';
     case 'instagram':
-      return 'hover:border-pink-500 hover:text-pink-400 hover:shadow-[0_8px_25px_rgba(225,48,108,0.4)]';
+      return 'hover:border-pink-500 hover:text-pink-600 dark:hover:text-pink-400 hover:shadow-[0_8px_25px_rgba(225,48,108,0.25)] dark:hover:shadow-[0_8px_25px_rgba(225,48,108,0.4)]';
     case 'email':
-      return 'hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_8px_25px_rgba(0,212,255,0.35)]';
+      return 'hover:border-cyan-500 hover:text-cyan-600 dark:hover:text-cyan-300 hover:shadow-[0_8px_25px_rgba(0,212,255,0.25)] dark:hover:shadow-[0_8px_25px_rgba(0,212,255,0.35)]';
     default:
-      return 'hover:border-accent hover:text-accent hover:shadow-[0_8px_25px_rgba(0,212,255,0.3)]';
+      return 'hover:border-teal-500 hover:text-teal-600 dark:hover:text-teal-300 hover:shadow-[0_8px_25px_rgba(20,184,166,0.25)]';
   }
 };
 
@@ -61,12 +61,12 @@ export const SocialLinks: React.FC = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={link.label}
-          className={`relative group w-11 h-11 rounded-xl bg-neutral-900/80 backdrop-blur-md flex items-center justify-center text-neutral-400 border border-neutral-800 transition-all duration-300 transform-gpu hover:-translate-y-1.5 hover:scale-110 active:scale-95 ${getPlatformStyle(
+          className={`relative group w-11 h-11 rounded-xl bg-neutral-100/90 dark:bg-neutral-900/80 backdrop-blur-md flex items-center justify-center text-neutral-600 dark:text-neutral-400 border border-neutral-300/80 dark:border-neutral-800 transition-all duration-300 transform-gpu hover:-translate-y-1.5 hover:scale-110 active:scale-95 shadow-sm dark:shadow-none ${getPlatformStyle(
             link.platform
           )}`}
         >
           {/* Subtle 3D Top Glare */}
-          <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/10 to-transparent rounded-t-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-black/5 dark:from-white/10 to-transparent rounded-t-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
 
           <svg
             xmlns="http://www.w3.org/2000/svg"

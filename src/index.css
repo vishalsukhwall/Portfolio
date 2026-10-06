@@ -2,10 +2,14 @@
 @import './styles/globals.css';
 @import './styles/animations.css';
 
+/* Enable class-based dark mode variant in Tailwind CSS v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --color-accent: #00d4ff;
-  --color-alt: #ff006e;
-  --color-success: #00ff88;
+  --color-accent: var(--color-accent);
+  --color-accent-dark: var(--color-accent-dark);
+  --color-alt: var(--color-alt);
+  --color-success: var(--color-success);
 
   --color-bg-primary: var(--bg-primary);
   --color-bg-secondary: var(--bg-secondary);
@@ -15,12 +19,9 @@
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
 
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-border-primary: var(--border-primary);
+  --color-border-secondary: var(--border-secondary);
+
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   --font-mono: 'Fira Code', monospace;
-}
-
-
-html, body {
-  background-color: var(--bg-primary) !important;
-  color: var(--text-primary) !important;
 }
