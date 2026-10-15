@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitPulse Elite v2.4 — Neural Nutrition Engine</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#07090e',
+            surface: '#0c1017',
+            surface2: '#111827',
+            cyan: { elite: '#00f2fe' },
+            emerald: { elite: '#00ff87' },
+            neon: { purple: '#bf5af2', orange: '#ff9500', red: '#ff453a' }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+          },
+          animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'spin-slow': 'spin 8s linear infinite',
+            'bounce-gentle': 'bounce 2s infinite',
+            'glow-cyan': 'glowCyan 2s ease-in-out infinite alternate',
+            'glow-emerald': 'glowEmerald 2s ease-in-out infinite alternate',
+            'scan-line': 'scanLine 2.5s ease-in-out infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'shimmer': 'shimmer 2s linear infinite',
+          },
+          keyframes: {
+            glowCyan: {
+              '0%': { boxShadow: '0 0 5px #00f2fe, 0 0 10px #00f2fe' },
+              '100%': { boxShadow: '0 0 20px #00f2fe, 0 0 40px #00f2fe, 0 0 60px #00f2fe40' }
+            },
+            glowEmerald: {
+              '0%': { boxShadow: '0 0 5px #00ff87, 0 0 10px #00ff87' },
+              '100%': { boxShadow: '0 0 20px #00ff87, 0 0 40px #00ff87, 0 0 60px #00ff8740' }
+            },
+            scanLine: {
+              '0%': { top: '0%', opacity: '1' },
+              '50%': { opacity: '0.8' },
+              '100%': { top: '100%', opacity: '0' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' }
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <style>
+    :root {
+      --cyan: #00f2fe;
+      --emerald: #00ff87;
+      --purple: #bf5af2;
+      --orange: #ff9500;
+      --surface: #0c1017;
+      --obsidian: #07090e;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: #07090e;
+      color: #e2e8f0;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #07090e; }
+    ::-webkit-scrollbar-thumb { background: #00f2fe40; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00f2fe80; }
+
+    /* Grid background */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* Glassmorphism */
+    .glass {
+      background: rgba(12, 16, 23, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 242, 254, 0.1);
+    }
+
+    .glass-strong {
+      background: rgba(12, 16, 23, 0.95);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border: 1px solid rgba(0, 242, 254, 0.15);
+    }
+
+    .glass-hover {
+      transition: all 0.3s ease;
+    }
+    .glass-hover:hover {
+      background: rgba(0, 242, 254, 0.05);
+      border-color: rgba(0, 242, 254, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 242, 254, 0.1);
+    }
+
+    /* Glow effects */
+    .glow-cyan { box-shadow: 0 0 20px rgba(0, 242, 254, 0.3), 0 0 60px rgba(0, 242, 254, 0.1); }
+    .glow-emerald { box-shadow: 0 0 20px rgba(0, 255, 135, 0.3), 0 0 60px rgba(0, 255, 135, 0.1); }
+    .glow-purple { box-shadow: 0 0 20px rgba(191, 90, 242, 0.3), 0 0 60px rgba(191, 90, 242, 0.1); }
+    .glow-orange { box-shadow: 0 0 20px rgba(255, 149, 0, 0.3); }
+
+    .text-glow-cyan { text-shadow: 0 0 20px rgba(0, 242, 254, 0.8), 0 0 40px rgba(0, 242, 254, 0.4); }
+    .text-glow-emerald { text-shadow: 0 0 20px rgba(0, 255, 135, 0.8), 0 0 40px rgba(0, 255, 135, 0.4); }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #00f2fe 0%, #00ff87 50%, #bf5af2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-text-2 {
+      background: linear-gradient(135deg, #00f2fe 0%, #bf5af2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: linear-gradient(135deg, #00f2fe, #00c8fe);
+      color: #07090e;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.4s ease;
+    }
+    .btn-primary:hover::before { left: 100%; }
+    .btn-primary:hover {
+      box-shadow: 0 0 30px rgba(0, 242, 254, 0.6), 0 0 60px rgba(0, 242, 254, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      color: #00f2fe;
+      background: rgba(0, 242, 254, 0.05);
+      transition: all 0.3s ease;
+    }
+    .btn-secondary:hover {
+      background: rgba(0, 242, 254, 0.1);
+      border-color: #00f2fe;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .btn-emerald {
+      background: linear-gradient(135deg, #00ff87, #00c87a);
+      color: #07090e;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+    .btn-emerald:hover {
+      box-shadow: 0 0 30px rgba(0, 255, 135, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Scan laser animation */
+    .scan-container { position: relative; overflow: hidden; }
+    .scan-laser {
+      position: absolute;
+      left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #00f2fe, #00ff87, #00f2fe, transparent);
+      box-shadow: 0 0 15px #00f2fe, 0 0 30px #00f2fe80;
+      animation: scanLine 2.5s ease-in-out;
+      z-index: 10;
+      pointer-events: none;
+    }
+    @keyframes scanLine {
+      0% { top: 0%; opacity: 0; }
+      5% { opacity: 1; }
+      95% { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    .scan-overlay {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 242, 254, 0.03) 2px,
+        rgba(0, 242, 254, 0.03) 4px
+      );
+      pointer-events: none;
+    }
+
+    /* Bento grid */
+    .bento-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .bento-card:hover {
+      transform: scale(1.02) translateY(-4px);
+      border-color: rgba(0, 242, 254, 0.4);
+      box-shadow: 0 20px 60px rgba(0, 242, 254, 0.1), 0 0 0 1px rgba(0, 242, 254, 0.1);
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      background: rgba(255,255,255,0.05);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 99px;
+      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 20px; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4));
+      border-radius: 99px;
+    }
+
+    /* Pricing card */
+    .pricing-card {
+      transition: all 0.4s ease;
+      position: relative;
+    }
+    .pricing-card:hover {
+      transform: translateY(-8px);
+    }
+    .pricing-card.featured::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      background: linear-gradient(135deg, #00f2fe, #00ff87, #bf5af2);
+      z-index: -1;
+    }
+    .pricing-card.featured {
+      border: none;
+    }
+
+    /* AI Drawer */
+    .ai-drawer {
+      position: fixed;
+      right: -420px;
+      top: 0; bottom: 0;
+      width: 420px;
+      background: #0c1017;
+      border-left: 1px solid rgba(0, 242, 254, 0.15);
+      z-index: 1000;
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+    }
+    .ai-drawer.open { right: 0; }
+
+    .ai-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 9, 14, 0.7);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      backdrop-filter: blur(4px);
+    }
+    .ai-drawer-overlay.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Chat bubbles */
+    .chat-bubble {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      animation: fadeUp 0.3s ease forwards;
+    }
+    .chat-bubble.ai {
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.15);
+      border-bottom-left-radius: 4px;
+      align-self: flex-start;
+    }
+    .chat-bubble.user {
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(191, 90, 242, 0.1));
+      border: 1px solid rgba(0, 242, 254, 0.2);
+      border-bottom-right-radius: 4px;
+      align-self: flex-end;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* View transitions */
+    .view { display: none; }
+    .view.active { display: block; }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(7, 9, 14, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.08);
+    }
+
+    /* Food scan image */
+    .food-image-container {
+      background: rgba(12, 16, 23, 0.9);
+      border: 2px dashed rgba(0, 242, 254, 0.2);
+      border-radius: 16px;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .food-image-container.has-food {
+      border-style: solid;
+      border-color: rgba(0, 242, 254, 0.4);
+    }
+    .food-image-container:hover {
+      border-color: rgba(0, 242, 254, 0.5);
+      background: rgba(0, 242, 254, 0.03);
+    }
+
+    /* Telemetry pulse */
+    .pulse-ring {
+      animation: pulseRing 2s ease-out infinite;
+    }
+    @keyframes pulseRing {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 135, 0.4); }
+      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 135, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 135, 0); }
+    }
+
+    /* Number counter animation */
+    .counter-animate {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Portion selector */
+    .portion-btn {
+      border: 1px solid rgba(0, 242, 254, 0.2);
+      color: rgba(255,255,255,0.5);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .portion-btn.active {
+      background: rgba(0, 242, 254, 0.15);
+      border-color: #00f2fe;
+      color: #00f2fe;
+      box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+    }
+    .portion-btn:hover:not(.active) {
+      border-color: rgba(0, 242, 254, 0.4);
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* Tag pills */
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* Floating action button */
+    .fab {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00f2fe, #bf5af2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 998;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(0, 242, 254, 0.4);
+    }
+    .fab:hover {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 0 50px rgba(0, 242, 254, 0.6);
+    }
+
+    /* Typing indicator */
+    .typing-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #00f2fe;
+      animation: typingBounce 1.2s ease-in-out infinite;
+    }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingBounce {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+      40% { transform: translateY(-8px); opacity: 1; }
+    }
+
+    /* Live badge */
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 255, 135, 0.1);
+      border: 1px solid rgba(0, 255, 135, 0.3);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #00ff87;
+    }
+    .live-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #00ff87;
+      animation: livePulse 1.5s ease-in-out infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    /* Background orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      opacity: 0.15;
+    }
+
+    /* Scan grid corners */
+    .corner-tl, .corner-tr, .corner-bl, .corner-br {
+      position: absolute;
+      width: 20px; height: 20px;
+      border-color: #00f2fe;
+      border-style: solid;
+    }
+    .corner-tl { top: 8px; left: 8px; border-width: 2px 0 0 2px; border-radius: 4px 0 0 0; }
+    .corner-tr { top: 8px; right: 8px; border-width: 2px 2px 0 0; border-radius: 0 4px 0 0; }
+    .corner-bl { bottom: 8px; left: 8px; border-width: 0 0 2px 2px; border-radius: 0 0 0 4px; }
+    .corner-br { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; border-radius: 0 0 4px 0; }
+
+    /* Meal pill buttons */
+    .meal-btn {
+      background: rgba(12, 16, 23, 0.8);
+      border: 1px solid rgba(0, 242, 254, 0.15);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-align: left;
+    }
+    .meal-btn:hover, .meal-btn.active {
+      background: rgba(0, 242, 254, 0.08);
+      border-color: rgba(0, 242, 254, 0.4);
+      color: #00f2fe;
+      transform: translateX(2px);
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
+    }
+
+    /* Smooth section transition */
+    section { position: relative; }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .ai-drawer { width: 100%; right: -100%; }
+      .fab { bottom: 20px; right: 20px; }
+    }
+  </style>
+</head>
+
+<body class="grid-bg min-h-screen">
+
+  <!-- ═══════════════════════════════ NAVBAR ═══════════════════════════════ -->
+  <nav class="navbar fixed top-0 left-0 right-0 z-50 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center glow-cyan" style="background: linear-gradient(135deg, #00f2fe, #bf5af2)">
+          <i data-lucide="zap" class="w-5 h-5 text-obsidian" style="color:#07090e"></i>
+        </div>
+        <div>
+          <span class="font-black text-white text-lg tracking-tight">FitPulse</span>
+          <span class="font-black text-lg tracking-tight" style="color:#00f2fe">Elite</span>
+          <span class="ml-2 text-xs font-mono" style="color: rgba(0,242,254,0.5)">v2.4</span>
+        </div>
+      </div>
+
+      <!-- Center Nav Links (desktop) -->
+      <div class="hidden md:flex items-center gap-1">
+        <button onclick="showView('landing')" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all" id="nav-landing">Home</button>
+        <button onclick="scrollToSection('features')" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all">Features</button>
+        <button onclick="scrollToSection('pricing')" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all">Pricing</button>
+        <button onclick="showView('dashboard')" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all" id="nav-dashboard">Dashboard</button>
+      </div>
+
+      <!-- Right Actions -->
+      <div class="flex items-center gap-3">
+        <div class="live-badge hidden sm:flex">
+          <div class="live-dot"></div>
+          NEURAL ENGINE LIVE
+        </div>
+        <button onclick="showView('dashboard')" class="btn-primary px-5 py-2.5 rounded-xl text-sm flex items-center gap-2">
+          <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">Open App Dashboard</span>
+          <span class="sm:hidden">App</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════ LANDING VIEW ═══════════════════════════════ -->
+  <div id="view-landing" class="view active">
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col items-center justify-center pt-24 pb-16 px-6 relative overflow-hidden">
+
+      <!-- Background Orbs -->
+      <div class="orb w-96 h-96 top-20 left-1/4" style="background: #00f2fe; animation: float 8s ease-in-out infinite;"></div>
+      <div class="orb w-80 h-80 bottom-20 right-1/4" style="background: #bf5af2; animation: float 10s ease-in-out infinite reverse;"></div>
+      <div class="orb w-64 h-64 top-1/2 right-10" style="background: #00ff87; animation: float 12s ease-in-out infinite;"></div>
+
+      <div class="max-w-5xl mx-auto text-center relative z-10">
+
+        <!-- Live Badge -->
+        <div class="inline-flex items-center gap-3 mb-8" style="background: rgba(0,255,135,0.08); border: 1px solid rgba(0,255,135,0.25); border-radius:99px; padding: 8px 20px;">
+          <div class="live-dot"></div>
+          <span class="text-xs font-mono font-bold tracking-widest" style="color:#00ff87">⚡ FITPULSE ELITE v2.4 — NEURAL NUTRITION ENGINE LIVE</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="text-6xl md:text-8xl font-black tracking-tight leading-none mb-6">
+          <span class="text-white">Decode Your Plate.</span><br/>
+          <span class="gradient-text">Master Your</span><br/>
+          <span class="text-white">Metabolism.</span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+          Computer-vision food scanning, real-time macro intelligence, and Apple Watch biometrics — unified into one elite performance stack. Built for athletes who optimize everything.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button onclick="showView('dashboard')" class="btn-primary px-8 py-4 rounded-2xl text-base font-bold flex items-center justify-center gap-3">
+            <i data-lucide="rocket" class="w-5 h-5"></i>
+            Launch App Experience
+          </button>
+          <button onclick="scrollToSection('features')" class="btn-secondary px-8 py-4 rounded-2xl text-base font-bold flex items-center justify-center gap-3">
+            <i data-lucide="scan-line" class="w-5 h-5"></i>
+            Explore Live CV Engine
+          </button>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="grid grid-cols-3 gap-8 mt-16 max-w-lg mx-auto">
+          <div class="text-center">
+            <div class="text-3xl font-black text-glow-cyan" style="color:#00f2fe">98.4%</div>
+            <div class="text-xs text-slate-500 mt-1 font-medium">CV Accuracy</div>
+          </div>
+          <div class="text-center border-x border-white/5">
+            <div class="text-3xl font-black text-glow-emerald" style="color:#00ff87">3ms</div>
+            <div class="text-xs text-slate-500 mt-1 font-medium">Scan Latency</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-black" style="color:#bf5af2; text-shadow: 0 0 20px rgba(191,90,242,0.8)">12k+</div>
+            <div class="text-xs text-slate-500 mt-1 font-medium">Foods in DB</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ BENTO GRID FEATURES ══ -->
+    <section id="features" class="py-24 px-6">
+      <div class="max-w-7xl mx-auto">
+
+        <div class="text-center mb-16">
+          <div class="tag-pill mb-4" style="background: rgba(0,242,254,0.08); color: #00f2fe; border: 1px solid rgba(0,242,254,0.2)">
+            <i data-lucide="layers" class="w-3 h-3"></i>
+            CORE INTELLIGENCE STACK
+          </div>
+          <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Built different.<br/><span class="gradient-text">Performs different.</span></h2>
+          <p class="text-slate-400 max-w-xl mx-auto">Every module engineered for elite performance. No compromises.</p>
+        </div>
+
+        <!-- Bento Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+          <!-- CV AI — Large Card -->
+          <div class="glass bento-card rounded-2xl p-6 md:col-span-2 relative overflow-hidden" style="min-height: 320px;">
+            <div class="orb w-48 h-48 top-0 right-0" style="background: #00f2fe; opacity: 0.08;"></div>
+            <div class="tag-pill mb-4" style="background: rgba(0,242,254,0.1); color: #00f2fe; border: 1px solid rgba(0,242,254,0.2);">
+              <i data-lucide="scan" class="w-3 h-3"></i>
+              COMPUTER VISION AI
+            </div>
+            <h3 class="text-2xl font-black text-white mb-3">Neural Food Recognition</h3>
+            <p class="text-slate-400 text-sm mb-6 max-w-md">Proprietary YOLOv8 model trained on 2.3M annotated food images. Identifies 12,000+ items with portion-aware segmentation and sub-calorie macro precision.</p>
+
+            <!-- Mini scanner visualization -->
+            <div class="rounded-xl overflow-hidden relative" style="background: rgba(0,0,0,0.4); height: 120px; border: 1px solid rgba(0,242,254,0.15);">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="flex gap-3 items-center">
+                  <div class="text-center">
+                    <div class="text-xs text-slate-500 font-mono mb-1">DETECTION</div>
+                    <div class="text-2xl font-black" style="color:#00f2fe">98.4%</div>
+                    <div class="text-xs" style="color:#00ff87">● ACTIVE</div>
+                  </div>
+                  <div class="w-px h-12" style="background: rgba(0,242,254,0.2)"></div>
+                  <div class="text-center">
+                    <div class="text-xs text-slate-500 font-mono mb-1">ITEMS/SEC</div>
+                    <div class="text-2xl font-black" style="color:#bf5af2">340</div>
+                    <div class="text-xs text-slate-500">INFERENCE</div>
+                  </div>
+                  <div class="w-px h-12" style="background: rgba(0,242,254,0.2)"></div>
+                  <div class="text-center">
+                    <div class="text-xs text-slate-500 font-mono mb-1">LATENCY</div>
+                    <div class="text-2xl font-black" style="color:#00ff87">3ms</div>
+                    <div class="text-xs text-slate-500">P99</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Animated scan line in preview -->
+              <div id="bento-scan" style="position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#00f2fe,#00ff87,transparent);box-shadow:0 0 10px #00f2fe;animation: scanLine 3s ease-in-out infinite;"></div>
+            </div>
+
+            <div class="mt-4 flex gap-2 flex-wrap">
+              <div class="tag-pill" style="background:rgba(0,242,254,0.08);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.08)">YOLOv8 Backbone</div>
+              <div class="tag-pill" style="background:rgba(0,242,254,0.08);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.08)">Portion Segmentation</div>
+              <div class="tag-pill" style="background:rgba(0,242,254,0.08);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.08)">FastAPI Backend</div>
+            </div>
+          </div>
+
+          <!-- Recovery Widget — Tall Card -->
+          <div class="glass bento-card rounded-2xl p-6 relative overflow-hidden flex flex-col">
+            <div class="orb w-32 h-32 bottom-0 left-0" style="background: #00ff87; opacity:0.1;"></div>
+            <div class="tag-pill mb-4" style="background: rgba(0,255,135,0.1); color: #00ff87; border: 1px solid rgba(0,255,135,0.2);">
+              <i data-lucide="heart-pulse" class="w-3 h-3"></i>
+              APPLE WATCH ULTRA
+            </div>
+            <h3 class="text-xl font-black text-white mb-2">Live Biometrics</h3>
+            <p class="text-slate-400 text-xs mb-6">Real-time HRV, recovery score, and sleep staging via watchOS 11 integration.</p>
+
+            <!-- Recovery Ring -->
+            <div class="flex-1 flex flex-col items-center justify-center">
+              <div class="relative w-32 h-32 mb-4">
+                <svg viewBox="0 0 100 100" class="w-full h-full -rotate-90">
+                  <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(0,255,135,0.1)" stroke-width="8"/>
+                  <circle cx="50" cy="50" r="40" fill="none" stroke="#00ff87" stroke-width="8"
+                    stroke-dasharray="251.2" stroke-dashoffset="15" stroke-linecap="round"
+                    style="filter: drop-shadow(0 0 6px #00ff87); transition: stroke-dashoffset 1s ease;"/>
+                </svg>
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                  <div class="text-2xl font-black" style="color:#00ff87">94%</div>
+                  <div class="text-xs text-slate-400">Recovery</div>
+                </div>
+              </div>
+
+              <div class="w-full space-y-3">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-400">HRV</span>
+                  <span class="font-mono font-bold" style="color:#00f2fe">78ms</span>
+                </div>
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-400">Resting HR</span>
+                  <span class="font-mono font-bold text-white">52 bpm</span>
+                </div>
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-400">Sleep Score</span>
+                  <span class="font-mono font-bold" style="color:#00ff87">91/100</span>
+                </div>
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-400">Sync Latency</span>
+                  <span class="font-mono font-bold" style="color:#bf5af2">18ms</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 mt-4 pt-4" style="border-top: 1px solid rgba(255,255,255,0.05)">
+              <div class="pulse-ring w-2 h-2 rounded-full" style="background:#00ff87"></div>
+              <span class="text-xs text-slate-400">Apple Watch Ultra — Syncing</span>
+            </div>
+          </div>
+
+          <!-- Macro Tracking -->
+          <div class="glass bento-card rounded-2xl p-6 relative overflow-hidden">
+            <div class="orb w-40 h-40 top-0 right-0" style="background:#bf5af2;opacity:0.08;"></div>
+            <div class="tag-pill mb-4" style="background:rgba(191,90,242,0.1);color:#bf5af2;border:1px solid rgba(191,90,242,0.2);">
+              <i data-lucide="bar-chart-3" class="w-3 h-3"></i>
+              MACRO INTELLIGENCE
+            </div>
+            <h3 class="text-xl font-black text-white mb-4">Precision Tracking</h3>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between text-xs mb-2">
+                  <span class="text-slate-400">Protein</span>
+                  <span class="font-mono" style="color:#00f2fe">142g / 180g</span>
+                </div>
+                <div class="progress-bar h-2">
+                  <div class="progress-fill h-2" style="width:79%;background:linear-gradient(90deg,#00f2fe,#00c8fe)"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-2">
+                  <span class="text-slate-400">Carbs</span>
+                  <span class="font-mono" style="color:#ff9500">89g / 220g</span>
+                </div>
+                <div class="progress-bar h-2">
+                  <div class="progress-fill h-2" style="width:40%;background:linear-gradient(90deg,#ff9500,#ffb340)"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-2">
+                  <span class="text-slate-400">Fats</span>
+                  <span class="font-mono" style="color:#00ff87">48g / 70g</span>
+                </div>
+                <div class="progress-bar h-2">
+                  <div class="progress-fill h-2" style="width:68%;background:linear-gradient(90deg,#00ff87,#00c87a)"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-2">
+                  <span class="text-slate-400">Calories</span>
+                  <span class="font-mono text-white">1,340 / 2,100</span>
+                </div>
+                <div class="progress-bar h-2">
+                  <div class="progress-fill h-2" style="width:63%;background:linear-gradient(90deg,#bf5af2,#9b45c8)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature Preview / Trailer Card -->
+          <div class="glass bento-card rounded-2xl p-6 md:col-span-2 relative overflow-hidden" style="min-height:200px;">
+            <div class="orb w-64 h-64 bottom-0 right-0" style="background:#ff9500;opacity:0.06;"></div>
+
+            <div class="flex flex-col md:flex-row gap-6 h-full">
+              <div class="flex-1">
+                <div class="tag-pill mb-4" style="background:rgba(255,149,0,0.1);color:#ff9500;border:1px solid rgba(255,149,0,0.2);">
+                  <i data-lucide="play-circle" class="w-3 h-3"></i>
+                  LIVE FEATURE PREVIEW
+                </div>
+                <h3 class="text-xl font-black text-white mb-2">See the CV Engine in Action</h3>
+                <p class="text-slate-400 text-sm mb-4">Watch the neural network identify macros from a photo in under 3ms. Powered by a FastAPI + OpenCV pipeline.</p>
+
+                <div class="flex gap-3">
+                  <button onclick="showView('dashboard')" class="btn-primary px-4 py-2.5 rounded-xl text-sm flex items-center gap-2">
+                    <i data-lucide="scan-eye" class="w-4 h-4"></i>
+                    Try Live Scanner
+                  </button>
+                  <button class="btn-secondary px-4 py-2.5 rounded-xl text-sm flex items-center gap-2" onclick="openAIDrawer()">
+                    <i data-lucide="bot" class="w-4 h-4"></i>
+                    AI Coach
+                  </button>
+                </div>
+              </div>
+
+              <!-- Animated terminal preview -->
+              <div class="flex-shrink-0 w-full md:w-64 rounded-xl p-4 font-mono text-xs" style="background:rgba(0,0,0,0.5); border: 1px solid rgba(0,242,254,0.1);">
+                <div class="flex gap-1.5 mb-3">
+                  <div class="w-3 h-3 rounded-full" style="background:#ff453a"></div>
+                  <div class="w-3 h-3 rounded-full" style="background:#ff9500"></div>
+                  <div class="w-3 h-3 rounded-full" style="background:#00ff87"></div>
+                </div>
+                <div id="terminal-output" class="space-y-1" style="color:rgba(255,255,255,0.6)">
+                  <div><span style="color:#00f2fe">$</span> scan-food --image meal.jpg</div>
+                  <div style="color:#00ff87">✓ Model loaded (YOLOv8-xl)</div>
+                  <div style="color:#00ff87">✓ Preprocessing... 1.2ms</div>
+                  <div style="color:#00ff87">✓ Inference... 2.8ms</div>
+                  <div style="color:#bf5af2">→ Detected: Grilled Salmon</div>
+                  <div style="color:#bf5af2">→ Portion: 180g (±5g)</div>
+                  <div style="color:#ff9500">► Calories: 374 kcal</div>
+                  <div style="color:#ff9500">► Protein: 40.2g</div>
+                  <div><span style="color:#00f2fe">$</span> <span class="terminal-cursor">▋</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ PRICING ══ -->
+    <section id="pricing" class="py-24 px-6">
+      <div class="max-w-5xl mx-auto">
+
+        <div class="text-center mb-16">
+          <div class="tag-pill mb-4" style="background:rgba(191,90,242,0.08);color:#bf5af2;border:1px solid rgba(191,90,242,0.2)">
+            <i data-lucide="sparkles" class="w-3 h-3"></i>
+            SIMPLE PRICING
+          </div>
+          <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Choose your <span class="gradient-text-2">edge.</span></h2>
+          <p class="text-slate-400 max-w-md mx-auto">Start free. Upgrade when you're ready to go elite.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+
+          <!-- Free Tier -->
+          <div class="pricing-card glass rounded-2xl p-8">
+            <div class="mb-6">
+              <div class="text-sm font-bold text-slate-400 mb-2 tracking-wider">FREE TIER</div>
+              <div class="flex items-baseline gap-2">
+                <span class="text-5xl font-black text-white">\$0</span>
+                <span class="text-slate-400">/mo</span>
+              </div>
+              <p class="text-slate-400 text-sm mt-2">Get started with the essentials.</p>
+            </div>
+
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center gap-3 text-sm text-slate-300">
+                <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(0,255,135,0.15)">
+                  <i data-lucide="check" class="w-3 h-3" style="color:#00ff87"></i>
+                </div>
+                5 CV scans / day
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-300">
+                <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(0,255,135,0.15)">
+                  <i data-lucide="check" class="w-3 h-3" style="color:#00ff87"></i>
+                </div>
+                Basic macro tracking
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-300">
+                <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(0,255,135,0.15)">
+                  <i data-lucide="check" class="w-3 h-3" style="color:#00ff87"></i>
+                </div>
+                2,000 food database items
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-300">
+                <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(100,100,100,0.15)">
+                  <i data-lucide="x" class="w-3 h-3 text-slate-600"></i>
+                </div>
+                <span class="text-slate-500">Apple Watch sync</span>
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-300">
+                <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(100,100,100,0.15)">
+                  <i data-lucide="x" class="w-3 h-3 text-slate-600"></i>
+                </div>
+                <span class="text-slate-500">AI Coach access</span>
+              </li>
+            </ul>
+
+            <button class="w-full btn-secondary py-3.5 rounded-xl text-sm font-bold">Get Started Free</button>
+          </div>
+
+          <!-- Elite Pro — Featured -->
+          <div class="pricing-card featured rounded-2xl p-[1px]" style="background: linear-gradient(135deg, #07090e, #07090e);">
+            <div class="rounded-2xl p-8 h-full" style="background: linear-gradient(135deg, #0c1017, #111827);">
+              <div class="flex items-start justify-between mb-6">
+                <div>
+                  <div class="text-sm font-bold tracking-wider mb-2" style="color:#00f2fe">ELITE PRO</div>
+                  <div class="flex items-baseline gap-2">
+                    <span class="text-5xl font-black text-white">\$29</span>
+                    <span class="text-slate-400">/mo</span>
+                  </div>
+                  <p class="text-slate-400 text-sm mt-2">The complete performance stack.</p>
+                </div>
+                <div class="tag-pill" style="background:rgba(0,242,254,0.1);color:#00f2fe;border:1px solid rgba(0,242,254,0.3);">POPULAR</div>
+              </div>
+
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-center gap-3 text-sm text-white">
+                  <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(0,242,254,0.15)">
+                    <i data-lucide="check" class="w-3 h-3" style="color:#00f2fe"></i>
+                  </div>
+                  Unlimited CV scans
+                </li>
+                <li class="flex items-center gap-3 text-sm text-white">
+                  <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(0,242,254,0.15)">
+                    <i data-lucide="check" class="w-3 h-3" style="color:#00f2fe"></i>
+                  </div>
+                  12,000+ food database
+                </li>
+                <li class="flex items-center gap-3 text-sm text-white">
+                  <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(0,242,254,0.15)">
+                    <i data-lucide="check" class="w-3 h-3" style="color:#00f2fe"></i>
+                  </div>
+                  Apple Watch Ultra sync (18ms)
+                </li>
+                <li class="flex items-center gap-3 text-sm text-white">
+                  <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(0,242,254,0.15)">
+                    <i data-lucide="check" class="w-3 h-3" style="color:#00f2fe"></i>
+                  </div>
+                  AI Coach — Neural GPT-4o
+                </li>
+                <li class="flex items-center gap-3 text-sm text-white">
+                  <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(0,242,254,0.15)">
+                    <i data-lucide="check" class="w-3 h-3" style="color:#00f2fe"></i>
+                  </div>
+                  Advanced HRV & recovery analytics
+                </li>
+                <li class="flex items-center gap-3 text-sm text-white">
+                  <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(0,242,254,0.15)">
+                    <i data-lucide="check" class="w-3 h-3" style="color:#00f2fe"></i>
+                  </div>
+                  Priority API (FastAPI backend)
+                </li>
+              </ul>
+
+              <button class="btn-primary w-full py-3.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2">
+                <i data-lucide="zap" class="w-4 h-4"></i>
+                Start Elite Pro — \$29/mo
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /view-landing -->
+
+
+  <!-- ═══════════════════════════════ DASHBOARD VIEW ═══════════════════════════════ -->
+  <div id="view-dashboard" class="view">
+    <div class="max-w-7xl mx-auto px-4 pt-28 pb-20">
+
+      <!-- Dashboard Header -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <div>
+          <div class="flex items-center gap-3 mb-1">
+            <button onclick="showView('landing')" class="text-slate-500 hover:text-white transition-colors">
+              <i data-lucide="chevron-left" class="w-5 h-5"></i>
+            </button>
+            <h1 class="text-2xl font-black text-white">Neural Nutrition Dashboard</h1>
+          </div>
+          <p class="text-slate-400 text-sm ml-8">Saturday, Oct 10, 2026 — Sync active across 3 devices</p>
+        </div>
+
+        <!-- Telemetry Widgets -->
+        <div class="flex gap-3 flex-wrap">
+          <!-- Recovery Widget -->
+          <div class="glass rounded-xl px-4 py-3 flex items-center gap-3 glow-emerald">
+            <div class="pulse-ring w-3 h-3 rounded-full" style="background:#00ff87"></div>
+            <div>
+              <div class="text-xs text-slate-400 font-mono">RECOVERY</div>
+              <div class="text-sm font-black" style="color:#00ff87">94% Optimal</div>
+            </div>
+          </div>
+
+          <!-- Apple Watch Sync -->
+          <div class="glass rounded-xl px-4 py-3 flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:rgba(0,242,254,0.1)">
+              <i data-lucide="watch" class="w-4 h-4" style="color:#00f2fe"></i>
+            </div>
+            <div>
+              <div class="text-xs text-slate-400 font-mono">APPLE WATCH ULTRA</div>
+              <div class="text-xs font-mono" style="color:rgba(255,255,255,0.7)">Sync: <span style="color:#00f2fe">18ms</span> · HRV: <span style="color:#bf5af2">78ms</span></div>
+            </div>
+            <div class="pulse-ring w-2 h-2 rounded-full flex-shrink-0" style="background:#00ff87"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- LEFT: Food Scanner Panel -->
+        <div class="lg:col-span-2 space-y-6">
+
+          <!-- Scanner Card -->
+          <div class="glass rounded-2xl p-6">
+            <div class="flex items-center justify-between mb-5">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#00f2fe,#bf5af2)">
+                  <i data-lucide="scan-eye" class="w-4 h-4 text-white" style="color:#07090e"></i>
+                </div>
+                <div>
+                  <h2 class="text-base font-bold text-white">Live CV Food Scanner</h2>
+                  <div class="text-xs text-slate-400 font-mono">FastAPI → /api/v1/scan-food</div>
+                </div>
+              </div>
+              <div class="live-badge text-xs">
+                <div class="live-dot"></div>
+                ENGINE LIVE
+              </div>
+            </div>
+
+            <!-- Preset Meal Buttons -->
+            <div class="mb-4">
+              <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Preset Meals</div>
+              <div class="grid grid-cols-2 gap-2">
+                <button class="meal-btn" onclick="selectMeal('fish')">
+                  🐟 Herb-Crusted Grilled Fish
+                </button>
+                <button class="meal-btn" onclick="selectMeal('avocado')">
+                  🥑 Avocado Sourdough
+                </button>
+                <button class="meal-btn" onclick="selectMeal('paneer')">
+                  🍛 Paneer Tikka Bowl
+                </button>
+                <button class="meal-btn" onclick="selectMeal('salmon')">
+                  🐠 Wild Salmon & Sweet Potato
+                </button>
+              </div>
+            </div>
+
+            <!-- Upload / Scan Zone -->
+            <div class="food-image-container scan-container" id="scan-zone" onclick="triggerUpload()">
+              <!-- Corners -->
+              <div class="corner-tl"></div>
+              <div class="corner-tr"></div>
+              <div class="corner-bl"></div>
+              <div class="corner-br"></div>
+              <!-- Scan overlay -->
+              <div class="scan-overlay"></div>
+
+              <!-- Default empty state -->
+              <div id="scan-empty-state" class="text-center p-8">
+                <div class="w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center" style="background:rgba(0,242,254,0.08);border:1px solid rgba(0,242,254,0.2)">
+                  <i data-lucide="upload-cloud" class="w-8 h-8" style="color:#00f2fe"></i>
+                </div>
+                <p class="text-white font-semibold mb-1">Drop food image here</p>
+                <p class="text-slate-500 text-sm">or select a preset above · PNG, JPG, WEBP</p>
+                <p class="text-xs font-mono mt-3" style="color:rgba(0,242,254,0.4)">POST /api/v1/scan-food</p>
+              </div>
+
+              <!-- Food display state (hidden by default) -->
+              <div id="scan-food-display" class="hidden w-full h-full flex-col items-center justify-center p-6 text-center" style="min-height:220px">
+                <div class="text-5xl mb-3" id="food-emoji">🐟</div>
+                <div class="text-xl font-black text-white mb-1" id="food-name-display">Herb-Crusted Grilled Fish</div>
+                <div class="text-sm text-slate-400 mb-3" id="food-portion-display">~180g portion detected</div>
+                <div class="tag-pill" style="background:rgba(0,242,254,0.1);color:#00f2fe;border:1px solid rgba(0,242,254,0.3);" id="food-confidence-badge">
+                  <i data-lucide="check-circle" class="w-3 h-3"></i>
+                  Confidence: 97.3%
+                </div>
+              </div>
+
+              <!-- Laser scan animation -->
+              <div id="scan-laser" class="scan-laser hidden"></div>
+
+              <!-- Scanning state overlay -->
+              <div id="scanning-overlay" class="hidden absolute inset-0 flex flex-col items-center justify-center" style="background:rgba(7,9,14,0.85);z-index:20;">
+                <div class="text-center">
+                  <div class="text-2xl font-black mb-2" style="color:#00f2fe">Analyzing...</div>
+                  <div class="font-mono text-sm" style="color:#00ff87" id="scan-status-text">Loading YOLOv8 model...</div>
+                  <div class="mt-4 flex gap-1 justify-center">
+                    <div class="w-2 h-2 rounded-full" style="background:#00f2fe;animation:typingBounce 1s ease-in-out infinite"></div>
+                    <div class="w-2 h-2 rounded-full" style="background:#00f2fe;animation:typingBounce 1s ease-in-out 0.15s infinite"></div>
+                    <div class="w-2 h-2 rounded-full" style="background:#00f2fe;animation:typingBounce 1s ease-in-out 0.3s infinite"></div>
+                  </div>
+                </div>
+              </div>
+
+              <input type="file" id="file-input" accept="image/*" class="hidden" onchange="handleFileUpload(event)"/>
+            </div>
+
+            <!-- Scan button -->
+            <button id="scan-btn" class="btn-primary w-full py-3 rounded-xl mt-4 flex items-center justify-center gap-2 text-sm font-bold" onclick="triggerScan()" style="display:none">
+              <i data-lucide="scan" class="w-4 h-4"></i>
+              Run Neural Scan
+            </button>
+          </div>
+
+          <!-- Detected Food Components -->
+          <div class="glass rounded-2xl p-6" id="food-components" style="display:none">
+            <div class="flex items-center gap-2 mb-4">
+              <i data-lucide="list-checks" class="w-4 h-4" style="color:#00f2fe"></i>
+              <h3 class="text-sm font-bold text-white">Detected Components & Portions</h3>
+            </div>
+            <div id="components-list" class="space-y-2"></div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Macros Panel -->
+        <div class="space-y-4">
+
+          <!-- Portion Multiplier -->
+          <div class="glass rounded-2xl p-5">
+            <div class="flex items-center gap-2 mb-4">
+              <i data-lucide="sliders" class="w-4 h-4" style="color:#bf5af2"></i>
+              <span class="text-sm font-bold text-white">Portion Multiplier</span>
+            </div>
+            <div class="flex gap-2" id="portion-buttons">
+              <button class="portion-btn flex-1" onclick="setPortion(0.5)" data-portion="0.5">0.5x</button>
+              <button class="portion-btn flex-1 active" onclick="setPortion(1)" data-portion="1">1x</button>
+              <button class="portion-btn flex-1" onclick="setPortion(1.5)" data-portion="1.5">1.5x</button>
+              <button class="portion-btn flex-1" onclick="setPortion(2)" data-portion="2">2x</button>
+            </div>
+          </div>
+
+          <!-- Macro Cards -->
+          <div class="glass rounded-2xl p-5">
+            <div class="flex items-center gap-2 mb-4">
+              <i data-lucide="activity" class="w-4 h-4" style="color:#00f2fe"></i>
+              <span class="text-sm font-bold text-white">Macronutrient Breakdown</span>
+            </div>
+
+            <div id="no-meal-state" class="text-center py-8">
+              <i data-lucide="utensils" class="w-8 h-8 mx-auto mb-3 text-slate-600"></i>
+              <p class="text-slate-500 text-sm">Select a meal or scan food to see breakdown</p>
+            </div>
+
+            <div id="macro-display" class="hidden">
+              <!-- Calories -->
+              <div class="rounded-xl p-4 mb-3 relative overflow-hidden" style="background:linear-gradient(135deg,rgba(191,90,242,0.1),rgba(0,242,254,0.05));border:1px solid rgba(191,90,242,0.2)">
+                <div class="flex items-end justify-between mb-2">
+                  <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Calories</div>
+                    <div class="text-3xl font-black text-white counter-animate" id="macro-calories">—</div>
+                  </div>
+                  <div class="text-right">
+                    <div class="text-xs text-slate-500">kcal</div>
+                    <div class="text-xs font-mono mt-0.5" id="calories-pct" style="color:#bf5af2">—%</div>
+                  </div>
+                </div>
+                <div class="progress-bar h-1.5">
+                  <div class="progress-fill" id="cal-bar" style="height:100%;background:linear-gradient(90deg,#bf5af2,#9b45c8);width:0%"></div>
+                </div>
+              </div>
+
+              <!-- Protein -->
+              <div class="rounded-xl p-3 mb-2 relative overflow-hidden" style="background:rgba(0,242,254,0.05);border:1px solid rgba(0,242,254,0.15)">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <div class="w-2.5 h-2.5 rounded-full" style="background:#00f2fe;box-shadow:0 0 6px #00f2fe"></div>
+                    <span class="text-sm text-white font-semibold">Protein</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-lg font-black counter-animate" id="macro-protein" style="color:#00f2fe">—</span>
+                    <span class="text-xs text-slate-400 ml-1">g</span>
+                    <span class="text-xs font-mono ml-2" id="protein-pct" style="color:rgba(0,242,254,0.6)">—%</span>
+                  </div>
+                </div>
+                <div class="progress-bar h-1">
+                  <div class="progress-fill" id="protein-bar" style="height:100%;background:linear-gradient(90deg,#00f2fe,#00c8fe);width:0%"></div>
+                </div>
+              </div>
+
+              <!-- Carbs -->
+              <div class="rounded-xl p-3 mb-2 relative overflow-hidden" style="background:rgba(255,149,0,0.05);border:1px solid rgba(255,149,0,0.15)">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <div class="w-2.5 h-2.5 rounded-full" style="background:#ff9500;box-shadow:0 0 6px #ff9500"></div>
+                    <span class="text-sm text-white font-semibold">Carbs</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-lg font-black counter-animate" id="macro-carbs" style="color:#ff9500">—</span>
+                    <span class="text-xs text-slate-400 ml-1">g</span>
+                    <span class="text-xs font-mono ml-2" id="carbs-pct" style="color:rgba(255,149,0,0.7)">—%</span>
+                  </div>
+                </div>
+                <div class="progress-bar h-1">
+                  <div class="progress-fill" id="carbs-bar" style="height:100%;background:linear-gradient(90deg,#ff9500,#ffb340);width:0%"></div>
+                </div>
+              </div>
+
+              <!-- Fats -->
+              <div class="rounded-xl p-3 mb-2 relative overflow-hidden" style="background:rgba(0,255,135,0.05);border:1px solid rgba(0,255,135,0.15)">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <div class="w-2.5 h-2.5 rounded-full" style="background:#00ff87;box-shadow:0 0 6px #00ff87"></div>
+                    <span class="text-sm text-white font-semibold">Fats</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-lg font-black counter-animate" id="macro-fats" style="color:#00ff87">—</span>
+                    <span class="text-xs text-slate-400 ml-1">g</span>
+                    <span class="text-xs font-mono ml-2" id="fats-pct" style="color:rgba(0,255,135,0.6)">—%</span>
+                  </div>
+                </div>
+                <div class="progress-bar h-1">
+                  <div class="progress-fill" id="fats-bar" style="height:100%;background:linear-gradient(90deg,#00ff87,#00c87a);width:0%"></div>
+                </div>
+              </div>
+
+              <!-- Energy share label -->
+              <div class="mt-3 pt-3 grid grid-cols-3 gap-2 text-center" style="border-top:1px solid rgba(255,255,255,0.05)">
+                <div>
+                  <div class="text-xs text-slate-500 mb-1">Protein</div>
+                  <div class="text-sm font-bold" style="color:#00f2fe" id="energy-protein">—%</div>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-500 mb-1">Carbs</div>
+                  <div class="text-sm font-bold" style="color:#ff9500" id="energy-carbs">—%</div>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-500 mb-1">Fats</div>
+                  <div class="text-sm font-bold" style="color:#00ff87" id="energy-fats">—%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Biometrics Card -->
+          <div class="glass rounded-2xl p-5">
+            <div class="flex items-center gap-2 mb-4">
+              <i data-lucide="heart-pulse" class="w-4 h-4" style="color:#00ff87"></i>
+              <span class="text-sm font-bold text-white">Live Biometrics</span>
+              <div class="ml-auto pulse-ring w-2 h-2 rounded-full" style="background:#00ff87"></div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div class="rounded-xl p-3 text-center" style="background:rgba(0,255,135,0.05);border:1px solid rgba(0,255,135,0.15)">
+                <div class="text-xs text-slate-500 mb-1 font-mono">RECOVERY</div>
+                <div class="text-2xl font-black" style="color:#00ff87">94%</div>
+                <div class="text-xs text-slate-400">Optimal</div>
+              </div>
+              <div class="rounded-xl p-3 text-center" style="background:rgba(0,242,254,0.05);border:1px solid rgba(0,242,254,0.15)">
+                <div class="text-xs text-slate-500 mb-1 font-mono">HRV</div>
+                <div class="text-2xl font-black" style="color:#00f2fe">78ms</div>
+                <div class="text-xs text-slate-400">High range</div>
+              </div>
+              <div class="rounded-xl p-3 text-center" style="background:rgba(191,90,242,0.05);border:1px solid rgba(191,90,242,0.15)">
+                <div class="text-xs text-slate-500 mb-1 font-mono">RESTING HR</div>
+                <div class="text-2xl font-black" style="color:#bf5af2">52</div>
+                <div class="text-xs text-slate-400">bpm</div>
+              </div>
+              <div class="rounded-xl p-3 text-center" style="background:rgba(255,149,0,0.05);border:1px solid rgba(255,149,0,0.15)">
+                <div class="text-xs text-slate-500 mb-1 font-mono">SLEEP</div>
+                <div class="text-2xl font-black" style="color:#ff9500">91</div>
+                <div class="text-xs text-slate-400">/100 score</div>
+              </div>
+            </div>
+
+            <!-- Sync status -->
+            <div class="mt-4 pt-4 flex items-center justify-between" style="border-top:1px solid rgba(255,255,255,0.05)">
+              <div class="flex items-center gap-2">
+                <i data-lucide="watch" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span class="text-xs text-slate-400">Apple Watch Ultra</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <div class="pulse-ring w-1.5 h-1.5 rounded-full" style="background:#00ff87"></div>
+                <span class="text-xs font-mono" style="color:#00ff87">Sync: 18ms</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div><!-- /view-dashboard -->
+
+
+  <!-- ═══════════════════════════════ AI DRAWER OVERLAY ═══════════════════════════════ -->
+  <div class="ai-drawer-overlay" id="drawer-overlay" onclick="closeAIDrawer()"></div>
+
+  <!-- AI Drawer -->
+  <div class="ai-drawer glass-strong" id="ai-drawer">
+    <!-- Drawer Header -->
+    <div class="flex items-center justify-between px-5 py-4" style="border-bottom:1px solid rgba(0,242,254,0.1)">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#00f2fe,#bf5af2)">
+          <i data-lucide="bot" class="w-5 h-5" style="color:#07090e"></i>
+        </div>
+        <div>
+          <div class="text-sm font-bold text-white">PULSE AI Coach</div>
+          <div class="text-xs text-slate-400 font-mono">GPT-4o Neural · Elite Pro</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="live-badge" style="font-size:10px;padding:4px 10px">
+          <div class="live-dot"></div>
+          ACTIVE
+        </div>
+        <button onclick="closeAIDrawer()" class="w-7 h-7 rounded-lg flex items-center justify-center hover:bg-white/10 transition-colors">
+          <i data-lucide="x" class="w-4 h-4 text-slate-400"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Chat Messages -->
+    <div class="flex-1 overflow-y-auto px-4 py-5 space-y-4" id="chat-messages">
+
+      <!-- Pre-loaded conversation -->
+      <div class="flex flex-col gap-1">
+        <span class="text-xs text-slate-500 ml-1">PULSE AI</span>
+        <div class="chat-bubble ai">
+          Hey! 👋 I'm your <strong style="color:#00f2fe">PULSE Neural Coach</strong>. I'm synced with your biometrics and today's nutrition. What can I optimize for you?
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-1 items-end">
+        <span class="text-xs text-slate-500 mr-1">You</span>
+        <div class="chat-bubble user">What's my protein target for muscle gain?</div>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <span class="text-xs text-slate-500 ml-1">PULSE AI</span>
+        <div class="chat-bubble ai">
+          Based on your biometrics: <strong style="color:#00ff87">94% recovery</strong> and <strong style="color:#00f2fe">HRV 78ms</strong>, your body is primed for synthesis. 🔬<br/><br/>
+          Target <strong style="color:#00f2fe">1.8–2.2g per kg of bodyweight</strong>. For a 80kg athlete = <strong>144–176g protein/day</strong>. You're currently at 142g — almost there!
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-1 items-end">
+        <span class="text-xs text-slate-500 mr-1">You</span>
+        <div class="chat-bubble user">Should I eat carbs post-workout?</div>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <span class="text-xs text-slate-500 ml-1">PULSE AI</span>
+        <div class="chat-bubble ai">
+          Absolutely. Post-workout carb window is critical ⚡<br/><br/>
+          • <strong style="color:#ff9500">30–60g fast-digesting carbs</strong> within 45 min<br/>
+          • Pair with <strong style="color:#00f2fe">20–30g whey protein</strong> for 3:1 carb:protein ratio<br/>
+          • Your current session data shows <strong style="color:#bf5af2">glycogen depletion at ~60%</strong> — Sweet potato or rice ideal.
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-1 items-end">
+        <span class="text-xs text-slate-500 mr-1">You</span>
+        <div class="chat-bubble user">How's my recovery today?</div>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <span class="text-xs text-slate-500 ml-1">PULSE AI</span>
+        <div class="chat-bubble ai">
+          <strong style="color:#00ff87">You're in the optimal zone!</strong> 🟢<br/><br/>
+          <strong>Recovery: 94%</strong> — Top 8% of your athlete cohort<br/>
+          <strong>HRV: 78ms</strong> — Up from your 30-day avg (71ms)<br/>
+          <strong>Sleep Score: 91/100</strong> — Deep sleep was excellent<br/><br/>
+          Today is a <strong style="color:#00f2fe">green training day</strong>. Perfect for high-intensity work or a PR attempt. 💪
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Typing area -->
+    <div class="px-4 py-4" style="border-top:1px solid rgba(0,242,254,0.08)">
+      <div class="flex gap-3 items-end">
+        <div class="flex-1 relative">
+          <textarea id="chat-input"
+            placeholder="Ask about macros, recovery, form..."
+            rows="2"
+            class="w-full resize-none rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none"
+            style="background:rgba(255,255,255,0.05);border:1px solid rgba(0,242,254,0.15);font-family:inherit;"
+            onkeydown="handleChatKeydown(event)"></textarea>
+        </div>
+        <button onclick="sendChatMessage()" class="btn-primary w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0">
+          <i data-lucide="send" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="text-xs text-slate-600 mt-2 text-center">PULSE Neural GPT-4o · Elite Pro · Synced with Apple Watch</div>
+    </div>
+  </div>
+
+  <!-- FAB (AI Coach Toggle) -->
+  <button class="fab" onclick="toggleAIDrawer()" id="fab-btn" title="Open AI Coach">
+    <i data-lucide="bot" class="w-7 h-7 text-white"></i>
+  </button>
+
+
+  <!-- ═══════════════════════════════ JAVASCRIPT ═══════════════════════════════ -->
+  <script>
+    // ──────────────────── INIT ────────────────────
+    lucide.createIcons();
+
+    // ──────────────────── STATE ────────────────────
+    const state = {
+      currentView: 'landing',
+      currentMeal: null,
+      portionMultiplier: 1,
+      isScanning: false,
+      aiDrawerOpen: false,
+    };
+
+    // Meal data (base values at 1x)
+    const MEALS = {
+      fish: {
+        name: 'Herb-Crusted Grilled Fish',
+        emoji: '🐟',
+        portion: '180g fillet',
+        confidence: '97.3%',
+        base: { calories: 290, protein: 42, carbs: 8, fats: 9 },
+        components: [
+          { name: 'White Fish Fillet', amount: '140g', calories: 148, emoji: '🐟' },
+          { name: 'Herb Crust Breadcrumbs', amount: '20g', calories: 72, emoji: '🌿' },
+          { name: 'Olive Oil (brushed)', amount: '10ml', calories: 88, emoji: '🫒' },
+          { name: 'Lemon Juice', amount: '15ml', calories: 4, emoji: '🍋' },
+        ]
+      },
+      avocado: {
+        name: 'Avocado Sourdough',
+        emoji: '🥑',
+        portion: '240g serving',
+        confidence: '96.1%',
+        base: { calories: 380, protein: 12, carbs: 44, fats: 19 },
+        components: [
+          { name: 'Sourdough Bread', amount: '90g (2 slices)', calories: 198, emoji: '🍞' },
+          { name: 'Hass Avocado', amount: '120g', calories: 192, emoji: '🥑' },
+          { name: 'Cherry Tomatoes', amount: '40g', calories: 8, emoji: '🍅' },
+          { name: 'Red Chili Flakes', amount: '1g', calories: 3, emoji: '🌶️' },
+        ]
+      },
+      paneer: {
+        name: 'Paneer Tikka Bowl',
+        emoji: '🍛',
+        portion: '380g bowl',
+        confidence: '95.8%',
+        base: { calories: 510, protein: 28, carbs: 48, fats: 22 },
+        components: [
+          { name: 'Paneer', amount: '150g', calories: 400, emoji: '🧀' },
+          { name: 'Basmati Rice', amount: '100g cooked', calories: 130, emoji: '🍚' },
+          { name: 'Tikka Masala Sauce', amount: '80g', calories: 72, emoji: '🥘' },
+          { name: 'Mixed Vegetables', amount: '60g', calories: 30, emoji: '🥦' },
+        ]
+      },
+      salmon: {
+        name: 'Wild Salmon & Sweet Potato',
+        emoji: '🐠',
+        portion: '350g meal',
+        confidence: '98.6%',
+        base: { calories: 455, protein: 40, carbs: 32, fats: 18 },
+        components: [
+          { name: 'Wild Atlantic Salmon', amount: '180g fillet', calories: 374, emoji: '🐠' },
+          { name: 'Sweet Potato', amount: '130g baked', calories: 117, emoji: '🍠' },
+          { name: 'Butter (grass-fed)', amount: '8g', calories: 57, emoji: '🧈' },
+          { name: 'Sea Salt & Herbs', amount: '2g', calories: 0, emoji: '🌿' },
+        ]
+      }
+    };
+
+    // ──────────────────── VIEW MANAGEMENT ────────────────────
+    function showView(viewName) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById(`view-${viewName}`).classList.add('active');
+      state.currentView = viewName;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Re-init icons for dynamic content
+      setTimeout(() => lucide.createIcons(), 100);
+    }
+
+    function scrollToSection(id) {
+      if (state.currentView !== 'landing') showView('landing');
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+
+    // ──────────────────── MEAL SELECTION ────────────────────
+    function selectMeal(mealKey) {
+      state.currentMeal = mealKey;
+      state.portionMultiplier = 1;
+
+      // Update meal buttons
+      document.querySelectorAll('.meal-btn').forEach(b => b.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      // Reset portion to 1x
+      document.querySelectorAll('.portion-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.portion === '1');
+      });
+
+      // Show scan area with food
+      showScanState('food');
+
+      // Trigger scan animation
+      runScanAnimation(() => {
+        updateMacroDisplay();
+        showComponentsList();
+      });
+    }
+
+    function showScanState(state) {
+      const emptyState = document.getElementById('scan-empty-state');
+      const foodDisplay = document.getElementById('scan-food-display');
+      const scanBtn = document.getElementById('scan-btn');
+
+      if (state === 'food') {
+        const meal = MEALS[window.state.currentMeal] || MEALS.fish;
+        document.getElementById('food-emoji').textContent = meal.emoji;
+        document.getElementById('food-name-display').textContent = meal.name;
+        document.getElementById('food-portion-display').textContent = `~${meal.portion} detected`;
+        document.getElementById('food-confidence-badge').innerHTML = `<i data-lucide="check-circle" class="w-3 h-3"></i> Confidence: ${meal.confidence}`;
+
+        emptyState.classList.add('hidden');
+        foodDisplay.classList.remove('hidden');
+        foodDisplay.style.display = 'flex';
+        scanBtn.style.display = 'flex';
+      } else {
+        emptyState.classList.remove('hidden');
+        foodDisplay.classList.add('hidden');
+        foodDisplay.style.display = 'none';
+        scanBtn.style.display = 'none';
+      }
+      lucide.createIcons();
+    }
+
+    // ──────────────────── SCAN ANIMATION ────────────────────
+    const SCAN_STEPS = [
+      'Loading YOLOv8 model...',
+      'Preprocessing image (1.2ms)...',
+      'Running inference (2.8ms)...',
+      'Identifying food components...',
+      'Calculating macronutrients...',
+      '✓ Scan complete!'
+    ];
+
+    function runScanAnimation(onComplete) {
+      if (state.isScanning) return;
+      state.isScanning = true;
+
+      const scanZone = document.getElementById('scan-zone');
+      const laser = document.getElementById('scan-laser');
+      const overlay = document.getElementById('scanning-overlay');
+      const statusText = document.getElementById('scan-status-text');
+
+      // Show overlay + laser
+      overlay.classList.remove('hidden');
+      laser.classList.remove('hidden');
+      laser.style.top = '0%';
+
+      let stepIdx = 0;
+      const stepInterval = setInterval(() => {
+        if (stepIdx < SCAN_STEPS.length) {
+          statusText.textContent = SCAN_STEPS[stepIdx];
+          stepIdx++;
+        } else {
+          clearInterval(stepInterval);
+          setTimeout(() => {
+            overlay.classList.add('hidden');
+            laser.classList.add('hidden');
+            state.isScanning = false;
+            if (onComplete) onComplete();
+          }, 400);
+        }
+      }, 420);
+    }
+
+    function triggerScan() {
+      if (!state.currentMeal) return;
+      runScanAnimation(() => {
+        updateMacroDisplay();
+        showComponentsList();
+      });
+    }
+
+    function triggerUpload() {
+      if (!state.isScanning) {
+        document.getElementById('file-input').click();
+      }
+    }
+
+    function handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      // Auto-pick salmon as simulated detection for custom upload
+      state.currentMeal = 'salmon';
+      state.portionMultiplier = 1;
+
+      document.querySelectorAll('.portion-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.portion === '1');
+      });
+
+      showScanState('food');
+      runScanAnimation(() => {
+        updateMacroDisplay();
+        showComponentsList();
+      });
+    }
+
+    // ──────────────────── MACRO DISPLAY ────────────────────
+    function updateMacroDisplay() {
+      if (!state.currentMeal) return;
+
+      const meal = MEALS[state.currentMeal];
+      const m = state.portionMultiplier;
+      const cal = Math.round(meal.base.calories * m);
+      const prot = Math.round(meal.base.protein * m * 10) / 10;
+      const carbs = Math.round(meal.base.carbs * m * 10) / 10;
+      const fats = Math.round(meal.base.fats * m * 10) / 10;
+
+      // Energy from each macro (4 kcal/g protein, 4 kcal/g carbs, 9 kcal/g fat)
+      const totalCal = prot * 4 + carbs * 4 + fats * 9;
+      const pPct = Math.round((prot * 4 / totalCal) * 100);
+      const cPct = Math.round((carbs * 4 / totalCal) * 100);
+      const fPct = 100 - pPct - cPct;
+
+      // Show macro panel
+      document.getElementById('no-meal-state').classList.add('hidden');
+      document.getElementById('macro-display').classList.remove('hidden');
+
+      // Animate values
+      animateValue('macro-calories', cal, '');
+      animateValue('macro-protein', prot, '');
+      animateValue('macro-carbs', carbs, '');
+      animateValue('macro-fats', fats, '');
+
+      document.getElementById('calories-pct').textContent = `${Math.round((cal / 2100) * 100)}% daily`;
+      document.getElementById('protein-pct').textContent = `of ${Math.round(180 * m)}g goal`;
+      document.getElementById('carbs-pct').textContent = `of ${Math.round(220 * m)}g goal`;
+      document.getElementById('fats-pct').textContent = `of ${Math.round(70 * m)}g goal`;
+
+      document.getElementById('energy-protein').textContent = `${pPct}%`;
+      document.getElementById('energy-carbs').textContent = `${cPct}%`;
+      document.getElementById('energy-fats').textContent = `${fPct}%`;
+
+      // Progress bars
+      setTimeout(() => {
+        document.getElementById('cal-bar').style.width = `${Math.min((cal / 2100) * 100, 100)}%`;
+        document.getElementById('protein-bar').style.width = `${Math.min((prot / 180) * 100, 100)}%`;
+        document.getElementById('carbs-bar').style.width = `${Math.min((carbs / 220) * 100, 100)}%`;
+        document.getElementById('fats-bar').style.width = `${Math.min((fats / 70) * 100, 100)}%`;
+      }, 50);
+    }
+
+    function animateValue(id, target, suffix) {
+      const el = document.getElementById(id);
+      const start = 0;
+      const duration = 700;
+      const startTime = performance.now();
+
+      function update(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3); // ease out cubic
+        const current = start + (target - start) * ease;
+        el.textContent = (target % 1 === 0 ? Math.round(current) : current.toFixed(1)) + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    }
+
+    // ──────────────────── COMPONENTS LIST ────────────────────
+    function showComponentsList() {
+      if (!state.currentMeal) return;
+      const meal = MEALS[state.currentMeal];
+      const m = state.portionMultiplier;
+      const container = document.getElementById('food-components');
+      const list = document.getElementById('components-list');
+
+      container.style.display = 'block';
+      list.innerHTML = '';
+
+      meal.components.forEach((comp, i) => {
+        const scaledCal = Math.round(comp.calories * m);
+        const div = document.createElement('div');
+        div.className = 'flex items-center justify-between p-3 rounded-xl';
+        div.style.cssText = 'background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);animation:fadeUp 0.3s ease forwards;';
+        div.style.animationDelay = `${i * 80}ms`;
+        div.style.opacity = '0';
+        div.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="text-xl">${comp.emoji}</span>
+            <div>
+              <div class="text-sm font-medium text-white">${comp.name}</div>
+              <div class="text-xs text-slate-500 font-mono">${comp.amount}</div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm font-bold" style="color:#00f2fe">${scaledCal} kcal</div>
+          </div>
+        `;
+        list.appendChild(div);
+      });
+
+      lucide.createIcons();
+    }
+
+    // ──────────────────── PORTION MULTIPLIER ────────────────────
+    function setPortion(mult) {
+      state.portionMultiplier = mult;
+
+      document.querySelectorAll('.portion-btn').forEach(b => {
+        b.classList.toggle('active', parseFloat(b.dataset.portion) === mult);
+      });
+
+      if (state.currentMeal) {
+        updateMacroDisplay();
+        showComponentsList();
+      }
+    }
+
+    // ──────────────────── AI DRAWER ────────────────────
+    function openAIDrawer() {
+      state.aiDrawerOpen = true;
+      document.getElementById('ai-drawer').classList.add('open');
+      document.getElementById('drawer-overlay').classList.add('show');
+      document.getElementById('fab-btn').style.display = 'none';
+      scrollChatToBottom();
+    }
+
+    function closeAIDrawer() {
+      state.aiDrawerOpen = false;
+      document.getElementById('ai-drawer').classList.remove('open');
+      document.getElementById('drawer-overlay').classList.remove('show');
+      document.getElementById('fab-btn').style.display = 'flex';
+    }
+
+    function toggleAIDrawer() {
+      if (state.aiDrawerOpen) closeAIDrawer();
+      else openAIDrawer();
+    }
+
+    function scrollChatToBottom() {
+      const msgs = document.getElementById('chat-messages');
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function handleChatKeydown(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendChatMessage();
+      }
+    }
+
+    // AI responses database
+    const AI_RESPONSES = {
+      'protein': 'Based on your HRV and recovery data, aim for <strong style="color:#00f2fe">1.8–2.2g/kg bodyweight</strong>. You\'re at 142g today — need ~38g more. Consider a post-workout shake with wild salmon.',
+      'carb': 'Post-workout carbs matter most. Target <strong style="color:#ff9500">30–60g fast carbs</strong> within 45 min. Your glycogen depletion is around 60% — rice or sweet potato will re-fill you fast.',
+      'fat': 'Healthy fats support <strong style="color:#00ff87">testosterone and HRV optimization</strong>. Target 0.5–0.8g/kg. Omega-3 from salmon are perfect — you\'re hitting great numbers today.',
+      'recovery': 'You\'re at <strong style="color:#00ff87">94% recovery</strong> — absolutely elite. HRV is 78ms, above your 30-day avg. Full training load is green today. 🟢',
+      'sleep': 'Sleep score <strong style="color:#00ff87">91/100</strong> is exceptional. Deep sleep was strong, supporting muscle protein synthesis. Keep a consistent sleep window.',
+      'water': 'For your body mass and HRV level, target <strong style="color:#00f2fe">3.5–4L water today</strong>. Add electrolytes if training >60 min. Sodium and magnesium are key.',
+      'creatine': '<strong style="color:#bf5af2">5g creatine monohydrate daily</strong> is the gold standard. Timing doesn\'t matter much — consistency does. Best bang-for-buck supplement, period.',
+      'default': 'Great question! Based on your biometrics today — <strong style="color:#00ff87">94% recovery, HRV 78ms</strong> — you\'re in peak condition. Tell me more about your specific goal and I\'ll give you a precision protocol. 💪'
+    };
+
+    function getAIResponse(userMsg) {
+      const msg = userMsg.toLowerCase();
+      if (msg.includes('protein')) return AI_RESPONSES.protein;
+      if (msg.includes('carb')) return AI_RESPONSES.carb;
+      if (msg.includes('fat')) return AI_RESPONSES.fat;
+      if (msg.includes('recover') || msg.includes('hrv')) return AI_RESPONSES.recovery;
+      if (msg.includes('sleep')) return AI_RESPONSES.sleep;
+      if (msg.includes('water') || msg.includes('hydrat')) return AI_RESPONSES.water;
+      if (msg.includes('creatine')) return AI_RESPONSES.creatine;
+      return AI_RESPONSES.default;
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById('chat-input');
+      const msg = input.value.trim();
+      if (!msg) return;
+
+      const chatMessages = document.getElementById('chat-messages');
+
+      // Add user message
+      const userDiv = document.createElement('div');
+      userDiv.className = 'flex flex-col gap-1 items-end';
+      userDiv.innerHTML = `
+        <span class="text-xs text-slate-500 mr-1">You</span>
+        <div class="chat-bubble user">${escapeHtml(msg)}</div>
+      `;
+      chatMessages.appendChild(userDiv);
+      input.value = '';
+      scrollChatToBottom();
+
+      // Show typing indicator
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'flex flex-col gap-1';
+      typingDiv.innerHTML = `
+        <span class="text-xs text-slate-500 ml-1">PULSE AI</span>
+        <div class="chat-bubble ai flex gap-1.5 items-center py-3">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+      `;
+      chatMessages.appendChild(typingDiv);
+      scrollChatToBottom();
+
+      // AI response after delay
+      setTimeout(() => {
+        chatMessages.removeChild(typingDiv);
+
+        const aiDiv = document.createElement('div');
+        aiDiv.className = 'flex flex-col gap-1';
+        aiDiv.innerHTML = `
+          <span class="text-xs text-slate-500 ml-1">PULSE AI</span>
+          <div class="chat-bubble ai">${getAIResponse(msg)}</div>
+        `;
+        chatMessages.appendChild(aiDiv);
+        scrollChatToBottom();
+      }, 1400 + Math.random() * 600);
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    // ──────────────────── TERMINAL ANIMATION ────────────────────
+    function animateTerminal() {
+      const cursor = document.querySelector('.terminal-cursor');
+      if (!cursor) return;
+      setInterval(() => {
+        cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+      }, 500);
+    }
+
+    // ──────────────────── LIVE TELEMETRY TICKER ────────────────────
+    function startTelemetryTicker() {
+      // Simulate slight HRV variation for realism
+      setInterval(() => {
+        // nothing visible needed for now — sync badge already animates
+      }, 3000);
+    }
+
+    // ──────────────────── ON LOAD ────────────────────
+    window.addEventListener('load', () => {
+      lucide.createIcons();
+      animateTerminal();
+      startTelemetryTicker();
+    });
+
+    // Keyboard shortcut: Escape to close drawer
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && state.aiDrawerOpen) closeAIDrawer();
+    });
+  </script>
+
+</body>
+</html>
