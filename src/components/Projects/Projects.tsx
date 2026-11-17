@@ -27,8 +27,44 @@ interface DeckProject {
 
 const projectsDeckData: DeckProject[] = [
   {
-    id: 'dog-vs-cat',
+    id: 'codelens-ai',
     number: '01',
+    name: 'CodeLens AI V2.5',
+    badge: 'AI & ENTERPRISE SAAS / FULL STACK',
+    title: 'CodeLens AI (IDE V2.5)',
+    description:
+      'CodeLens AI (IDE V2.5) is an enterprise AI copilot and automated architecture auditor that transforms undocumented legacy codebases into interactive dependency blueprints and plain-English business logic. Powered by Google Gemini 2.5 Flash and static AST indexing, it enables engineering teams to simulate cross-file "Blast Radius" change impacts, isolate dead code, and generate characterization unit tests before touching production systems.',
+    accentBg: 'from-cyan-950/60 via-[#07090e] to-black',
+    previewIcon: '⚡',
+    previewSubtitle: 'Google Gemini 2.5 Flash · AST Indexer',
+    metrics: {
+      label1: 'BLAST RADIUS',
+      value1: 'Real-Time',
+      label2: 'ARCHITECTURE',
+      value2: 'AST-Level',
+    },
+    techStack: [
+      { name: 'Next.js (App Router)', icon: '▲', color: 'border-cyan-500/30 text-cyan-400 bg-cyan-950/20' },
+      { name: 'TypeScript', icon: 'TS', color: 'border-blue-500/30 text-blue-400 bg-blue-950/20' },
+      { name: 'Google Gemini 2.5 Flash', icon: '✨', color: 'border-purple-500/30 text-purple-400 bg-purple-950/20' },
+      { name: 'Tailwind CSS', icon: '🎨', color: 'border-teal-500/30 text-teal-400 bg-teal-950/20' },
+      { name: 'Radix UI', icon: '🧩', color: 'border-indigo-500/30 text-indigo-400 bg-indigo-950/20' },
+      { name: 'Static AST Parsing', icon: '🌳', color: 'border-emerald-500/30 text-emerald-400 bg-emerald-950/20' },
+      { name: 'React Markdown', icon: '📝', color: 'border-amber-500/30 text-amber-400 bg-amber-950/20' },
+      { name: 'Lucide Icons', icon: '◈', color: 'border-rose-500/30 text-rose-400 bg-rose-950/20' },
+    ],
+    liveUrl: 'https://code-lens-ai-cyan-rho.vercel.app/',
+    githubUrl: 'https://github.com/vishalsukhwall/CodeLens_AI',
+    challenge:
+      'Interactive AST & Dependency Blueprint Engine: Engineered a static Abstract Syntax Tree (AST) indexer paired with a zero-overlap, node-based visual canvas that maps cross-file relationships across SQL schemas, Java services, and batch jobs with click-to-inspect code X-Ray translation.',
+    solution:
+      'Cross-File "Blast Radius" Risk Simulator: Built a real-time architectural impact engine powered by Gemini 2.5 Flash that evaluates proposed code or schema changes (e.g., column renames, tax logic edits) to calculate quantified risk scores (e.g., 88% High Risk) and pinpoint exact downstream breaking lines.',
+    result:
+      'Automated Tech-Debt & TestGuard Suite: Integrated automated dead-code/coupling detection alongside an on-demand unit test generator that locks legacy business rules into runnable characterization test suites prior to refactoring.',
+  },
+  {
+    id: 'dog-vs-cat',
+    number: '02',
     name: 'Dog vs Cat AI',
     badge: 'CV / TRANSFER LEARNING',
     title: 'Dog vs Cat Classifier',
@@ -402,6 +438,20 @@ export const Projects: React.FC = () => {
                     Details
                   </button>
 
+                  {activeProject.githubUrl && (
+                    <a
+                      href={activeProject.githubUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 text-xs font-semibold text-neutral-800 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-500 transition-all hover:scale-105"
+                    >
+                      <span>GitHub</span>
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  )}
+
                   <a
                     href={activeProject.liveUrl}
                     target="_blank"
@@ -464,6 +514,32 @@ export const Projects: React.FC = () => {
                 <div className="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">RESULT: {modalProject.result}</div>
               </div>
             )}
+            <div className="flex items-center gap-3 pt-2">
+              {modalProject.githubUrl && (
+                <a
+                  href={modalProject.githubUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 text-xs font-semibold text-neutral-800 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white"
+                >
+                  <span>GitHub</span>
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              )}
+              <a
+                href={modalProject.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-teal-500 text-black font-bold text-xs hover:bg-teal-400 transition-all shadow-md"
+              >
+                <span>Live Demo</span>
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       )}

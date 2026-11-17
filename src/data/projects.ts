@@ -2,6 +2,31 @@ import type { Project } from '@/types/project';
 
 export const projects: Project[] = [
   {
+    id: 'codelens-ai',
+    title: 'CodeLens AI (IDE V2.5)',
+    description: 'CodeLens AI (IDE V2.5) is an enterprise AI copilot and automated architecture auditor that transforms undocumented legacy codebases into interactive dependency blueprints and plain-English business logic. Powered by Google Gemini 2.5 Flash and static AST indexing, it enables engineering teams to simulate cross-file "Blast Radius" change impacts, isolate dead code, and generate characterization unit tests before touching production systems.',
+    image: 'linear-gradient(135deg, #0a0e1a 0%, #0d1526 30%, #00d4ff 100%)',
+    technologies: [
+      'Next.js (App Router)',
+      'TypeScript',
+      'Tailwind CSS',
+      'Radix UI',
+      'Google Gemini 2.5 Flash',
+      'Static AST Parsing',
+      'React Markdown',
+      'Lucide Icons',
+    ],
+    liveUrl: 'https://code-lens-ai-cyan-rho.vercel.app/',
+    githubUrl: 'https://github.com/vishalsukhwall/CodeLens_AI',
+    featured: true,
+    caseStudy: {
+      challenge: 'Interactive AST & Dependency Blueprint Engine: Engineered a static Abstract Syntax Tree (AST) indexer paired with a zero-overlap, node-based visual canvas that maps cross-file relationships across SQL schemas, Java services, and batch jobs with click-to-inspect code X-Ray translation.',
+      solution: 'Cross-File "Blast Radius" Risk Simulator: Built a real-time architectural impact engine powered by Gemini 2.5 Flash that evaluates proposed code or schema changes (e.g., column renames, tax logic edits) to calculate quantified risk scores (e.g., 88% High Risk) and pinpoint exact downstream breaking lines.',
+      result: 'Automated Tech-Debt & TestGuard Suite: Integrated automated dead-code/coupling detection alongside an on-demand unit test generator that locks legacy business rules into runnable characterization test suites prior to refactoring.',
+      images: []
+    }
+  },
+  {
     id: 'dog-vs-cat',
     title: 'Dog vs Cat Classifier',
     description: 'A deep learning computer vision web application classifying dog and cat breeds in real time using transfer learning with MobileNetV2.',
